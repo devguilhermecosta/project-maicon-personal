@@ -29,7 +29,7 @@ html, body {
     "header"
     "main"
     "footer";
-  padding: 2%;
+  padding: 0 2%;
   background-color: var(--light-white);
 }
 /* ###### END BODY ###### */
@@ -48,42 +48,51 @@ html, body {
 .c-header__logo-container {
   width: 100%;
   max-width: 200px;
+  align-self: flex-start;
 }
 
 .c-header__logo {
   max-width: 100%;
 }
 
-.c-header__nav {
-  align-self: flex-start;
-  margin-top: 25px;
+.c-header__nav::before {
+  content: "X";
 }
 
 .c-header__nav ul {
   list-style-type: none;
-  display: flex;
+  display: none;
   column-gap: 35px;
-}
-
-.c-header__nav ul li::before {
-  border-bottom: 0px solid transparent;
-  transition: all 300ms ease;
-}
-
-.c-header__nav ul li:hover {
-  border-bottom: 1px solid red;
 }
 
 .c-header__nav ul li a {
   text-decoration: none;
-  font-weight: 200;
-  color: var(--standard-black);
+  font-weight: 500;
+  color: var(--heavy-blue);
   transition: all 300ms ease;
 }
 
 .c-header__nav ul li a:hover {
-  font-weight: 600;
-  color: var(--heavy-blue);
+  color: var(--intermediate-blue);
+}
+
+.c-header__nav ul li a::after {
+  position: absolute;
+  content: '';
+  position: relative;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  display: block;
+  background-color: var(--heavy-blue);
+  border-radius: 50%;
+  transition: all 300ms ease;
+}
+
+.c-header__nav ul li a:hover::after {
+  width: 100%;
+  left: 0;
 }
 /* ###### END HEADER ##### */
 
@@ -101,3 +110,7 @@ html, body {
   grid-area: footer;
 }
 /* ###### END FOOTER ###### */
+
+@media screen and (min-width: 768px) {
+
+}
