@@ -20,6 +20,18 @@ html, body {
   height: 100%;
 }
 
+/* GENERICS */
+
+.is_closed {
+  display: none;
+}
+
+.is_open {
+  display: block;
+}
+
+/* ###### END GENERICS ######*/
+
 /* START BODY*/
 .c-body {
   display: grid;
@@ -29,7 +41,6 @@ html, body {
     "header"
     "main"
     "footer";
-  padding: 0 2%;
   background-color: var(--light-white);
 }
 /* ###### END BODY ###### */
@@ -43,6 +54,7 @@ html, body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 .c-header__logo-container {
@@ -55,14 +67,35 @@ html, body {
   max-width: 100%;
 }
 
-.c-header__nav::before {
-  content: "X";
+.c-header__nav_menu_mobile {
+  background-color: var(--blue-green);
+  border-radius: 5px 0 0 5px;
+  cursor: pointer;
+  position: absolute;
+  right: 5px;
+  transition: all 300ms ease;
+}
+
+.c-header__nav {
+  background-color: var(--blue-green);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 5px;
+  overflow-y: hidden;
+  min-height: 100vh;
+  line-height: 2;
+  transition: all 300ms ease;
 }
 
 .c-header__nav ul {
   list-style-type: none;
-  display: none;
-  column-gap: 35px;
+}
+
+.c-header__nav ul li {
+  width: fit-content;
+  margin: 0 auto;
 }
 
 .c-header__nav ul li a {
@@ -112,5 +145,26 @@ html, body {
 /* ###### END FOOTER ###### */
 
 @media screen and (min-width: 768px) {
+  .c-header__nav_menu_mobile {
+    display: none !important;
+  }
 
+  .c-header__nav {
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    position: relative;
+    min-width: 450px;
+    overflow-y: visible;
+    padding: 0 2%;
+    min-height: 100%;
+    line-height: 1.5;
+    transition: all 300ms ease;
+  }
+
+  .c-header__ul {
+    display: flex;
+    column-gap: 45px;
+    width: auto;
+  }
 }

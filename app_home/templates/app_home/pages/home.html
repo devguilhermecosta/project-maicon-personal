@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Home | </title>
 </head>
@@ -21,12 +22,13 @@
             <img src="{% static 'global/images/logo_academia.jpg' %}" alt="logo academia" class="c-header__logo">
         </div>
         <!-- menu -->
+        <span class="material-symbols-outlined c-header__nav_menu_mobile is_closed">menu</span>
         <nav class="c-header__nav">
-            <ul>
-                <li><a href="#">HOME</a></li>
-                <li><a href="#">GALERY</a></li>
-                <li><a href="#">ABOUT</a></li>
-                <li><a href="#">CONTACT</a></li>
+            <ul class="c-header__ul is_closed">
+                <li><a class="c-header__link" href="#">HOME</a></li>
+                <li><a class="c-header__link" href="#">GALERY</a></li>
+                <li><a class="c-header__link" href="#">ABOUT</a></li>
+                <li><a class="c-header__link" href="#">CONTACT</a></li>
             </ul>
         </nav>
     </header>
@@ -39,5 +41,7 @@
     <!-- start footer -->
     <footer class="c-footer">footer</footer>
     <!-- end footer -->
+
+    <script src="{% static 'global/js/script.js' %}"></script>
 </body>
 </html>
