@@ -30,6 +30,27 @@ html, body {
   display: block;
 }
 
+.center_flex_row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center_flex_column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.center_margin {
+  margin: 0 auto;
+}
+
+.standard_transition {
+  transition: all 300ms ease;
+}
+
 /* ###### END GENERICS ######*/
 
 /* START BODY*/
@@ -116,7 +137,7 @@ html, body {
   min-height: 100vh;
   line-height: 2;
   transition: all 300ms ease;
-  z-index: 1000000;
+  z-index: 1000000000;
 }
 
 .c-header__nav ul {
@@ -175,7 +196,6 @@ html, body {
 
 .c-main__benefit {
   max-width: 280px;
-  transition: all 3s ease-in-out;
   line-height: 1.5;
   background-image: linear-gradient(45deg, var(--heavy-blue), var(--intermediate-blue), var(--blue-green));
   margin: 10px 10px;
@@ -195,12 +215,24 @@ html, body {
   text-align: center;
 }
 
-.is_left {
-  opacity: 0;
+.c-main__profile {
+  padding: 0 2%;
+  position: relative;
+  top: -10px;
+  background-color: var(--blue-green);
 }
 
-.is_right {
-  opacity: 0;
+.c-main__profile_img-container {
+  width: 100%;
+  max-width: 320px;
+  text-align: center;
+}
+
+.c-main__profile_description {
+  text-align: center;
+  line-height: 1.5;
+  width: 100%;
+  max-width: 650px;
 }
 
 /* ###### END MAIN ###### */
@@ -223,12 +255,16 @@ html, body {
 
   .c-main__intro {
     min-height: 500px;
+    overflow: hidden;
   }
 
   .c-main__benefit {
     position: absolute;
     margin: 0;
     padding: 0;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
   }
   
   .is_left {
@@ -238,6 +274,7 @@ html, body {
     border-bottom-right-radius: 50px;
     transition: all 1s ease-in-out;
     background-image: linear-gradient(45deg, var(--heavy-blue), var(--intermediate-blue), var(--blue-green));
+    animation-name: to-role-left;
   }
   
   .is_left:nth-last-of-type(1) {
@@ -252,10 +289,31 @@ html, body {
     border-bottom-left-radius: 50px;
     transition: all 1s ease-in-out;
     background-image: linear-gradient(-45deg, var(--heavy-blue), var(--intermediate-blue), var(--blue-green));
+    animation-name: to-role-right;
   }
   
   .is_right h2 {
     text-align: right;
+  }
+}
+
+@keyframes to-role-left {
+  from {
+    left: -100%;
+  }
+
+  to {
+    left: 0;
+  }
+}
+
+@keyframes to-role-right {
+  from {
+    right: -100%;
+  }
+
+  to {
+    right: 0;
   }
 }
 
@@ -339,17 +397,6 @@ html, body {
     top: 210px;
   }
 
-  .is_left {
-    left: 50% !important;
-    transform: translate(-50%, 0);
-  }
-
-  .is_right {
-    top: 95px;
-    right: 50% !important;
-    transform: translate(50%, 0);
-  }
-
   .c-main__benefit h2 {
     text-align: left;
     font-size: 16px;
@@ -358,5 +405,23 @@ html, body {
   .c-main__benefit p {
     font-size: 14px;
     text-align: left;
+  }
+
+  @keyframes to-role-left {
+    to {
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+  }
+
+  @keyframes to-role-right {
+    from {
+      top: 95px;
+    }
+    to {
+      right: 50%;
+      top: 95px;
+      transform: translate(50%, 0);
+    }
   }
 }
