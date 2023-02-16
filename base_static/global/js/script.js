@@ -27,3 +27,16 @@ function controlMenu() {
         link.addEventListener("click", controlMenu);
     }
 })();
+
+(function() {
+    const benefitIntro = document.querySelectorAll('.c-main__benefit');
+
+    for (const benefit of benefitIntro) {
+        if (benefit.classList.contains('is_left')) {
+            benefit.style.left = 0;
+            benefit.style.opacity = 1;
+        } else if (benefit.classList.contains('is_right'))
+            benefit.style.right = 0;
+            benefit.style.opacity = 1;
+        };
+})();

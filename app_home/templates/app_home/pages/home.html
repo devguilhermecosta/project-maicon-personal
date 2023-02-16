@@ -17,6 +17,16 @@
 <body class="c-body">
     <!-- start header -->
     <header class="c-header">
+        <!-- image background -->
+        <div class="c-header__img_bg">
+            <img src="{% static 'global/images/bg_header.jpg' %}" alt="">
+        </div>
+        <!-- social icons -->
+        <div class="c-header__social">
+            <a href=""><img src="{% static 'global/images/instagram.png' %}" alt="logo instagram" class="c-header__social_link"></a>
+            <a href=""><img src="{% static 'global/images/facebook.png' %}" alt="logo facebook" class="c-header__social_link"></a>
+            <a href=""><img src="{% static 'global/images/whatsapp.png' %}" alt="logo whatsapp" class="c-header__social_link"></a>
+        </div>
         <!-- logo -->
         <div class="c-header__logo-container">
             <img src="{% static 'global/images/logo_academia.jpg' %}" alt="logo academia" class="c-header__logo">
@@ -26,8 +36,9 @@
         <nav class="c-header__nav">
             <ul class="c-header__ul is_closed">
                 <li><a class="c-header__link" href="#">HOME</a></li>
-                <li><a class="c-header__link" href="#">GALERY</a></li>
                 <li><a class="c-header__link" href="#">ABOUT</a></li>
+                <li><a class="c-header__link" href="#">GALLERY</a></li>
+                <li><a class="c-header__link" href="#">SERVICES</a></li>
                 <li><a class="c-header__link" href="#">CONTACT</a></li>
             </ul>
         </nav>
@@ -35,7 +46,25 @@
     <!-- end header -->
 
     <!-- start main -->
-    <main class="c-main">main</main>
+    <main class="c-main">
+        <section class="c-main__intro">
+            <div class="c-main__benefit is_left">
+                <h2>Saúde e bem-estar</h2>
+                <p>A atividade física regular auxilia na prevenção do desenvolvimento de patologias, fortalecimento dos sistemas imunológico e musculoesquelético.
+                </p>
+            </div>            
+            <div class="c-main__benefit is_right is_two">
+                <h2>Produtividade e autoestima</h2>
+                <p>Pessoas que realizam exercícios físicos tendem a ser mais produtivas em sua rotina diária. A serotonina é conhecida como hormônio da felicidade, tendo sua produção aumentada durante o exercício físico.
+                </p>
+            </div>            
+            <div class="c-main__benefit is_left">
+                <h2>Personal Trainer</h2>
+                <p>O Personal Trainer é o profissional educador físico responsável pelo atendimento individualizado ao cliente, atuando na promoção e recuperação da saúde.
+                </p>
+            </div>
+        </section>
+    </main>
     <!-- end main -->
 
     <!-- start footer -->
