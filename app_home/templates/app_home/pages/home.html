@@ -12,124 +12,83 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'global/images/partial-logo.png' %}" type="image/x-icon">
     <title>Home | </title>
 </head>
-<body class="c-body">
-    <!-- start header -->
-    <header class="c-header">
-        <!-- image background -->
-        <div class="c-header__img_bg">
-            <img src="{% static 'global/images/bg_header.jpg' %}" alt="">
-        </div>
-        <!-- social icons -->
-        <div class="c-header__social">
-            <a href=""><img src="{% static 'global/images/instagram.png' %}" alt="logo instagram" class="c-header__social_link"></a>
-            <a href=""><img src="{% static 'global/images/facebook.png' %}" alt="logo facebook" class="c-header__social_link"></a>
-            <a href=""><img src="{% static 'global/images/whatsapp.png' %}" alt="logo whatsapp" class="c-header__social_link"></a>
-        </div>
-        <!-- logo -->
-        <div class="c-header__logo-container">
-            <img src="{% static 'global/images/logo_academia.jpg' %}" alt="logo academia" class="c-header__logo">
-        </div>
-        <!-- menu -->
-        <span class="material-symbols-outlined c-header__nav_menu_mobile is_closed">menu</span>
-        <nav class="c-header__nav">
-            <ul class="c-header__ul is_closed">
-                <li><a class="c-header__link" href="#">HOME</a></li>
-                <li><a class="c-header__link" href="#">ABOUT</a></li>
-                <li><a class="c-header__link" href="#">GALLERY</a></li>
-                <li><a class="c-header__link" href="#">SERVICES</a></li>
-                <li><a class="c-header__link" href="#">CONTACT</a></li>
-            </ul>
-        </nav>
+<body class="C-body">
+    <!-- header -->
+    <header class="C-header">
+        <!-- contact -->
+        <section class="C-header_contact center_flex_row">
+            <a href=""><img src="{% static 'global/images/instagram.png' %}" alt="logo instagram"></a>
+            <a href=""><img src="{% static 'global/images/facebook.png' %}" alt="logo facebook"></a>
+            <div class="C-header_whatsapp center_flex_row standard_transition">
+                <a href="" class="center_flex_row"><img src="{% static 'global/images/whatsapp.png' %}" alt="logo whatsapp"><p>(46) 9 9982-6472</p></a>
+            </div>
+        </section>
+
+        <!-- logo and menu -->
+        <section class="C-menu center_flex_row">
+            <!-- logo -->
+            <div class="C-menu__c_img">
+                <img src="{% static 'global/images/partial-logo.png' %}" alt="" class="C-menu__img">
+            </div>
+            <!-- menu -->
+            <div class="C-menu__menu">
+                <nav class="C-menu__nav">
+                    <ul class="C-menu__ul center_flex_row">
+                        <li class="C-menu__li standard_transition"><a href="" class="C-menu__link">home</a></li>
+                        <li class="C-menu__li standard_transition"><a href="" class="C-menu__link">about</a></li>
+                        <li class="C-menu__li standard_transition"><a href="" class="C-menu__link">services</a></li>
+                        <li class="C-menu__li standard_transition"><a href="" class="C-menu__link">gallery</a></li>
+                        <li class="C-menu__li standard_transition"><a href="" class="C-menu__link">contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- center logo -->
+        <section class="C-logo center_flex_row center_margin">
+            <img src="{% static 'global/images/logo.png' %}" alt="">
+        </section>
+
+        <!-- section intro -->
+        <section class="C-intro center_flex_column">
+            <h1 class="C-intro__title">Alimentando seu corpo e alma com exercícios físicos</h1>
+            <p class="C-intro__description">A prática regular de atividade física trás ínumeros benefícios, dentre eles:</p>
+            <div class="C-intro__card">
+                <h2 class="C-intro__card_title">
+                    prática regular
+                </h2>
+                <p class="C-intro__card_description">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores possimus harum asperiores. Doloribus necessitatibus, ducimus, fugit earum sunt ea expedita unde ratione accusamus, mollitia asperiores sint minus saepe pariatur illo!
+                </p>
+            </div>
+            <div class="C-intro__card">
+                <h2 class="C-intro__card_title">
+                    prática regular
+                </h2>
+                <p class="C-intro__card_description">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores possimus harum asperiores. Doloribus necessitatibus, ducimus, fugit earum sunt ea expedita unde ratione accusamus, mollitia asperiores sint minus saepe pariatur illo!
+                </p>
+            </div>
+            <div class="C-intro__card">
+                <h2 class="C-intro__card_title">
+                    prática regular
+                </h2>
+                <p class="C-intro__card_description">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores possimus harum asperiores. Doloribus necessitatibus, ducimus, fugit earum sunt ea expedita unde ratione accusamus, mollitia asperiores sint minus saepe pariatur illo!
+                </p>
+            </div>
+        </section>
     </header>
-    <!-- end header -->
 
-    <!-- start main -->
-    <main class="c-main">
-        <!-- intro and benefit of the exercises -->
-        <section class="c-main__intro">
-            <div class="c-main__benefit is_left">
-                <h2>Saúde e bem-estar</h2>
-                <p>A atividade física regular auxilia na prevenção do desenvolvimento de patologias, fortalecimento dos sistemas imunológico e musculoesquelético.
-                </p>
-            </div>            
-            <div class="c-main__benefit is_right is_two">
-                <h2>Produtividade e autoestima</h2>
-                <p>Pessoas que realizam exercícios físicos tendem a ser mais produtivas em sua rotina diária. A serotonina é conhecida como hormônio da felicidade, tendo sua produção aumentada durante o exercício físico.
-                </p>
-            </div>            
-            <div class="c-main__benefit is_left">
-                <h2>Personal Trainer</h2>
-                <p>O Personal Trainer é o profissional educador físico responsável pelo atendimento individualizado ao cliente, atuando na promoção e recuperação da saúde.
-                </p>
-            </div>
-        </section>
+    <!-- main -->
+    <main class="C-main"></main>
 
-        <!-- professional profile -->
-        <section class="c-main__profile center_flex_column standard_transition">
-            <div class="c-main__profile_img-container standard_transition">
-                <img src="{% static 'global/images/profile.jpeg' %}" alt="professional image" class="c-main__profile_img standard_transition">
-            </div>
-            <div class="c-main__profile_description standard_transition">
-                <h1>personal maicon</h1>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non beatae id voluptatibus voluptatem, explicabo accusamus illo ex repellat, alias maiores sapiente. At fuga temporibus quaerat fugiat? Id ut beatae nostrum?
-                Illum dolor at nostrum nobis in corrupti temporibus nisi animi rerum necessitatibus molestiae iste deserunt impedit eos voluptas maiores cum beatae aut delectus vitae, eveniet alias! Esse quos non deserunt.
-                Eveniet quo amet perspiciatis vel inventore eaque nemo ducimus porro, possimus dignissimos, praesentium autem animi beatae quam dicta necessitatibus? Praesentium illo ab magni soluta odit tempora veritatis voluptatibus ea temporibus.</p>
-            </div>
-        </section>
-
-        <!-- fast gallery -->
-        <section class="c-main__gallery">
-            <ul class="c-main__gallery_container center_margin">
-                <li class="c-main__gallery_li">
-                    <input type="radio" name="slide" id="slide1" checked>
-                    <label for="slide1"></label>
-                    <img src="{% static 'global/images/main-gallery/img1.jpg' %}" alt="" class="c-main__gallery_img">
-                </li>
-
-                <li class="c-main__gallery_li">
-                    <input type="radio" name="slide" id="slide2">
-                    <label for="slide2"></label>
-                    <img src="{% static 'global/images/main-gallery/img2.jpg' %}" alt="" class="c-main__gallery_img">
-                </li>
-
-                <li class="c-main__gallery_li">
-                    <input type="radio" name="slide" id="slide3">
-                    <label for="slide3"></label>
-                    <img src="{% static 'global/images/main-gallery/img3.jpg' %}" alt="" class="c-main__gallery_img">
-                </li>
-            </ul>
-        </section>
-
-        <!-- services -->
-        <section class="c-main__services_container">
-            <div class="c-main__services_content center_flex_row center_margin standard_transition">
-                <div class="c-main_service">
-                    <h2>lorem ipsum</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum, nostrum.</p>
-                </div>
-                <div class="c-main_service">
-                    <h2>lorem ipsum</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum, nostrum.</p>
-                </div>
-                <div class="c-main_service">
-                    <h2>lorem ipsum</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum, nostrum.</p>
-                </div>
-                <div class="c-main_service">
-                    <h2>lorem ipsum</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum, nostrum.</p>
-                </div>
-            </div>
-        </section>
-    </main>
-    <!-- end main -->
-
-    <!-- start footer -->
-    <footer class="c-footer">footer</footer>
-    <!-- end footer -->
-
+    <!-- footer -->
+    <footer class="C-footer"></footer>
+</body>
     <script src="{% static 'global/js/script.js' %}"></script>
 </body>
 </html>
