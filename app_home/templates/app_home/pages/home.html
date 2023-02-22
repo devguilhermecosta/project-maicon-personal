@@ -29,24 +29,23 @@
 
         <!-- logo and menu -->
         <section class="C-menu center_flex_row">
-            <!-- logo -->
-            <div class="C-menu__c_img">
-                <img src="{% static 'global/images/partial-logo.png' %}" alt="" class="C-menu__img">
-            </div>
             <!-- menu -->
             <div class="C-menu__menu">
                 <nav class="C-menu__nav">
                     <ul class="C-menu__ul center_flex_row">
-                        <li class="C-menu__li standard_transition"><a href="" class="C-menu__link">home</a></li>
-                        <li class="C-menu__li standard_transition"><a href="" class="C-menu__link">about</a></li>
-                        <li class="C-menu__li standard_transition"><a href="" class="C-menu__link">services</a></li>
-                        <li class="C-menu__li standard_transition"><a href="" class="C-menu__link">gallery</a></li>
-                        <li class="C-menu__li standard_transition"><a href="" class="C-menu__link">contact</a></li>
+                        <li class="C-menu__li"><a href="" class="C-menu__link standard_transition">home</a></li>
+                        <li class="C-menu__li"><a href="" class="C-menu__link standard_transition">about</a></li>
+                        <li class="C-menu__li"><a href="" class="C-menu__link standard_transition">services</a></li>
+                        <li class="C-menu__li"><a href="" class="C-menu__link standard_transition">gallery</a></li>
+                        <li class="C-menu__li"><a href="" class="C-menu__link standard_transition">contact</a></li>
                     </ul>
                 </nav>
             </div>
         </section>
+    </header>
 
+    <!-- main -->
+    <main class="C-main">
         <!-- center logo -->
         <section class="C-logo center_flex_row center_margin">
             <img src="{% static 'global/images/logo.png' %}" alt="">
@@ -54,37 +53,103 @@
 
         <!-- section intro -->
         <section class="C-intro center_flex_column">
-            <h1 class="C-intro__title">Alimentando seu corpo e alma com exercícios físicos</h1>
-            <p class="C-intro__description">A prática regular de atividade física trás ínumeros benefícios, dentre eles:</p>
+            <h1 class="C-intro__title">Atividade física com o professor Maicon</h1>
+            <p class="C-intro__description">A prática regular de atividade física, com o acompanhamento de um profissional especializado, trás ínumeros benefícios, dentre eles:</p>
             <div class="C-intro__card">
                 <h2 class="C-intro__card_title">
-                    prática regular
+                    Saúde e bem-estar
                 </h2>
                 <p class="C-intro__card_description">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores possimus harum asperiores. Doloribus necessitatibus, ducimus, fugit earum sunt ea expedita unde ratione accusamus, mollitia asperiores sint minus saepe pariatur illo!
+                    A atividade física regular auxilia na prevenção do desenvolvimento de patologias, fortalecimento dos sistemas imunológico e musculoesquelético.
                 </p>
             </div>
             <div class="C-intro__card">
                 <h2 class="C-intro__card_title">
-                    prática regular
+                    Produtividade e autoestima
                 </h2>
                 <p class="C-intro__card_description">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores possimus harum asperiores. Doloribus necessitatibus, ducimus, fugit earum sunt ea expedita unde ratione accusamus, mollitia asperiores sint minus saepe pariatur illo!
+                    Pessoas que realizam exercícios físicos tendem a ser mais produtivas em sua rotina diária. A serotonina é conhecida como hormônio da felicidade, tendo sua produção aumentada durante o exercício físico.
                 </p>
             </div>
             <div class="C-intro__card">
                 <h2 class="C-intro__card_title">
-                    prática regular
+                    Personal Trainer
                 </h2>
                 <p class="C-intro__card_description">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores possimus harum asperiores. Doloribus necessitatibus, ducimus, fugit earum sunt ea expedita unde ratione accusamus, mollitia asperiores sint minus saepe pariatur illo!
+                    O Personal Trainer é o profissional educador físico responsável pelo atendimento individualizado ao cliente, atuando na promoção e recuperação da saúde.
                 </p>
             </div>
         </section>
-    </header>
 
-    <!-- main -->
-    <main class="C-main"></main>
+        <!-- personal profile -->
+        <section class="C-profile center_flex_row">
+            <div class="C-profile_description">
+                <h2>Conheça um pouco o professor Maicon</h2>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum dolor corrupti qui ducimus quaerat mollitia facere non quam doloremque ad deleniti, in provident itaque adipisci assumenda sapiente veritatis et laborum.
+                Eius delectus harum culpa soluta, rem distinctio iusto voluptatem repellat, minus magnam, ipsam vero! Maxime error quidem debitis eius doloremque labore optio, repellat possimus reiciendis atque facere quis eum ab!
+                Labore consequatur voluptatibus molestiae quos nesciunt illum. Ut tempore voluptates deleniti, perferendis similique officiis libero rerum rem quidem iste minus veritatis qui nulla adipisci, molestias doloribus ea nostrum facilis. Rerum.</p>
+            </div>
+            <div class="C-profile_image center_flex_row">
+                <img src="{% static 'global/images/profile.jpeg' %}" alt="profile image">
+                <span class="C-profile_span"></span>
+            </div>
+        </section>
+
+        <!-- pre gallery -->
+        <section class="C-pre_gallery center_flex_row">
+            <div class="C-pre_gallery_images">
+                <ul class="C-pre_gallery_ul">
+                    <li class="C-pre_gallery_li">
+                        <input type="radio" name="pre_gallery_img" id="img1" checked>
+                        <label for="img1"></label>
+                        <img src="{% static 'global/images/main-gallery/img1.jpeg' %}" alt="">
+                    </li>
+                    <li class="C-pre_gallery_li">
+                        <input type="radio" name="pre_gallery_img" id="img2">
+                        <label for="img2"></label>
+                        <img src="{% static 'global/images/main-gallery/img2.jpeg' %}" alt="">
+                    </li>
+                    <li class="C-pre_gallery_li">
+                        <input type="radio" name="pre_gallery_img" id="img3">
+                        <label for="img3"></label>
+                        <img src="{% static 'global/images/main-gallery/img3.jpeg' %}" alt="">
+                    </li>
+                </ul>
+            </div>
+            <div class="C-pre_gallery_description">
+                <h2>Espaço ideal para seu treino</h2>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum, dolore vel? Illo animi saepe optio distinctio natus quod cumque maiores libero ipsa laborum odit recusandae, iure harum deleniti ipsum aut?
+                Odio facilis eius repudiandae facere, inventore nam, necessitatibus amet quia consequatur consectetur labore! Nostrum placeat officiis ratione ipsa neque sint illo magni, ad, harum fuga totam deserunt et! Accusamus, maiores?</p>
+            </div>
+        </section>
+
+        <!-- services -->
+        <section class="C-services center_flex_column">
+            <h2>O que fazemos na academia?</h2>
+            <div class="C-services__flex">
+                <div class="C-services__service">
+                    <h1>Lorem ipsum</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, voluptatum?</p>
+                </div>service
+                <div class="C-services__service">
+                    <h1>Lorem ipsum</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, voluptatum?</p>
+                </div>service
+                <div class="C-services__service">
+                    <h1>Lorem ipsum</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, voluptatum?</p>
+                </div>service
+                <div class="C-services__service">
+                    <h1>Lorem ipsum</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, voluptatum?</p>
+                </div>service
+                <div class="C-services__service">
+                    <h1>Lorem ipsum</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, voluptatum?</p>
+                </div>service
+            </div>
+        </section>
+    </main>
 
     <!-- footer -->
     <footer class="C-footer"></footer>

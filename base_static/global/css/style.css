@@ -5,15 +5,18 @@
 }
 
 :root {
+  --blue-0: #C5FFFD;
   --blue-1: #B3CBD7;
   --blue-2: #59C9D0;
   --blue-3: #067CB8;
   --blue-4: #0B7DB2;
   --blue-4: #26557A;
   --blue-5: #283958;
+  --blue-5-transparent: #2839589c;
   --light-white: #FBFBFB;
   --standard-white: #ffffff;
   --standard-black: #000000;
+  --standard-gray: #1f1d1d;
   --std-white-transparent: rgba(255, 255, 255, 0.288);
   --std-white-transparent-2: rgba(255, 255, 255, 0.548);
 }
@@ -66,7 +69,7 @@ html, body {
     "main"
     "footer";
   background-color: var(--blue-1);
-  background-image: url('../images/bg-body-img.jpg');
+  background-image: url('../images/bg-body-img_m.jpg');
   background-position: center top;
   background-size: cover;
   background-repeat: no-repeat;
@@ -78,6 +81,7 @@ html, body {
 .C-header_contact {
   grid-area: header;
   background-color: var(--std-white-transparent);
+  opacity: 0.8;
   padding: 5px 0;
   text-align: center;
   column-gap: 15px;
@@ -109,8 +113,8 @@ html, body {
 }
 
 .C-menu {
-  justify-content: space-between;
-  padding: 10px 10px;
+  justify-content: flex-end;
+  padding: 45px 10px 0 0;
 }
 
 .C-menu__ul {
@@ -119,12 +123,8 @@ html, body {
 
 .C-menu__li {
   list-style: none;
-  border: 1px solid var(--standard-white);
-  padding: 8px;
-}
-
-.C-menu__li:hover {
-  background-color: var(--light-white);
+  border: none;
+  outline: none;
 }
 
 .C-menu__li a {
@@ -133,11 +133,14 @@ html, body {
   font-size: 20px;
   font-weight: 400;
   letter-spacing: 1.5px;
+  padding: 8px;
   color: var(--standard-white);
+  border: 1px solid var(--standard-white);
 }
 
 .C-menu__li a:hover {
   color: var(--standard-black);
+  background-color: var(--standard-white);
 }
 
 .C-logo {
@@ -146,8 +149,7 @@ html, body {
 }
 
 .C-logo img {
-  /* filter: brightness(200%); */
-  filter: brightness(150%) saturate(110%) contrast(450%) drop-shadow(16px 16px 25px white);
+  filter: opacity(200%) contrast(110%) brightness(250%) drop-shadow(16px 16px 25px black);
   width: 100%;
   animation-name: to-show-logo;
   animation-duration: 2s;
@@ -167,18 +169,21 @@ html, body {
 }
 
 .C-intro__title {
-  font-size: 30px;
-  font-weight: 800;
+  font-size: 48px;
+  font-weight: 600;
   font-style: italic;
   letter-spacing: 5px;
-  max-width: 600px;
+  line-height: 55pt;
+  color: var(--blue-5);
+  max-width: 650px;
   padding-bottom: 10px;
 }
 
 .C-intro__description {
   font-size: 20px;
   font-weight: 500;
-  max-width: 500px;
+  line-height: 28pt;
+  max-width: 550px;
 }
 
 .C-intro__card {
@@ -209,15 +214,173 @@ html, body {
 
 .C-intro__card_title {
   font-weight: 400;
-  text-transform: capitalize;
+  text-transform: uppercase;
   letter-spacing: 5px;
   padding-bottom: 10px;
 }
 
 .C-intro__card_description {
   letter-spacing: 1.5px;
-  line-height: 1.5;
+  font-size: 16px;
+  line-height: 24pt;
   font-weight: 200;
+}
+
+.C-profile {
+  background-color: var(--standard-white);
+  column-gap: 60px;
+  position: relative;
+}
+
+.C-profile_description {
+  max-width: 600px;
+  font-size: 18px;
+  line-height: 27pt;
+  color: var(--standard-white);
+  padding: 30px 0;
+}
+
+.C-profile_description h2 {
+  color: var(--blue-2);
+  text-transform: capitalize;
+  font-weight: 400;
+  font-size: 45px;
+  line-height: 60pt;
+}
+
+.C-profile_description p {
+  font-size: 18px;
+  line-height: 27pt;
+  padding: 0 30px 0 0;
+  color: var(--standard-black);
+  border-right: 3px solid var(--blue-2);
+}
+
+.C-profile_image {
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
+  position: relative;
+  top: -70px;
+}
+
+.C-profile_image img {
+  width: 100%;
+  position: relative;
+  z-index: 10;
+}
+
+.C-profile_span {
+  background-color: var(--blue-2);
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  right: -8px;
+  bottom: -8px;
+  z-index: 1;
+}
+
+.C-pre_gallery {
+  background-color: var(--standard-white);
+  background-image: url('../images/bg-parallax-pre-gallery.jpg');
+  background-position: center top;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  padding: 30px 2%;
+}
+
+.C-pre_gallery_images {
+  max-width: 600px;
+  position: relative;
+}
+
+.C-pre_gallery_ul {
+  list-style-type: none;
+}
+
+.C-pre_gallery_li > input {
+  display: none;
+}
+
+.C-pre_gallery_li > label {
+  display: block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: var(--standard-white);
+  cursor: pointer;
+  position: absolute;
+  bottom: 10px;
+  z-index: 10;
+}
+
+.C-pre_gallery_li:nth-of-type(1) > label {
+  left: 45%;
+}
+
+.C-pre_gallery_li:nth-of-type(2) > label {
+  left: 50%;
+}
+
+.C-pre_gallery_li:nth-of-type(3) > label {
+  left: 55%;
+}
+
+.C-pre_gallery_li input:checked ~ label {
+  background-color: var(--standard-gray);
+}
+
+.C-pre_gallery_li img {
+  width: 100%;
+  transition: all 300ms ease;
+  box-shadow: 0 8px 25px var(--std-white-transparent);
+  display: none;
+}
+
+.C-pre_gallery_li input:checked ~ img {
+  display: block;
+  animation-name: to-role;
+  animation-duration: 600ms;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+.C-pre_gallery_description {
+  padding: 10px 2%;
+  max-width: 600px;
+}
+
+.C-pre_gallery_description h2 {
+  color: var(--standard-white);
+  text-transform: capitalize;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 55pt;
+  letter-spacing: 12px;
+}
+
+.C-pre_gallery_description p {
+  font-size: 18px;
+  line-height: 27pt;
+  color: var(--light-white);
+}
+
+.C-services {
+  width: 100%;
+  background-color: var(--standard-white);
+  background-image: linear-gradient(-25deg, var(--light-white) 50%, var(--blue-0) 50%);
+  padding: 30px;
+  border: none;
+  outline: none;
+}
+
+.C-services__flex {
+  background-color: var(--std-white-transparent-2);
+  border: 1px solid var(--std-white-transparent-2);
+  border-radius: 15px;
+  padding: 2% 2%;
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.116);
 }
 
 /* END MAIN */
@@ -256,6 +419,16 @@ html, body {
 
   to {
     margin-right: 0;
+  }
+}
+
+@keyframes to-role {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }
 /* END ANIMATION */
