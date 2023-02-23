@@ -12,6 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="{% static 'global/images/partial-logo.png' %}" type="image/x-icon">
     <title>Home | </title>
 </head>
@@ -20,15 +23,17 @@
     <header class="C-header">
         <!-- contact -->
         <section class="C-header_contact center_flex_row">
-            <a href=""><img src="{% static 'global/images/instagram.png' %}" alt="logo instagram"></a>
-            <a href=""><img src="{% static 'global/images/facebook.png' %}" alt="logo facebook"></a>
-            <div class="C-header_whatsapp center_flex_row standard_transition">
-                <a href="" class="center_flex_row"><img src="{% static 'global/images/whatsapp.png' %}" alt="logo whatsapp"><p>(46) 9 9982-6472</p></a>
-            </div>
+            <a href=""><img src="{% static 'global/images/icons/instagram_p.png' %}" alt="logo instagram" class="center_flex_row"></a>
+            <a href=""><img src="{% static 'global/images/icons/facebook_p.png' %}" alt="logo facebook" class="center_flex_row"></a>
+            <a href=""><img src="{% static 'global/images/icons/whatsapp_p.png' %}" alt="logo whatsapp"class="center_flex_row"></a>
         </section>
 
         <!-- logo and menu -->
         <section class="C-menu center_flex_row">
+            <!-- logo -->
+            <div class="C-logo center_flex_row is_animated ">
+                <img src="{% static 'global/images/partial-logo.png' %}" alt="">
+            </div>
             <!-- menu -->
             <div class="C-menu__menu">
                 <nav class="C-menu__nav">
@@ -42,18 +47,21 @@
                 </nav>
             </div>
         </section>
+
+        <!-- title -->
+        <section class="C-title center_flex_column">
+            <p class="C-title__text is_animated">
+                treine com o personal <span class="C-title__span">maicon</span>
+            </p>
+            <a href="" class="C-title__link">agende sua avaliação</a>
+        </section>
     </header>
 
     <!-- main -->
     <main class="C-main">
-        <!-- center logo -->
-        <section class="C-logo center_flex_row center_margin">
-            <img src="{% static 'global/images/logo.png' %}" alt="">
-        </section>
-
         <!-- section intro -->
-        <section class="C-intro center_flex_column">
-            <h1 class="C-intro__title">Atividade física com o professor Maicon</h1>
+        <section class="C-intro center_flex_column center_margin">
+            <h1 class="C-intro__title">Benefícios de treinar com o Personal Maicon</h1>
             <p class="C-intro__description">A prática regular de atividade física, com o acompanhamento de um profissional especializado, trás ínumeros benefícios, dentre eles:</p>
             <div class="C-intro__card">
                 <h2 class="C-intro__card_title">
@@ -86,8 +94,7 @@
             <div class="C-profile_description">
                 <h2>Conheça um pouco o professor Maicon</h2>
                 <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum dolor corrupti qui ducimus quaerat mollitia facere non quam doloremque ad deleniti, in provident itaque adipisci assumenda sapiente veritatis et laborum.
-                Eius delectus harum culpa soluta, rem distinctio iusto voluptatem repellat, minus magnam, ipsam vero! Maxime error quidem debitis eius doloremque labore optio, repellat possimus reiciendis atque facere quis eum ab!
-                Labore consequatur voluptatibus molestiae quos nesciunt illum. Ut tempore voluptates deleniti, perferendis similique officiis libero rerum rem quidem iste minus veritatis qui nulla adipisci, molestias doloribus ea nostrum facilis. Rerum.</p>
+                Eius delectus harum culpa soluta, rem distinctio iusto voluptatem.</p>
             </div>
             <div class="C-profile_image center_flex_row">
                 <img src="{% static 'global/images/profile.jpeg' %}" alt="profile image">
@@ -96,59 +103,61 @@
         </section>
 
         <!-- pre gallery -->
-        <section class="C-pre_gallery center_flex_row">
-            <div class="C-pre_gallery_images">
-                <ul class="C-pre_gallery_ul">
-                    <li class="C-pre_gallery_li">
-                        <input type="radio" name="pre_gallery_img" id="img1" checked>
-                        <label for="img1"></label>
-                        <img src="{% static 'global/images/main-gallery/img1.jpeg' %}" alt="">
-                    </li>
-                    <li class="C-pre_gallery_li">
-                        <input type="radio" name="pre_gallery_img" id="img2">
-                        <label for="img2"></label>
-                        <img src="{% static 'global/images/main-gallery/img2.jpeg' %}" alt="">
-                    </li>
-                    <li class="C-pre_gallery_li">
-                        <input type="radio" name="pre_gallery_img" id="img3">
-                        <label for="img3"></label>
-                        <img src="{% static 'global/images/main-gallery/img3.jpeg' %}" alt="">
-                    </li>
-                </ul>
+        <section class="C-pre_gallery center_flex_column">
+            <div class="center_flex_row">
+                <div class="C-pre_gallery_images">
+                    <ul class="C-pre_gallery_ul">
+                        <li class="C-pre_gallery_li">
+                            <input type="radio" name="pre_gallery_img" id="img1" checked>
+                            <label for="img1"></label>
+                            <img src="{% static 'global/images/main-gallery/img1.jpeg' %}" alt="">
+                        </li>
+                        <li class="C-pre_gallery_li">
+                            <input type="radio" name="pre_gallery_img" id="img2">
+                            <label for="img2"></label>
+                            <img src="{% static 'global/images/main-gallery/img2.jpeg' %}" alt="">
+                        </li>
+                        <li class="C-pre_gallery_li">
+                            <input type="radio" name="pre_gallery_img" id="img3">
+                            <label for="img3"></label>
+                            <img src="{% static 'global/images/main-gallery/img3.jpeg' %}" alt="">
+                        </li>
+                    </ul>
+                </div>
+                <div class="C-pre_gallery_description">
+                    <h2>Espaço ideal para seu treino</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum, dolore vel? Illo animi saepe optio distinctio natus quod cumque maiores libero ipsa laborum odit recusandae, iure harum deleniti ipsum aut?
+                    Odio facilis eius repudiandae facere, inventore nam, necessitatibus amet quia consequatur consectetur labore! Nostrum placeat officiis ratione ipsa neque sint illo magni, ad, harum fuga totam deserunt et! Accusamus, maiores?</p>
+                </div>
             </div>
-            <div class="C-pre_gallery_description">
-                <h2>Espaço ideal para seu treino</h2>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum, dolore vel? Illo animi saepe optio distinctio natus quod cumque maiores libero ipsa laborum odit recusandae, iure harum deleniti ipsum aut?
-                Odio facilis eius repudiandae facere, inventore nam, necessitatibus amet quia consequatur consectetur labore! Nostrum placeat officiis ratione ipsa neque sint illo magni, ad, harum fuga totam deserunt et! Accusamus, maiores?</p>
-            </div>
+            <!-- services -->
+            <section class="C-services center_flex_column">
+                <h2>Atendimento exclusivo e personalizado</h2>
+                <div class="C-services__flex center_flex_row">
+                    <div class="C-services__service">
+                        <h2>treino indiviual</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, voluptatum?</p>
+                    </div>
+                    <div class="C-services__service">
+                        <h2>horários flexíveis</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, voluptatum?</p>
+                    </div>
+                    <div class="C-services__service">
+                        <h2>ambiente climatizado</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, voluptatum?</p>
+                    </div>
+                    <div class="C-services__service">
+                        <h2>equipamentos...</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, voluptatum?</p>
+                    </div>
+                    <div class="C-services__service">
+                        <h2>Lorem ipsum</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, voluptatum?</p>
+                    </div>  
+                </div>
+            </section>
         </section>
 
-        <!-- services -->
-        <section class="C-services center_flex_column">
-            <h2>O que fazemos na academia?</h2>
-            <div class="C-services__flex">
-                <div class="C-services__service">
-                    <h1>Lorem ipsum</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, voluptatum?</p>
-                </div>service
-                <div class="C-services__service">
-                    <h1>Lorem ipsum</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, voluptatum?</p>
-                </div>service
-                <div class="C-services__service">
-                    <h1>Lorem ipsum</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, voluptatum?</p>
-                </div>service
-                <div class="C-services__service">
-                    <h1>Lorem ipsum</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, voluptatum?</p>
-                </div>service
-                <div class="C-services__service">
-                    <h1>Lorem ipsum</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, voluptatum?</p>
-                </div>service
-            </div>
-        </section>
     </main>
 
     <!-- footer -->
