@@ -1,29 +1,17 @@
-const menuMobile = document.querySelector('.c-header__nav_menu_mobile').addEventListener("click", controlMenu)
+// animate scroll
 
-function controlMenu() {
-    const navMenuUl = document.querySelector('.c-header__ul');
-    const navMenu = document.querySelector('.c-header__nav');
-    const iconMenu = document.querySelector('.c-header__nav_menu_mobile');
+const target = document.querySelectorAll('[data-anime]');
+const animationClass = 'animate';
 
-    if (navMenuUl.classList.contains('is_closed')) {
-        navMenuUl.classList.remove('is_closed');
-        navMenuUl.classList.add('is_open');
-        navMenu.style.width = '150px';
-        iconMenu.style.right = '150px';
-        iconMenu.textContent = 'close';
-    } else {
-        navMenuUl.classList.remove('is_open');
-        navMenuUl.classList.add('is_closed');
-        navMenu.style.width = '5px';
-        iconMenu.style.right = '5px';
-        iconMenu.textContent = 'menu';
-    };
-};
+function animeScroll() {
+    const windowTop = window.scrollY + (window.innerHeight * 0.75);
+    
+    target.forEach(function(element) {
+        ((windowTop) > element.offsetTop) ?
+            element.classList.add(animationClass):element.classList.remove('animate');
+            console.log(element, element.offsetTop)
+    });
+}
 
-(function() {
-    const menuLink = document.querySelectorAll('.c-header__link');
-
-    for (const link of menuLink) {
-        link.addEventListener("click", controlMenu);
-    }
-})();
+animeScroll();
+window.addEventListener('scroll', animeScroll);
