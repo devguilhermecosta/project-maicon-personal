@@ -13,10 +13,19 @@
   --blue-4: #26557A;
   --blue-5: #283958;
   --blue-5-transparent: #2839589c;
+  --blue-facebook: #1976D2;
   --orange-1: #ED541C;
+  --orange-1-instagram: #FA851D;
+  --orange-2-instagram: #F55031;
+  --orange-3-instagram: #B43179;
+  --orange-4-instagram: #B52F8C;
   --light-white: #FBFBFB;
   --standard-white: #ffffff;
   --standard-black: #000000;
+  --black-transparent-bg: rgba(0, 0, 0, 0.7);
+  --gray-1: rgb(65, 63, 63);
+  --green-1-whatsapp: #30BF2E;
+  --green-2-whatsapp: #5EFA79;
   --standard-gray: #1f1d1d;
   --std-white-transparent: rgba(255, 255, 255, 0.288);
   --std-white-transparent-2: rgba(255, 255, 255, 0.548);
@@ -77,7 +86,7 @@ html, body {
     "header"
     "main"
     "footer";
-  background-color: var(--blue-1);
+  background-color: var(--black-transparent-bg);
   background-image: url('../images/bg-body-img_m.jpg');
   background-position: center top;
   background-size: cover;
@@ -90,6 +99,7 @@ html, body {
 .C-header {
   padding-bottom: 20px;
   min-height: 100vh;
+  background-color: var(--black-transparent-bg);
 }
 .C-header_contact {
   grid-area: header;
@@ -180,6 +190,8 @@ html, body {
 /* START MAIN */
 .C-main {
   grid-area: main;
+  background-color: var(--black-transparent-bg);
+  height: auto;
 }
 
 .C-intro {
@@ -188,7 +200,7 @@ html, body {
   margin-bottom: 30px;
   overflow: hidden;
   background: rgba(105, 102, 102, 0.295);
-  backdrop-filter: contrast(4) blur(15px);
+  backdrop-filter: contrast(1) blur(15px);
 }
 
 .C-intro__title, .C-intro__description {
@@ -256,9 +268,10 @@ html, body {
 }
 
 .C-profile {
-  background-color: var(--standard-white);
+  background-color: var(--gray-1);
   column-gap: 60px;
   position: relative;
+  margin-top: 60px;
 }
 
 .C-profile_description {
@@ -280,7 +293,7 @@ html, body {
   font-size: 18px;
   line-height: 27pt;
   padding: 0 30px 0 0;
-  color: var(--standard-black);
+  color: var(--standard-white);
   border-right: 3px solid var(--blue-2);
 }
 
@@ -396,18 +409,24 @@ html, body {
 
 .C-services {
   width: 100%;
+  margin-top: 30px;
   padding-bottom: 30px;
   border: none;
   outline: none;
   background: rgba(105, 102, 102, 0.295);
-  backdrop-filter: contrast(1) blur(15px);
+  backdrop-filter: contrast(1) blur(25px);
 }
 
 .C-services h2 {
   margin: 30px 0;
+  text-transform: uppercase;
+  color: var(--blue-2);
+  font-size: 32px;
 }
 
 .C-services__flex {
+  max-width: 840px;
+  align-items: stretch;
   flex-wrap: wrap;
   column-gap: 25px;
   row-gap: 25px;
@@ -415,6 +434,7 @@ html, body {
 
 .C-services__service {
   max-width: 250px;
+  height: auto;
   text-align: center;
   border: 2px solid var(--std-white-transparent-2);
   padding: 20px;
@@ -431,11 +451,111 @@ html, body {
   color: var(--std-white-transparent-2);
 }
 
+.C-contact {
+  background-color: var(--gray-1);
+  padding: 30px 0;
+  justify-content: center;
+  column-gap: 60px;
+  row-gap: 30px;
+  flex-wrap: wrap;
+}
+
+.C-contact__contact {
+  backdrop-filter: contrast(1.5) blur(15px);
+  row-gap: 15px;
+  width: 100%;
+  max-width: 400px;
+  padding: 30px;
+}
+
+.C-contact__contact > h2 {
+  color: var(--blue-0);
+  font-size: 26px;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0 15px 15px 15px;
+  width: 100%;
+}
+
+.C-contact__link {
+  column-gap: 15px;
+  padding: 8px 15px;
+  width: 100%;
+  color: var(--standard-white);
+  text-decoration: none;
+  border-radius: 25px;
+}
+
+.C-contact__link:nth-of-type(1) img {
+  border: 1px solid var(--standard-white);
+  border-radius: 3px;
+}
+
+.C-contact__contact .C-contact__link:nth-of-type(1) {
+  background-color: var(--blue-facebook);
+}
+
+.C-contact__contact .C-contact__link:nth-of-type(2) {
+  background-image: linear-gradient(35deg, var(--orange-1-instagram), var(--orange-1-instagram), var(--orange-3-instagram), var(--orange-4-instagram));
+}
+
+.C-contact__contact .C-contact__link:nth-of-type(3) {
+  background-image: linear-gradient(90deg, var(--green-1-whatsapp), var(--green-2-whatsapp));
+}
+
+.C-contact__contact > p {
+  color: var(--standard-white);
+}
+
+.C-contact__localization {
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
+  max-height: auto;
+}
+
+.C-contact__localization iframe {
+  max-width: 100%;
+  max-height: 378px;
+}
 /* END MAIN */
 
 /* START FOOTER */
 .C-footer {
   grid-area: footer;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 15px;
+  padding: 15px 2%;
+  background-color: var(--standard-black);
+}
+
+.C-footer__title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--blue-2);
+  line-height: 1.5;
+}
+
+.C-footer__adress, .C-footer__copy {
+  color: white;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+.C-footer__copy {
+  padding-top: 15px;
+  font-size: 14px;
+}
+
+.C-footer__logo {
+  width: 100%;
+  max-width: 180px;
+}
+
+.C-footer__logo img {
+  width: 100%;
 }
 /* END FOOTER */
 
