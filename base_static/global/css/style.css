@@ -75,6 +75,14 @@ html, body {
   animation-fill-mode: forwards;
   animation-timing-function: ease-in-out;
 }
+
+.is_visible {
+  display: block;
+}
+
+.is_hidden {
+  display: none;
+}
 /* ###### END GENERICS ######*/
 
 /* START BODY */
@@ -98,9 +106,9 @@ html, body {
 /* START HEADER */
 .C-header {
   padding-bottom: 20px;
-  min-height: 100vh;
   background-color: var(--black-transparent-bg);
 }
+
 .C-header_contact {
   grid-area: header;
   background-color: var(--std-white-transparent-2);
@@ -115,29 +123,64 @@ html, body {
 }
 
 .C-menu {
+  width: 100%;
   justify-content: space-between;
   padding: 45px 10px;
+  position: relative;
+}
+
+.C-menu__menu {
+  width: 100%;
+}
+
+.C-menu__button {
+ cursor: pointer;
+ position: absolute;
+ top: 50%;
+ transform: translateY(-50%);
+ right: 10px;
+ z-index: 1000000;
+}
+
+.C-menu__nav {
+  position: absolute;
+  padding-top: 30px;
+  top: -52px;
+  left: 0;
+  width: 100%;
+  background-color: var(--standard-gray);
+  z-index: 100000;
+  animation-name: open_menu;
+  animation-duration: 300ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease;
 }
 
 .C-menu__ul {
+  width: 100%;
   column-gap: 45px;
+  row-gap: 25px;
 }
 
 .C-menu__li {
   list-style: none;
   border: none;
   outline: none;
+  width: 100%;
+  max-width: 650px;
+  text-align: center;
 }
 
 .C-menu__li a {
+  display: block;
   text-transform: uppercase;
   text-decoration: none;
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 1.5px;
   padding: 8px;
+  width: 100%;
   color: var(--standard-white);
-  border: 1px solid var(--standard-white);
 }
 
 .C-menu__li a:hover {
@@ -146,6 +189,10 @@ html, body {
 }
 
 .C-logo {
+  position: absolute;
+  top: 50%;
+  left: 2%;
+  transform: translateY(-50%);
   width: 100%;
   max-width: 64px;
 }
@@ -156,15 +203,21 @@ html, body {
 }
 
 .C-title {
-  max-width: 450px;
+  width: 100%;
   color: var(--standard-white);
   padding: 0 10px;
+  margin-top: 30px;
   text-transform: uppercase;
   font-family: var(--font-oswald);
-  font-size: 68px;
+  font-size: 40px;
   font-weight: 700;
   font-style: italic;
   letter-spacing: 3px;
+}
+
+.C-title__text {
+  max-width: 450px;
+  align-self: flex-start;
 }
 
 .C-title__span {
@@ -174,31 +227,36 @@ html, body {
 
 .C-title__link {
   font-family: var(--font-montserrat);
-  font-size: 18px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 300;
   text-transform: uppercase;
   text-decoration: none;
+  text-align: center;
   padding: 25px 35px;
   border-radius: 50px;
   color: var(--standard-white);
   background-color: var(--orange-1);
-  align-self: flex-start;
+  align-self: center;
+  margin-top: 30px;
+  width: 100%;
+  max-width: 362px;
 }
 /* END HEADER */
 
 /* START MAIN */
 .C-main {
   grid-area: main;
+  padding: 0 2%;
   background-color: var(--black-transparent-bg);
-  height: auto;
 }
 
 .C-intro {
+  width: 100%;
   max-width: 840px;
   padding: 2%;
+  margin-top: 100px;
   margin-bottom: 30px;
-  overflow: hidden;
   background: rgba(105, 102, 102, 0.295);
   backdrop-filter: contrast(1) blur(15px);
 }
@@ -228,25 +286,20 @@ html, body {
 }
 
 .C-intro__card {
+  width: 100%;
   max-width: 640px;
   background-color: var(--blue-4);
   margin: 10px 0;
   padding: 20px;
-  /* animation-duration: 1.5s;
-  animation-timing-function: ease-in;
-  animation-fill-mode: forwards; */
+  position: relative;
 }
 
 .C-intro .C-intro__card:nth-of-type(1), .C-intro .C-intro__card:nth-of-type(3) {
   align-self: flex-start;
-  /* margin-left: -100%;
-  animation-name: to-show-intro-l; */
 }
 
 .C-intro .C-intro__card:nth-of-type(2) {
   align-self: flex-end;
-  /* margin-right: -100%;
-  animation-name: to-show-intro-r; */
 }
 
 .C-intro__card_title, .C-intro__card_description {
@@ -257,7 +310,9 @@ html, body {
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 5px;
+  padding: 0 10px;
   padding-bottom: 10px;
+  text-align: center;
 }
 
 .C-intro__card_description {
@@ -265,13 +320,14 @@ html, body {
   font-size: 16px;
   line-height: 24pt;
   font-weight: 200;
+  text-align: center;
 }
 
 .C-profile {
   background-color: var(--gray-1);
   column-gap: 60px;
-  position: relative;
   margin-top: 60px;
+  padding: 0 2%;
 }
 
 .C-profile_description {
@@ -302,12 +358,11 @@ html, body {
   max-width: 280px;
   height: 100%;
   position: relative;
-  top: -60px;
+  margin-bottom: 30px;
 }
 
 .C-profile_image img {
   width: 100%;
-  position: relative;
   z-index: 10;
 }
 
@@ -329,6 +384,11 @@ html, body {
   background-attachment: fixed;
   background-repeat: no-repeat;
   padding: 30px 2%;
+  overflow: hidden;
+}
+
+.C-pre_gallery_box {
+  flex-direction: column;
 }
 
 .C-pre_gallery_images {
@@ -350,14 +410,15 @@ html, body {
   height: 15px;
   border-radius: 50%;
   background-color: var(--standard-white);
+  border: 1px solid var(--standard-gray);
   cursor: pointer;
   position: absolute;
-  bottom: 10px;
+  bottom: 15px;
   z-index: 10;
 }
 
 .C-pre_gallery_li:nth-of-type(1) > label {
-  left: 45%;
+  left: 40%;
 }
 
 .C-pre_gallery_li:nth-of-type(2) > label {
@@ -365,11 +426,12 @@ html, body {
 }
 
 .C-pre_gallery_li:nth-of-type(3) > label {
-  left: 55%;
+  left: 60%;
 }
 
 .C-pre_gallery_li input:checked ~ label {
-  background-color: var(--standard-black);
+  background-color: var(--blue-3);
+  border: 1px solid var(--blue-3);
 }
 
 .C-pre_gallery_li img {
@@ -399,20 +461,20 @@ html, body {
   font-size: 40px;
   line-height: 55pt;
   letter-spacing: 12px;
+  text-align: center;
 }
 
 .C-pre_gallery_description p {
   font-size: 18px;
   line-height: 27pt;
   color: var(--light-white);
+  text-align: center;
 }
 
 .C-services {
   width: 100%;
   margin-top: 30px;
   padding-bottom: 30px;
-  border: none;
-  outline: none;
   background: rgba(105, 102, 102, 0.295);
   backdrop-filter: contrast(1) blur(25px);
 }
@@ -422,6 +484,7 @@ html, body {
   text-transform: uppercase;
   color: var(--blue-2);
   font-size: 32px;
+  text-align: center;
 }
 
 .C-services__flex {
@@ -453,11 +516,12 @@ html, body {
 
 .C-contact {
   background-color: var(--gray-1);
-  padding: 30px 0;
+  padding: 30px 2%;
   justify-content: center;
   column-gap: 60px;
   row-gap: 30px;
   flex-wrap: wrap;
+  overflow: hidden;
 }
 
 .C-contact__contact {
@@ -523,7 +587,7 @@ html, body {
 /* START FOOTER */
 .C-footer {
   grid-area: footer;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   row-gap: 15px;
   padding: 15px 2%;
@@ -621,4 +685,116 @@ html, body {
     opacity: 1;
   }
 }
+
+@keyframes open_menu {
+  from {
+    height: 0;
+  }
+
+  to {
+    height: 100vh;
+  }
+}
 /* END ANIMATION */
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 355px) {
+  .C-intro__card h2 {
+    font-size: 14px;
+  }
+
+  .C-intro__card p {
+    font-size: 12px;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .C-footer {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .C-menu {
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+  }
+
+  .C-menu__menu {
+    position: static;
+  }
+
+  .C-logo {
+    position: static;
+    transform: translateY(0);
+  }
+
+  .C-menu__nav {
+    display: block;
+    position: static;
+    padding-top: 0;
+    align-items: center;
+    height: auto !important;
+    background-color: transparent;
+  }
+
+  .C-menu__ul {
+    flex-direction: row;
+    row-gap: 0;
+    justify-content: flex-end;
+    align-items: center;
+    position: static;
+  }
+
+  .C-menu__li {
+    width: auto;
+    align-self: center;
+    text-align: center;
+  }
+  
+  .C-menu__li a {
+    border: 1px solid var(--standard-white);
+  }
+  .C-menu__button {
+    display: none;
+  }
+
+  .C-title__text {
+    font-size: 68px;
+  }
+
+  .C-title__link {
+    align-self: flex-start;
+    font-size: 18px;
+  }
+
+  .C-intro__card h2, .C-intro__card p {
+    text-align: left;
+  }
+  
+  .C-intro__card:nth-of-type(2) h2, C-intro__card:nth-of-type(2) p {
+    text-align: right;
+  }
+
+  .C-profile {
+    flex-direction: row;
+  }
+
+  .C-profile_image {
+    top: -45px;
+  }
+
+  .C-footer {
+    justify-content: space-between;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .C-pre_gallery_box {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+/* END MEDIA QUERIES */

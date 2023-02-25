@@ -36,8 +36,11 @@
             </div>
             <!-- menu -->
             <div class="C-menu__menu">
-                <nav class="C-menu__nav">
-                    <ul class="C-menu__ul center_flex_row">
+                <button class="C-menu__button center_flex_row">
+                    <span class="material-symbols-outlined C-menu__span">menu</span>
+                </button>
+                <nav class="C-menu__nav is_hidden">
+                    <ul class="C-menu__ul center_flex_column">
                         <li class="C-menu__li"><a href="" class="C-menu__link standard_transition">home</a></li>
                         <li class="C-menu__li"><a href="" class="C-menu__link standard_transition">about</a></li>
                         <li class="C-menu__li"><a href="" class="C-menu__link standard_transition">services</a></li>
@@ -60,10 +63,10 @@
     <!-- main -->
     <main class="C-main">
         <!-- section intro -->
-        <section class="C-intro center_flex_column center_margin">
+        <section data-anime="left" class="C-intro center_flex_column center_margin">
             <h1 class="C-intro__title">Benefícios do nosso treino</h1>
             <p class="C-intro__description">A prática regular de atividade física, com o acompanhamento de um profissional especializado, trás ínumeros benefícios, dentre eles:</p>
-            <div data-anime="left" class="C-intro__card">
+            <div class="C-intro__card">
                 <h2 class="C-intro__card_title">
                     Saúde e bem-estar
                 </h2>
@@ -71,7 +74,7 @@
                     A atividade física regular auxilia na prevenção do desenvolvimento de patologias, fortalecimento dos sistemas imunológico e musculoesquelético.
                 </p>
             </div>
-            <div data-anime="right" class="C-intro__card">
+            <div class="C-intro__card">
                 <h2 class="C-intro__card_title">
                     Produtividade e autoestima
                 </h2>
@@ -79,7 +82,7 @@
                     Pessoas que realizam exercícios físicos tendem a ser mais produtivas em sua rotina diária. A serotonina é conhecida como hormônio da felicidade, tendo sua produção aumentada durante o exercício físico.
                 </p>
             </div>
-            <div data-anime="left" class="C-intro__card">
+            <div class="C-intro__card">
                 <h2 class="C-intro__card_title">
                     Personal Trainer
                 </h2>
@@ -90,13 +93,13 @@
         </section>
 
         <!-- personal profile -->
-        <section class="C-profile center_flex_row">
+        <section class="C-profile center_flex_column">
             <div data-anime="left" class="C-profile_description">
                 <h2>Conheça um pouco o professor Maicon</h2>
                 <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum dolor corrupti qui ducimus quaerat mollitia facere non quam doloremque ad deleniti, in provident itaque adipisci assumenda sapiente veritatis et laborum.
                 Eius delectus harum culpa soluta, rem distinctio iusto voluptatem.</p>
             </div>
-            <div data-anime="right" class="C-profile_image center_flex_row">
+            <div data-anime="down" class="C-profile_image center_flex_row">
                 <img src="{% static 'global/images/profile.jpeg' %}" alt="profile image">
                 <span class="C-profile_span"></span>
             </div>
@@ -104,7 +107,7 @@
 
         <!-- pre gallery -->
         <section class="C-pre_gallery center_flex_column">
-            <div class="center_flex_row">
+            <div class="C-pre_gallery_box center_flex_row">
                 <div data-anime="left" class="C-pre_gallery_images">
                     <ul class="C-pre_gallery_ul">
                         <li class="C-pre_gallery_li">
@@ -131,30 +134,30 @@
                 </div>
             </div>
             <!-- services -->
-            <section class="C-services center_flex_column">
+            <section data-anime="down" class="C-services center_flex_column">
                 <h2>Atendimento exclusivo e personalizado</h2>
-                <div data-anime="down" class="C-services__flex center_flex_row">
-                    <div data-anime="down" class="C-services__service">
+                <div class="C-services__flex center_flex_row">
+                    <div class="C-services__service">
                         <h2>treino indiviual</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, voluptatum?</p>
                     </div>
-                    <div data-anime="down" class="C-services__service">
+                    <div class="C-services__service">
                         <h2>treino em equipe</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, voluptatum?</p>
                     </div>
-                    <div data-anime="down" class="C-services__service">
+                    <div class="C-services__service">
                         <h2>equipamentos de ponta</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, voluptatum?</p>
                     </div>
-                    <div data-anime="down" class="C-services__service">
+                    <div class="C-services__service">
                         <h2>ambiente climatizado</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, voluptatum?</p>
                     </div>
-                    <div data-anime="down" class="C-services__service">
+                    <div class="C-services__service">
                         <h2>horários flexíveis</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, voluptatum?</p>
                     </div>
-                    <div data-anime="down" class="C-services__service">
+                    <div class="C-services__service">
                         <h2>localização central</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, voluptatum?</p>
                     </div>  
@@ -178,7 +181,7 @@
     </main>
 
     <!-- footer -->
-    <footer class="C-footer center_flex_row">
+    <footer class="C-footer center_flex_column">
         <div class="C-footer__details">
             <p class="C-footer__title">Academia Personal Maicon</p>
             <p class="C-footer__adress">Rua Rio Grande do Sul, 1086</p>
