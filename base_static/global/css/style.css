@@ -38,6 +38,19 @@ html, body {
   height: 100%;
 }
 
+body::-webkit-scrollbar {
+  width: 12px;               
+}
+
+body::-webkit-scrollbar-track {
+  background-color: var(--standard-gray);        
+}
+
+body::-webkit-scrollbar-thumb {    
+  background-color: var(--std-white-transparent);
+  border-radius: 20px;       
+}
+
 /* GENERICS */
 
 .is_closed {
