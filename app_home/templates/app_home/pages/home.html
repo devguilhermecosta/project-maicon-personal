@@ -1,7 +1,8 @@
 {% load static %}
+{% load i18n %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,9 +24,9 @@
     <header class="C-header">
         <!-- contact -->
         <section class="C-header_contact center_flex_row">
-            <a href=""><img src="{% static 'global/images/icons/instagram_p.png' %}" alt="logo instagram" class="center_flex_row"></a>
-            <a href=""><img src="{% static 'global/images/icons/facebook_p.png' %}" alt="logo facebook" class="center_flex_row"></a>
-            <a href=""><img src="{% static 'global/images/icons/whatsapp_p.png' %}" alt="logo whatsapp"class="center_flex_row"></a>
+            <a target="_blank" href="{{ home_content.instagram_link }}"><img src="{% static 'global/images/icons/instagram_p.png' %}" alt="logo instagram" class="center_flex_row"></a>
+            <a target="_blank" href="{{ home_content.facebook_link }}"><img src="{% static 'global/images/icons/facebook_p.png' %}" alt="logo facebook" class="center_flex_row"></a>
+            <a target="_blank" href="{{ home_content.whatsapp_link }}"><img src="{% static 'global/images/icons/whatsapp_p.png' %}" alt="logo whatsapp"class="center_flex_row"></a>
         </section>
 
         <!-- logo and menu -->
@@ -41,11 +42,11 @@
                 </button>
                 <nav class="C-menu__nav is_hidden">
                     <ul class="C-menu__ul center_flex_column">
-                        <li class="C-menu__li"><a href="" class="C-menu__link standard_transition">home</a></li>
-                        <li class="C-menu__li"><a href="" class="C-menu__link standard_transition">about</a></li>
-                        <li class="C-menu__li"><a href="" class="C-menu__link standard_transition">services</a></li>
-                        <li class="C-menu__li"><a href="" class="C-menu__link standard_transition">gallery</a></li>
-                        <li class="C-menu__li"><a href="" class="C-menu__link standard_transition">contact</a></li>
+                        <li class="C-menu__li"><a href="/" class="C-menu__link standard_transition">{% translate 'home' %}</a></li>
+                        <li class="C-menu__li"><a href="#profile" class="C-menu__link standard_transition">{% translate 'about' %}</a></li>
+                        <li class="C-menu__li"><a href="#services" class="C-menu__link standard_transition">{% translate 'services' %}</a></li>
+                        <li class="C-menu__li"><a href="" class="C-menu__link standard_transition">{% translate 'gallery' %}</a></li>
+                        <li class="C-menu__li"><a href="#contact" class="C-menu__link standard_transition">{% translate 'contact' %}</a></li>
                     </ul>
                 </nav>
             </div>
@@ -63,31 +64,31 @@
     <!-- main -->
     <main class="C-main">
         <!-- section intro -->
-        <section data-anime="left" class="C-intro center_flex_column center_margin">
-            <h1 class="C-intro__title">Benefícios do nosso treino</h1>
-            <p class="C-intro__description">A prática regular de atividade física, com o acompanhamento de um profissional especializado, trás ínumeros benefícios, dentre eles:</p>
+        <section data-anime="left" id="profile" class="C-intro center_flex_column center_margin">
+            <h1 class="C-intro__title">{{ home_content.title_section_intro }}</h1>
+            <p class="C-intro__description">{{ home_content.description_section_intro }}</p>
             <div class="C-intro__card">
                 <h2 class="C-intro__card_title">
-                    Saúde e bem-estar
+                    {{ home_content.subtitle_one_section_intro }}
                 </h2>
                 <p class="C-intro__card_description">
-                    A atividade física regular auxilia na prevenção do desenvolvimento de patologias, fortalecimento dos sistemas imunológico e musculoesquelético.
+                    {{ home_content.sub_description_one_section_intro }}
                 </p>
             </div>
             <div class="C-intro__card">
                 <h2 class="C-intro__card_title">
-                    Produtividade e autoestima
+                    {{ home_content.subtitle_two_section_intro }}
                 </h2>
                 <p class="C-intro__card_description">
-                    Pessoas que realizam exercícios físicos tendem a ser mais produtivas em sua rotina diária. A serotonina é conhecida como hormônio da felicidade, tendo sua produção aumentada durante o exercício físico.
+                    {{ home_content.sub_description_two_section_intro }}
                 </p>
             </div>
             <div class="C-intro__card">
                 <h2 class="C-intro__card_title">
-                    Personal Trainer
+                    {{ home_content.subtitle_three_section_intro }}
                 </h2>
                 <p class="C-intro__card_description">
-                    O Personal Trainer é o profissional educador físico responsável pelo atendimento individualizado ao cliente, atuando na promoção e recuperação da saúde.
+                    {{ home_content.sub_description_three_section_intro }}
                 </p>
             </div>
         </section>
@@ -134,7 +135,7 @@
                 </div>
             </div>
             <!-- services -->
-            <section data-anime="down" class="C-services center_flex_column">
+            <section data-anime="down" id="services" class="C-services center_flex_column">
                 <h2>Atendimento exclusivo e personalizado</h2>
                 <div class="C-services__flex center_flex_row">
                     <div class="C-services__service">
@@ -166,13 +167,13 @@
         </section>
 
         <!-- contact and localization -->
-        <section class="C-contact center_flex_row">
+        <section id="contact" class="C-contact center_flex_row">
             <div class="C-contact__contact center_flex_column" data-anime="left">
                 <h2>entre em contato</h2>
-                <a href="" class="C-contact__link center_flex_row"><img src="{% static 'global/images/facebook.png' %}" alt="logo facebook"><p>@maicon_jose</p></a>
-                <a href="" class="C-contact__link center_flex_row"><img src="{% static 'global/images/instagram.png' %}" alt="logo instagram"><p>@maicon_jose</p></a>
-                <a href="" class="C-contact__link center_flex_row"><img src="{% static 'global/images/whatsapp.png' %}" alt="logo whatsapp"><p>(46) 9 9982-6472</p></a>
-                <p>Fone: (46) 9 9982-6472</p>
+                <a target="_blank" href="{{ home_content.facebook_link }}" class="C-contact__link center_flex_row"><img src="{% static 'global/images/facebook.png' %}" alt="logo facebook"><p>{{ home_content.facebook_text }}</p></a>
+                <a target="_blank" href="{{ home_content.instagram_link }}" class="C-contact__link center_flex_row"><img src="{% static 'global/images/instagram.png' %}" alt="logo instagram"><p>{{ home_content.instagram_text }}</p></a>
+                <a target="_blank" href="{{ home_content.whatsapp_link }}" class="C-contact__link center_flex_row"><img src="{% static 'global/images/whatsapp.png' %}" alt="logo whatsapp"><p>{{ home_content.whatsapp_phone }}</p></a>
+                <p>Fone: {{ home_content.whatsapp_phone }}</p>
             </div>
             <div class="C-contact__localization" data-anime="right">
                 <iframe data-anime="right" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3583.522754172879!2d-53.05904328504772!3d-26.081849083492397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94f072d9fc39f61b%3A0x8fec623d0f0908ca!2sR.%20Rio%20G.%20do%20Sul%2C%201086%20-%20Alvorada%2C%20Francisco%20Beltr%C3%A3o%20-%20PR%2C%2085601-050!5e0!3m2!1spt-BR!2sbr!4v1677199562174!5m2!1spt-BR!2sbr" width="400" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>

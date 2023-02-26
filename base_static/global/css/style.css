@@ -36,6 +36,7 @@
 html, body {
   font-family: var(--font-montserrat);
   height: 100%;
+  scroll-behavior: smooth;
 }
 
 body::-webkit-scrollbar {
@@ -787,7 +788,7 @@ body::-webkit-scrollbar-thumb {
     text-align: left;
   }
   
-  .C-intro__card:nth-of-type(2) h2, C-intro__card:nth-of-type(2) p {
+  .C-intro__card:nth-of-type(2) h2, .C-intro__card:nth-of-type(2) p {
     text-align: right;
   }
 

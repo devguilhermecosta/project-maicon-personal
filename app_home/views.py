@@ -1,15 +1,17 @@
-from django.views.generic import TemplateView
+from django.views.generic import ListView
+from django.shortcuts import render
+from django.db.models.query import QuerySet
 from typing import Dict, Any
+from app_home.models import HomeContent
 
 
-class HomeView(TemplateView):
+class HomeView(ListView):
+    model = HomeContent
+    context_object_name = 'home_content'
     template_name = 'app_home/pages/home.html'
 
-    def get_context_data(self, *args, **kwargs: Any) -> Dict[str, Any]:
-        context = super().get_context_data(*args, **kwargs)
+    def get_queryset(self, *args, **kwargs) -> QuerySet[Any]:
+        query_set: QuerySet = super().get_queryset(*args, **kwargs)
+        query_set = query_set.first()
 
-        context.update({
-            'teste': 'testando aplicação',
-        })
-
-        return context
+        return query_set
