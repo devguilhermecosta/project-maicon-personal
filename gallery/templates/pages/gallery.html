@@ -1,0 +1,13 @@
+{% extends 'global/pages/base.html' %}
+
+{% block head_title %} Gallery | {% endblock %}
+
+{% block content %}
+    <h1 style="color: red">esta é a galeria</h1>
+    <div>
+        {% for image in gallery %}
+            <img src="{{ image.image.url }}" alt="">
+        {% endfor %}
+    </div>
+    <p style="color: red">{{ description }}</p>
+{% endblock %}

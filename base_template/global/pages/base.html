@@ -5,6 +5,7 @@
 <html lang="pt-BR">
     <head>
         {% include 'global/partials/_head.html' %}
+        <title>{% block head_title %}{% endblock %}</title>
     </head>
 
     <body class="C-body">
@@ -16,8 +17,7 @@
             <!-- logo and menu -->
             {% include 'global/partials/_menu.html' %}
 
-            <!-- title -->
-            {% include 'global/partials/_title.html' %}
+            {% block title %}{% endblock %}
         </header>
 
         <!-- main -->
