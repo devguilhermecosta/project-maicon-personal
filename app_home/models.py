@@ -1,36 +1,31 @@
 from django.db import models
-from django.urls import reverse
 
 
 class SocialNetwork(models.Model):
     instagram_link = models.CharField(max_length=255,
-                                      blank=False,
                                       default='',
                                       verbose_name='link do instagram',
                                       )
     facebook_link = models.CharField(max_length=255,
-                                     blank=False,
                                      default='',
                                      verbose_name='link do facebook',
                                      )
     whatsapp_link = models.CharField(max_length=255,
-                                     blank=False,
                                      default='',
                                      verbose_name='link do whatsapp',
                                      )
     instagram_text = models.CharField(max_length=255,
-                                      blank=False,
-                                      verbose_name='texto para o botão do instagram',
+                                      verbose_name=('texto para o botão'
+                                                    'do instagram'),
                                       )
     facebook_text = models.CharField(max_length=255,
-                                     blank=False,
-                                     verbose_name='texto para o botão do facebook',
+                                     verbose_name=('texto para o botão'
+                                                   'do facebook'),
                                      )
     whatsapp_phone = models.CharField(max_length=255,
-                                      blank=False,
                                       verbose_name='número do whatsapp',
                                       )
-    
+
     def __str__(self) -> str:
         return 'Configurar as redes sociais'
 
@@ -41,47 +36,35 @@ class SocialNetwork(models.Model):
 
 class SectionIntro(models.Model):
     title = models.CharField(max_length=255,
-                             blank=False,
                              default='',
                              verbose_name='Título',
                              )
     description = models.TextField(max_length=500,
-                                   blank=False,
                                    default='',
-                                   null=False,
                                    verbose_name='Descrição',
                                    )
     subtitle_one = models.CharField(max_length=255,
-                                    blank=False,
                                     default='',
                                     verbose_name='Primeiro Subtítulo',
                                     )
     sub_description_one = models.TextField(max_length=255,
-                                           blank=False,
                                            default='',
-                                           null=False,
                                            verbose_name='Primeira descrição',
                                            )
     subtitle_two = models.CharField(max_length=255,
-                                    blank=False,
                                     default='',
                                     verbose_name='Segundo Subtítulo',
                                     )
     sub_description_two = models.TextField(max_length=255,
-                                           blank=False,
                                            default='',
-                                           null=False,
                                            verbose_name='Segunda descrição',
                                            )
     subtitle_three = models.CharField(max_length=255,
-                                      blank=False,
                                       default='',
                                       verbose_name='Terceiro Subtítulo',
                                       )
     sub_description_three = models.TextField(max_length=255,
-                                             blank=False,
                                              default='',
-                                             null=False,
                                              verbose_name='Terceira descrição',
                                              )
 
@@ -91,7 +74,7 @@ class SectionIntro(models.Model):
     class Meta:
         verbose_name = 'Seção de introdução'
         verbose_name_plural = 'Seção de introdução'
-    
+
 
 class Profile(models.Model):
     title = models.CharField(max_length=255,
@@ -120,12 +103,10 @@ class PreGallery(models.Model):
     local = 'app_home/images/pre-gallery'
 
     title = models.CharField(max_length=255,
-                             blank=False,
                              default='',
                              verbose_name='título',
                              )
     description = models.TextField(max_length=500,
-                                   blank=False,
                                    default='',
                                    verbose_name='descrição',
                                    )
@@ -152,12 +133,10 @@ class PreGallery(models.Model):
 
 class Service(models.Model):
     title = models.CharField(max_length=255,
-                             blank=False,
                              default='',
                              verbose_name='título',
                              )
     description = models.TextField(max_length=255,
-                                   blank=False,
                                    default='',
                                    verbose_name='descrição',
                                    )
@@ -172,22 +151,18 @@ class Service(models.Model):
 
 class Adress(models.Model):
     name = models.CharField(max_length=255,
-                            blank=False,
                             default='',
                             verbose_name='nome do estabelecimento',
                             )
     adress = models.CharField(max_length=255,
-                              blank=False,
                               default='',
                               verbose_name='endereço',
                               )
     city = models.CharField(max_length=255,
-                            blank=False,
                             default='',
                             verbose_name='bairro e cidade',
                             )
     postal = models.CharField(max_length=255,
-                              blank=False,
                               default='',
                               verbose_name='cep',
                               )
@@ -203,32 +178,24 @@ class Adress(models.Model):
 class HomeContent(models.Model):
     social_network = models.ForeignKey(SocialNetwork,
                                        on_delete=models.CASCADE,
-                                       null=False,
-                                       blank=False,
                                        default=None,
                                        verbose_name='redes sociais',
                                        )
 
     section_intro = models.ForeignKey(SectionIntro,
                                       on_delete=models.CASCADE,
-                                      null=False,
-                                      blank=False,
                                       default=None,
                                       verbose_name='seção intro',
                                       )
 
     profile = models.ForeignKey(Profile,
                                 on_delete=models.CASCADE,
-                                null=False,
-                                blank=False,
                                 default=None,
                                 verbose_name='perfil do profissional',
                                 )
 
     pre_gallery = models.ForeignKey(PreGallery,
                                     on_delete=models.CASCADE,
-                                    null=False,
-                                    blank=False,
                                     default=None,
                                     verbose_name='galeria de imagens',
                                     )
@@ -239,8 +206,6 @@ class HomeContent(models.Model):
 
     adress = models.ForeignKey(Adress,
                                on_delete=models.CASCADE,
-                               null=False,
-                               blank=False,
                                default=None,
                                verbose_name='endereço',
                                )
