@@ -24,9 +24,9 @@
     <header class="C-header">
         <!-- contact -->
         <section class="C-header_contact center_flex_row">
-            <a target="_blank" href="{{ home_content.instagram_link }}"><img src="{% static 'global/images/icons/instagram_p.png' %}" alt="logo instagram" class="center_flex_row"></a>
-            <a target="_blank" href="{{ home_content.facebook_link }}"><img src="{% static 'global/images/icons/facebook_p.png' %}" alt="logo facebook" class="center_flex_row"></a>
-            <a target="_blank" href="{{ home_content.whatsapp_link }}"><img src="{% static 'global/images/icons/whatsapp_p.png' %}" alt="logo whatsapp"class="center_flex_row"></a>
+            <a target="_blank" href="{{ home_content.social_network.instagram_link }}"><img src="{% static 'global/images/icons/instagram_p.png' %}" alt="logo instagram" class="center_flex_row"></a>
+            <a target="_blank" href="{{ home_content.social_network.facebook_link }}"><img src="{% static 'global/images/icons/facebook_p.png' %}" alt="logo facebook" class="center_flex_row"></a>
+            <a target="_blank" href="{{ home_content.social_network.whatsapp_link }}"><img src="{% static 'global/images/icons/whatsapp_p.png' %}" alt="logo whatsapp"class="center_flex_row"></a>
         </section>
 
         <!-- logo and menu -->
@@ -65,30 +65,30 @@
     <main class="C-main">
         <!-- section intro -->
         <section data-anime="left" id="profile" class="C-intro center_flex_column center_margin">
-            <h1 class="C-intro__title">{{ home_content.title_section_intro }}</h1>
-            <p class="C-intro__description">{{ home_content.description_section_intro }}</p>
+            <h1 class="C-intro__title">{{ home_content.section_intro.title }}</h1>
+            <p class="C-intro__description">{{ home_content.section_intro.description }}</p>
             <div class="C-intro__card">
                 <h2 class="C-intro__card_title">
-                    {{ home_content.subtitle_one_section_intro }}
+                    {{ home_content.section_intro.subtitle_one }}
                 </h2>
                 <p class="C-intro__card_description">
-                    {{ home_content.sub_description_one_section_intro }}
+                    {{ home_content.section_intro.sub_description_one }}
                 </p>
             </div>
             <div class="C-intro__card">
                 <h2 class="C-intro__card_title">
-                    {{ home_content.subtitle_two_section_intro }}
+                    {{ home_content.section_intro.subtitle_two }}
                 </h2>
                 <p class="C-intro__card_description">
-                    {{ home_content.sub_description_two_section_intro }}
+                    {{ home_content.section_intro.sub_description_two }}
                 </p>
             </div>
             <div class="C-intro__card">
                 <h2 class="C-intro__card_title">
-                    {{ home_content.subtitle_three_section_intro }}
+                    {{ home_content.section_intro.subtitle_three }}
                 </h2>
                 <p class="C-intro__card_description">
-                    {{ home_content.sub_description_three_section_intro }}
+                    {{ home_content.section_intro.sub_description_three }}
                 </p>
             </div>
         </section>
@@ -96,12 +96,11 @@
         <!-- personal profile -->
         <section class="C-profile center_flex_column">
             <div data-anime="left" class="C-profile_description">
-                <h2>Conheça um pouco o professor Maicon</h2>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum dolor corrupti qui ducimus quaerat mollitia facere non quam doloremque ad deleniti, in provident itaque adipisci assumenda sapiente veritatis et laborum.
-                Eius delectus harum culpa soluta, rem distinctio iusto voluptatem.</p>
+                <h2>{{ home_content.profile.title }}</h2>
+                <p>{{ home_content.profile.description }}</p>
             </div>
             <div data-anime="down" class="C-profile_image center_flex_row">
-                <img src="{% static 'global/images/profile.jpeg' %}" alt="profile image">
+                <img src="{{ home_content.profile.image.url }}" alt="profile image">
                 <span class="C-profile_span"></span>
             </div>
         </section>
@@ -114,54 +113,37 @@
                         <li class="C-pre_gallery_li">
                             <input type="radio" name="pre_gallery_img" id="img1" checked>
                             <label for="img1"></label>
-                            <img src="{% static 'global/images/main-gallery/img1.jpeg' %}" alt="">
+                            <img src="{{ home_content.pre_gallery.image_one.url }}" alt="">
                         </li>
                         <li class="C-pre_gallery_li">
                             <input type="radio" name="pre_gallery_img" id="img2">
                             <label for="img2"></label>
-                            <img src="{% static 'global/images/main-gallery/img2.jpeg' %}" alt="">
+                            <img src="{{ home_content.pre_gallery.image_two.url }}" alt="">
                         </li>
                         <li class="C-pre_gallery_li">
                             <input type="radio" name="pre_gallery_img" id="img3">
                             <label for="img3"></label>
-                            <img src="{% static 'global/images/main-gallery/img3.jpeg' %}" alt="">
+                            <img src="{{ home_content.pre_gallery.image_three.url }}" alt="">
                         </li>
                     </ul>
                 </div>
                 <div data-anime="right" class="C-pre_gallery_description">
-                    <h2>Espaço ideal para seu treino</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum, dolore vel? Illo animi saepe optio distinctio natus quod cumque maiores libero ipsa laborum odit recusandae, iure harum deleniti ipsum aut?
-                    Odio facilis eius repudiandae facere, inventore nam, necessitatibus amet quia consequatur consectetur labore! Nostrum placeat officiis ratione ipsa neque sint illo magni, ad, harum fuga totam deserunt et! Accusamus, maiores?</p>
+                    <h2>{{ home_content.pre_gallery.title }}</h2>
+                    <p>{{ home_content.pre_gallery.description }}</p>
                 </div>
             </div>
             <!-- services -->
             <section data-anime="down" id="services" class="C-services center_flex_column">
                 <h2>Atendimento exclusivo e personalizado</h2>
                 <div class="C-services__flex center_flex_row">
-                    <div class="C-services__service">
-                        <h2>treino indiviual</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, voluptatum?</p>
-                    </div>
-                    <div class="C-services__service">
-                        <h2>treino em equipe</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, voluptatum?</p>
-                    </div>
-                    <div class="C-services__service">
-                        <h2>equipamentos de ponta</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, voluptatum?</p>
-                    </div>
-                    <div class="C-services__service">
-                        <h2>ambiente climatizado</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, voluptatum?</p>
-                    </div>
-                    <div class="C-services__service">
-                        <h2>horários flexíveis</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, voluptatum?</p>
-                    </div>
-                    <div class="C-services__service">
-                        <h2>localização central</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, voluptatum?</p>
-                    </div>  
+                    {% for service in home_content.services.all %}
+                        <div class="C-services__service">
+                            <h2>{{ service.title }}</h2>
+                            <p>{{ service.description }}</p>
+                        </div>
+                    {% empty %}
+                        <h2>services not found</h2>
+                    {% endfor %}
                 </div>
             </section>
         </section>
@@ -170,10 +152,10 @@
         <section id="contact" class="C-contact center_flex_row">
             <div class="C-contact__contact center_flex_column" data-anime="left">
                 <h2>entre em contato</h2>
-                <a target="_blank" href="{{ home_content.facebook_link }}" class="C-contact__link center_flex_row"><img src="{% static 'global/images/facebook.png' %}" alt="logo facebook"><p>{{ home_content.facebook_text }}</p></a>
-                <a target="_blank" href="{{ home_content.instagram_link }}" class="C-contact__link center_flex_row"><img src="{% static 'global/images/instagram.png' %}" alt="logo instagram"><p>{{ home_content.instagram_text }}</p></a>
-                <a target="_blank" href="{{ home_content.whatsapp_link }}" class="C-contact__link center_flex_row"><img src="{% static 'global/images/whatsapp.png' %}" alt="logo whatsapp"><p>{{ home_content.whatsapp_phone }}</p></a>
-                <p>Fone: {{ home_content.whatsapp_phone }}</p>
+                <a target="_blank" href="{{ home_content.social_network.facebook_link }}" class="C-contact__link center_flex_row"><img src="{% static 'global/images/facebook.png' %}" alt="logo facebook"><p>{{ home_content.social_network.facebook_text }}</p></a>
+                <a target="_blank" href="{{ home_content.social_network.instagram_link }}" class="C-contact__link center_flex_row"><img src="{% static 'global/images/instagram.png' %}" alt="logo instagram"><p>{{ home_content.social_network.instagram_text }}</p></a>
+                <a target="_blank" href="{{ home_content.social_network.whatsapp_link }}" class="C-contact__link center_flex_row"><img src="{% static 'global/images/whatsapp.png' %}" alt="logo whatsapp"><p>{{ home_content.social_network.whatsapp_phone }}</p></a>
+                <p>Fone: {{ home_content.social_network.whatsapp_phone }}</p>
             </div>
             <div class="C-contact__localization" data-anime="right">
                 <iframe data-anime="right" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3583.522754172879!2d-53.05904328504772!3d-26.081849083492397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94f072d9fc39f61b%3A0x8fec623d0f0908ca!2sR.%20Rio%20G.%20do%20Sul%2C%201086%20-%20Alvorada%2C%20Francisco%20Beltr%C3%A3o%20-%20PR%2C%2085601-050!5e0!3m2!1spt-BR!2sbr!4v1677199562174!5m2!1spt-BR!2sbr" width="400" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -184,10 +166,10 @@
     <!-- footer -->
     <footer class="C-footer center_flex_column">
         <div class="C-footer__details">
-            <p class="C-footer__title">Academia Personal Maicon</p>
-            <p class="C-footer__adress">Rua Rio Grande do Sul, 1086</p>
-            <p class="C-footer__adress">Centro - Francisco Beltrão, Paraná</p>
-            <p class="C-footer__adress">CEP: 85.601-231</p>
+            <p class="C-footer__title">{{ home_content.adress.name }}</p>
+            <p class="C-footer__adress">{{ home_content.adress.adress }}</p>
+            <p class="C-footer__adress">{{ home_content.adress.city }}</p>
+            <p class="C-footer__adress">{{ home_content.adress.postal }}</p>
             <p class="C-footer__copy"> &copy; 2023 - Todos os direitos reservados</p>
         </div>
         <div class="C-footer__logo">

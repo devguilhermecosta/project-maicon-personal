@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.urls import reverse, resolve, ResolverMatch
 from django.http import HttpResponse
 from app_home import views
-from app_home.models import HomeContact
+from app_home.models import HomeContent
 
 
 class HomeTests(TestCase):
@@ -33,7 +33,7 @@ class HomeTests(TestCase):
             'whatsapp_phone': '(46)1234-5678',
         }
 
-        HomeContact.objects.create(**data)
+        HomeContent.objects.create(**data)
         
         response: HttpResponse = self.client.get(
             reverse('home:home')
