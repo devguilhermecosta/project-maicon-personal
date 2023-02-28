@@ -1,0 +1,12 @@
+{% load static %}
+
+<div class="C-footer__details">
+    <p class="C-footer__title">{{ home_content.adress.name }}</p>
+    <p class="C-footer__adress">{{ home_content.adress.adress }}</p>
+    <p class="C-footer__adress">{{ home_content.adress.city }}</p>
+    <p class="C-footer__adress">{{ home_content.adress.postal }}</p>
+    <p class="C-footer__copy"> &copy; 2023 - Todos os direitos reservados</p>
+</div>
+<div class="C-footer__logo">
+    <img src="{% static 'global/images/logo.png' %}" alt="">
+</div>

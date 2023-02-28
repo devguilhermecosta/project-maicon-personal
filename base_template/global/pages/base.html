@@ -1,0 +1,35 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        {% include 'global/partials/_head.html' %}
+    </head>
+
+    <body class="C-body">
+        <!-- header -->
+        <header class="C-header">
+            <!-- contact -->
+            {% include 'global/partials/_contact.html' %}
+
+            <!-- logo and menu -->
+            {% include 'global/partials/_menu.html' %}
+
+            <!-- title -->
+            {% include 'global/partials/_title.html' %}
+        </header>
+
+        <!-- main -->
+        <main class="C-main">
+            {% block content %}{% endblock %}
+        </main>
+
+        <!-- footer -->
+        <footer class="C-footer center_flex_column">
+            {% include 'global/partials/_footer.html' %}
+        </footer>
+    </body>
+    <!-- scripts js -->
+    <script src="{% static 'global/js/script.js' %}"></script>
+</html>

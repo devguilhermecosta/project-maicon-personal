@@ -1,0 +1,25 @@
+{% load static %}
+{% load i18n %}
+
+<!-- logo and menu -->
+<section class="C-menu center_flex_row">
+    <!-- logo -->
+    <div class="C-logo center_flex_row">
+        <img src="{% static 'global/images/partial-logo.png' %}" alt="">
+    </div>
+    <!-- menu -->
+    <div class="C-menu__menu">
+        <button class="C-menu__button center_flex_row">
+            <span class="material-symbols-outlined C-menu__span">menu</span>
+        </button>
+        <nav class="C-menu__nav is_hidden">
+            <ul class="C-menu__ul center_flex_column">
+                <li class="C-menu__li"><a href="/" class="C-menu__link standard_transition">{% translate 'home' %}</a></li>
+                <li class="C-menu__li"><a href="#profile" class="C-menu__link standard_transition">{% translate 'about' %}</a></li>
+                <li class="C-menu__li"><a href="#services" class="C-menu__link standard_transition">{% translate 'services' %}</a></li>
+                <li class="C-menu__li"><a href="" class="C-menu__link standard_transition">{% translate 'gallery' %}</a></li>
+                <li class="C-menu__li"><a href="#contact" class="C-menu__link standard_transition">{% translate 'contact' %}</a></li>
+            </ul>
+        </nav>
+    </div>
+</section>
