@@ -22,7 +22,7 @@ class Gallery(ListView):
 
     def get_context_data(self, *args, **kwargs):
         cd = super().get_context_data(*args, **kwargs)
-        # cd['description'] = 'isso é um teste'
+
         cd.update({
             'description': 'isso é mais um teste'
         })

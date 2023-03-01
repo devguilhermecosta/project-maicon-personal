@@ -3,11 +3,20 @@
 {% block head_title %} Gallery | {% endblock %}
 
 {% block content %}
-    <h1 style="color: red">esta é a galeria</h1>
-    <div>
-        {% for image in gallery %}
-            <img src="{{ image.image.url }}" alt="">
-        {% endfor %}
-    </div>
-    <p style="color: red">{{ description }}</p>
+    <section class="C-gallery center_margin center_flex_row">
+            {% for image in gallery %}
+                <div class="C-gallery__c_image">
+                    <img class="C-gallery__image" src="{{ image.image.url }}" alt="">
+                    <h2>{{ image.title }}</h2>
+                    <p>{{ image.description }}</p>
+                    <div class="C-gallery__c_image_back">
+                        <img class="C-gallery__image" src="{{ image.image.url }}" alt="">
+                    </div>
+                </div>
+            {% empty %}
+                <div class="C-gallery__c_image">
+                    <h2>no images found</h2>
+                </div>
+            {% endfor %}
+    </section>
 {% endblock %}

@@ -26,3 +26,32 @@ const animeScroll = ()=>{
     }
     
 window.addEventListener('scroll', animeScroll);
+
+
+// animate gallery
+(()=>{
+    const imageContainer = document.querySelectorAll('.C-gallery__image');
+
+    const body = document.querySelector('.C-body');
+
+    imageContainer.forEach((element)=>{
+        element.addEventListener('click', ()=>{
+            
+            let d = document.createElement('div');
+
+            let newImage = element.parentElement.lastElementChild;
+            
+            if (!d.classList.contains('is_back')) {
+                console.log('nao');
+                d.classList.add('is_back');
+                newImage.classList.add('full_page');
+                d.appendChild(newImage);
+                body.appendChild(d);
+            } else {
+                
+            }
+        });
+    })
+})()
+
+// criar a lógica para fechar a janela.
