@@ -30,7 +30,7 @@ window.addEventListener('scroll', animeScroll);
 
 // animate gallery
 (()=>{
-    const imageContainer = document.querySelectorAll('.C-gallery__image');
+    const imageContainer = document.querySelectorAll('.glass_image');
 
     const body = document.querySelector('.C-body');
 
@@ -38,20 +38,29 @@ window.addEventListener('scroll', animeScroll);
         element.addEventListener('click', ()=>{
             
             let d = document.createElement('div');
-
-            let newImage = element.parentElement.lastElementChild;
-            
-            if (!d.classList.contains('is_back')) {
-                console.log('nao');
+            let image = element.parentElement.lastElementChild;
+           
                 d.classList.add('is_back');
-                newImage.classList.add('full_page');
-                d.appendChild(newImage);
+                image.classList.add('full_page');
+                d.appendChild(image);
                 body.appendChild(d);
-            } else {
-                
-            }
+                console.log('abri');
+
+                image.addEventListener("click", ()=>{
+                    image.classList.remove('full_page');
+                    image.classList.add('is_hidden');
+                    d.classList.remove('is_back');
+                    d.classList.add('is_hidden');
+                })
+             
         });
     })
-})()
+})();
 
-// criar a lógica para fechar a janela.
+
+// (()=>{
+//     const imageAnimated = document.querySelector('.full_page');
+//     imageAnimated.addEventListener("click", ()=>{
+//         console.log('cliquei');
+//     })
+// })();

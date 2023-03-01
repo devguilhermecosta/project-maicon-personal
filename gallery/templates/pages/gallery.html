@@ -10,7 +10,7 @@
                     <h2>{{ image.title }}</h2>
                     <p>{{ image.description }}</p>
                     <div class="C-gallery__c_image_back">
-                        <img class="C-gallery__image" src="{{ image.image.url }}" alt="">
+                        <img class="C-gallery__image glass_image" src="{{ image.image.url }}" alt="">
                     </div>
                 </div>
             {% empty %}
@@ -20,3 +20,4 @@
             {% endfor %}
     </section>
 {% endblock %}
+

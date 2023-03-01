@@ -1,7 +1,6 @@
 from django.views.generic import ListView
-from django.shortcuts import render
 from django.db.models.query import QuerySet
-from typing import Dict, Any
+from typing import Any
 from app_home.models import HomeContent
 
 
