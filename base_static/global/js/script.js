@@ -27,6 +27,7 @@ const animeScroll = ()=>{
     
 window.addEventListener('scroll', animeScroll);
 
+// modal animated for gallery
 (()=>{
     const images = document.querySelectorAll('.C-gallery__image');
     let modal = document.querySelector('.C-modal');
