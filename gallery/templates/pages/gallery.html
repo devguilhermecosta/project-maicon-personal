@@ -23,29 +23,5 @@
                 </div>
             {% endfor %}
     </section>
-    <section class="C-paginator center_flex_row">
-        {% if gallery.has_other_pages %}
-            <div class="C-pages">
-                <div class="C-pages__page center_flex_row">
-                    {% if pagination_range.first_page_out_of_range %}
-                        <a href="?page=1" class="C-pages__link_page">1</a>
-                        <span class="C-pages__span">...</span>
-                    {% endif %}
-
-                    {% for page in pagination_range.pagination %}
-                        {% if page == pagination_range.current_page %}
-                            <a href="?page={{ page }}" class="C-pages__link_current_page">{{ page }}</a>
-                        {% else %}
-                            <a href="?page={{ page }}" class="C-pages__link_page">{{ page }}</a>
-                        {% endif %}
-                    {% endfor %}
-
-                    {% if pagination_range.last_page_out_of_range %}
-                        <span class="C-pages__span">...</span>
-                        <a href="?page={{ pagination_range.total_pages }}" class="C-pages__link_page">{{ pagination_range.total_pages }}</a>
-                    {% endif %}
-                </div> 
-            </div>
-        {% endif %}
-    </section>
+    {% include 'global/partials/pagination.html' %}
 {% endblock %}
