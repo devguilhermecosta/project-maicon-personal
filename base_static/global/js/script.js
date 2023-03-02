@@ -27,40 +27,29 @@ const animeScroll = ()=>{
     
 window.addEventListener('scroll', animeScroll);
 
-
-// animate gallery
 (()=>{
-    const imageContainer = document.querySelectorAll('.glass_image');
+    const images = document.querySelectorAll('.C-gallery__image');
+    let modal = document.querySelector('.C-modal');
+    let modalImage = document.querySelector('.C-modal__image');
+    const button = document.querySelector('.C-modal__button');
 
-    const body = document.querySelector('.C-body');
+    // for (let i = 0; i < (images.length); i++) {
+    //     images[i].addEventListener("click", ()=>{
+    //         let srcVal = images[i].getAttribute('src');
+    //         modalImage.setAttribute('src', srcVal);
+    //         modal.classList.toggle('C-modal__is_active');
+    //     })
+    // }
 
-    imageContainer.forEach((element)=>{
-        element.addEventListener('click', ()=>{
-            
-            let d = document.createElement('div');
-            let image = element.parentElement.lastElementChild;
-           
-                d.classList.add('is_back');
-                image.classList.add('full_page');
-                d.appendChild(image);
-                body.appendChild(d);
-                console.log('abri');
+    images.forEach((element)=>{
+        element.addEventListener("click", ()=>{
+            let srcVal = element.getAttribute('src');
+            modalImage.setAttribute('src', srcVal);
+            modal.classList.toggle('C-modal__is_active');
+        })
+    })
 
-                image.addEventListener("click", ()=>{
-                    image.classList.remove('full_page');
-                    image.classList.add('is_hidden');
-                    d.classList.remove('is_back');
-                    d.classList.add('is_hidden');
-                })
-             
-        });
+    button.addEventListener("click", ()=>{
+        modal.classList.toggle('C-modal__is_active');
     })
 })();
-
-
-// (()=>{
-//     const imageAnimated = document.querySelector('.full_page');
-//     imageAnimated.addEventListener("click", ()=>{
-//         console.log('cliquei');
-//     })
-// })();

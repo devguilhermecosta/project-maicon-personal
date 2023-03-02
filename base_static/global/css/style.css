@@ -97,23 +97,6 @@ body::-webkit-scrollbar-thumb {
 .is_hidden {
   display: none;
 }
-
-.is_back {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  background-color: var(--black-transparent-bg);
-  display: flex;
-  justify-content: center;
-  padding: 25px 5%;
-}
-
-.full_page {
-  width: 100% !important;
-  max-width: 800px;
-}
 /* ###### END GENERICS ######*/
 
 /* START BODY */
@@ -614,6 +597,52 @@ body::-webkit-scrollbar-thumb {
   max-height: 378px;
 }
 
+.C-modal {
+  position: fixed;
+  z-index: 1000;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.6s linear, opacity 0.5s linear;
+}
+
+.C-modal__is_active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.C-modal__c_image {
+  width: 100%;
+  max-width: 45vw;
+  padding: 5%;
+}
+
+.C-modal__image {
+  width: 100%;
+}
+
+.C-modal__button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: var(--standard-white);
+  padding: 5px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 300ms ease;
+}
+
+.C-modal__button:hover {
+  background-color: var(--blue-5);
+  color: var(--standard-white);
+  border: 1px solid var(--blue-2);
+}
+
 .C-gallery {
   width: 100%;
   max-width: 2048px;
@@ -629,32 +658,29 @@ body::-webkit-scrollbar-thumb {
   column-gap: 15px;
 }
 
-.C-gallery__c_image, .C-gallery__c_image_back {
+.C-gallery__c_image {
   width: 100%;
   max-width: 320px;
   transition: all 300ms ease;
   flex-grow: 2;
   flex-shrink: 2;
   flex-basis: auto;
+  overflow: hidden;
 }
 
 .C-gallery__c_image {
   position: relative;
 }
 
-.C-gallery__c_image_back {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.C-gallery__c_image:hover {
-  transform: scale(1.02) translate(5px, -5px);
-}
-
 .C-gallery__image {
   width: 100%;
   cursor: pointer;
+  transition: all linear 300ms;
+}
+
+.C-gallery__image:hover {
+  transform: scale(1.1);
+  filter: grayscale(100%);
 }
 
 .C-gallery__c_image {
@@ -889,7 +915,7 @@ body::-webkit-scrollbar-thumb {
   }
 
   .C-gallery__c_image {
-    flex-basis: 23%;
+    flex-basis: 18%;
   }
 
   .C-footer {
