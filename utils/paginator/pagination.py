@@ -11,7 +11,7 @@ def make_pagination_range(range: list,
     middle_page: int = math.ceil(range_per_page / 2)
     start_range: int = current_page - middle_page
     stop_range: int = current_page + middle_page
-    total_pages: int = len(range)  # 2
+    total_pages: int = len(range)
 
     start_range_offset: int = abs(start_range) if start_range < 0 else 0
 
@@ -29,7 +29,7 @@ def make_pagination_range(range: list,
         'current_page': current_page,
         'start_range': start_range,
         'stop_range': stop_range,
-        'first_page_out_of_range': current_page > middle_page,
+        'first_page_out_of_range': current_page > middle_page and len(range) > range_per_page,  # noqa: E501
         'last_page_out_of_range': stop_range < total_pages,
     }
 

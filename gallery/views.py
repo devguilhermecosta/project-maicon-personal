@@ -25,12 +25,12 @@ class Gallery(ListView):
 
         page_object, pagination = make_pagination(self.request,
                                                   cd.get('gallery'),
-                                                  9,  # criar uma variável de ambiente  # noqa: E501
+                                                  10,  # criar uma variável de ambiente  # noqa: E501
                                                   )
 
         cd.update({
-            'images': page_object,
-            'pagination': pagination,
+            'gallery': page_object,
+            'pagination_range': pagination,
         })
 
         return cd
