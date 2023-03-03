@@ -4,12 +4,14 @@
 {% block head_title %} Gallery | {% endblock %}
 
 {% block content %}
+    <!-- modal -->
     <div class="C-modal center_flex_row">
         <div class="C-modal__c_image center_flex_row">
             <img src="{% static "global/images/profile.jpeg" %}" alt="" class="C-modal__image">
         </div>
         <span class="material-symbols-outlined C-modal__button">close</span>
     </div>
+    <!-- gallery -->
     <section class="C-gallery center_margin center_flex_row">
             {% for image in gallery %}
                 <div class="C-gallery__c_image">
@@ -23,5 +25,6 @@
                 </div>
             {% endfor %}
     </section>
+    <!-- pagination -->
     {% include 'global/partials/pagination.html' %}
 {% endblock %}
