@@ -22,11 +22,9 @@ def image_delete(sender, instance: Image, *args, **kwargs) -> None:
 def update_image(sender, instance: Image, *args, **kwargs) -> None:
     try:
         old_instance: Image = Image.objects.filter(pk=instance.pk).first()
-    except AttributeError:
-        ...
-
-    if isinstance(old_instance, Image):
         new_instance: bool = old_instance.image != instance.image
 
         if new_instance:
             delete_cover(old_instance)
+    except AttributeError:
+        ...
