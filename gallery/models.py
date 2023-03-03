@@ -1,5 +1,6 @@
 import os
 from django.db import models
+from django.urls import reverse
 from project.settings import MEDIA_ROOT
 from PIL import Image as img
 
@@ -15,14 +16,18 @@ class Image(models.Model):
                                    default='',
                                    verbose_name='descrição',
                                    )
-    image = models.ImageField(upload_to='gallery/%Y/%m/',
-                              verbose_name='imagem',
-                              )
+    conver = models.ImageField(upload_to='gallery/%Y/%m/',
+                               verbose_name='imagem',
+                               default='',
+                               )
 
     def __str__(self):
-        name = self.image.name.strip()
+        name = self.conver.name.strip()
 
         return name[16:]
+
+    def get_absolute_url(self):
+        return reverse("gallery:gallery", args=(self.id,))
 
     @staticmethod
     def resize_image(image, new_width=1280) -> None:
@@ -41,9 +46,9 @@ class Image(models.Model):
     def save(self, *args, **kwargs) -> None:
         super_save = super().save(*args, **kwargs)
 
-        if self.image:
+        if self.cover:
             try:
-                self.resize_image(self.image)
+                self.resize_image(self.cover)
                 print('resized image succesfully')
             except (FileNotFoundError, AttributeError):
                 ...
