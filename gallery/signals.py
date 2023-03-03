@@ -20,11 +20,13 @@ def image_delete(sender, instance: Image, *args, **kwargs) -> None:
 
 @receiver(pre_save, sender=Image)
 def update_image(sender, instance: Image, *args, **kwargs) -> None:
-    old_instance: Image = Image.objects.filter(id=instance.id).first()
     try:
-        new_instance: bool = old_instance.image.path != instance.image.path
+        old_instance: Image = Image.objects.filter(pk=instance.pk).first()
     except AttributeError:
-        print('aquie é old path:', old_instance)
+        ...
 
-    if new_instance:
-        delete_cover(old_instance)
+    if isinstance(old_instance, Image):
+        new_instance: bool = old_instance.image != instance.image
+
+        if new_instance:
+            delete_cover(old_instance)

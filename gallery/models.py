@@ -45,7 +45,7 @@ class Image(models.Model):
             try:
                 self.resize_image(self.image)
                 print('resized image succesfully')
-            except FileNotFoundError:
+            except (FileNotFoundError, AttributeError):
                 ...
 
         return super_save
