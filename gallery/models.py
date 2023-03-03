@@ -25,7 +25,7 @@ class Image(models.Model):
         return name[16:]
 
     @staticmethod
-    def resize_image(image, new_width) -> None:
+    def resize_image(image, new_width=1280) -> None:
         full_path: str = os.path.join(MEDIA_ROOT, image.name)
         pillow_image = img.open(full_path)
         width, height = pillow_image.size
@@ -43,7 +43,7 @@ class Image(models.Model):
 
         if self.image:
             try:
-                self.resize_image(self.image, 840)
+                self.resize_image(self.image)
                 print('resized image succesfully')
             except FileNotFoundError:
                 ...
