@@ -14,14 +14,20 @@ def delete_cover(instance: Image) -> None:
 
 @receiver(pre_delete, sender=Image)
 def image_delete(sender, instance: Image, *args, **kwargs) -> None:
-    old_image: Image = Image.objects.filter(pk=instance.pk).first()
-    delete_cover(old_image)
+    try:
+        old_image: Image = Image.objects.filter(pk=instance.pk).first()
+        delete_cover(old_image)
+    except AttributeError:
+        ...
 
 
 @receiver(pre_save, sender=Image)
 def update_image(sender, instance: Image, *args, **kwargs) -> None:
-    old_instance: Image = Image.objects.filter(pk=instance.pk).first()
-    new_instance: bool = old_instance.image != instance.image
+    try:
+        old_instance: Image = Image.objects.filter(pk=instance.pk).first()
+        new_instance: bool = old_instance.image != instance.image
 
-    if new_instance:
-        delete_cover(old_instance)
+        if new_instance:
+            delete_cover(old_instance)
+    except AttributeError:
+        ...
