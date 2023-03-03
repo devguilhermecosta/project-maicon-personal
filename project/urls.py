@@ -21,6 +21,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('gallery/', include('gallery.urls')),
+    path('login/', include('author.urls')),
     path('', include('app_home.urls')),
 ]
 

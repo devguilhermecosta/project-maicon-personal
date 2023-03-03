@@ -9,4 +9,5 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app_home',
     'gallery',
+    'author',
 ]

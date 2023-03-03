@@ -699,6 +699,44 @@ body::-webkit-scrollbar-thumb {
   line-height: 1.5;
 
 }
+
+.C-login {
+  height: 80%;
+}
+
+.C-login__form {
+  width: 100%;
+  max-width: 350px;
+  background-color: rgba(105, 102, 102, 0.295);
+  backdrop-filter: contrast(1) blur(15px);
+  color: var(--standard-white);
+  padding: 20px 10px;
+  border-radius: 15px;
+  row-gap: 25px;
+}
+
+.C-login__title {
+  text-transform: uppercase;
+}
+
+.C-login__div {
+  width: 100%;
+  max-width: 260px;
+  flex-wrap: wrap;
+  column-gap: 15px;
+  row-gap: 15px;
+  justify-content: space-between;
+}
+
+.C-login__label {
+  text-transform: capitalize;
+  font-weight: 300;
+}
+
+.C-login__input {
+  height: 35px;
+  padding: 5px 5px;
+}
 /* END MAIN */
 
 /* START FOOTER */
