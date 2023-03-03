@@ -16,13 +16,13 @@ class Image(models.Model):
                                    default='',
                                    verbose_name='descrição',
                                    )
-    conver = models.ImageField(upload_to='gallery/%Y/%m/',
-                               verbose_name='imagem',
-                               default='',
-                               )
+    cover = models.ImageField(upload_to='gallery/%Y/%m/',
+                              verbose_name='imagem',
+                              default='',
+                              )
 
     def __str__(self):
-        name = self.conver.name.strip()
+        name = self.cover.name.strip()
 
         return name[16:]
 

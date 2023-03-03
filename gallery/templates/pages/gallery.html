@@ -15,7 +15,7 @@
     <section class="C-gallery center_margin center_flex_row">
             {% for image in gallery %}
                 <div class="C-gallery__c_image">
-                    <img class="C-gallery__image" src="{{ image.image.url }}" alt="">
+                    <img class="C-gallery__image" src="{{ image.cover.url }}" alt="">
                     <h2>{{ image.title }}</h2>
                     <p>{{ image.description }}</p>
                 </div>

@@ -14,8 +14,8 @@ def delete_cover(instance: Image) -> None:
 
 @receiver(pre_delete, sender=Image)
 def cover_delete(sender, instance: Image, *args, **kwargs) -> None:
-    old_cover: Image = Image.objects.filter(pk=instance.id).first()
-    print('deletando', old_cover)
+    old_cover: Image = Image.objects.filter(id=instance.id).first()
+    print('image deleted succesfully:', old_cover.cover.path)
     delete_cover(old_cover)
 
 
