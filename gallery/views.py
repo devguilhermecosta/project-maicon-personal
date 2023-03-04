@@ -1,7 +1,13 @@
+import os
 from django.shortcuts import render
 from django.views.generic.list import ListView
 from . models import Image
 from utils.paginator import make_pagination
+from dotenv import load_dotenv
+
+load_dotenv()
+
+PER_PAGE = int(os.environ.get('PER_PAGE', 10))
 
 
 def gallery(request) -> render:
@@ -25,7 +31,7 @@ class Gallery(ListView):
 
         page_object, pagination = make_pagination(self.request,
                                                   cd.get('gallery'),
-                                                  10,  # criar uma variável de ambiente  # noqa: E501
+                                                  PER_PAGE,  # criar uma variável de ambiente  # noqa: E501
                                                   )
 
         cd.update({
