@@ -1,0 +1,7 @@
+{% if messages %}
+<section class="C-messages center_flex_row center_margin">
+    {% for message in messages %}
+        <p class="{{ message.tags }}" >{{ message }}</p>
+    {% endfor %}
+</section>
+{% endif %}

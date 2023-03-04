@@ -1,6 +1,6 @@
 from django.contrib.messages import constants
 
-MESSAGES_TAGS = {
+MESSAGE_TAGS = {
     constants.DEBUG: 'message-debug',
     constants.ERROR: 'message-error',
     constants.SUCCESS: 'message-succes',

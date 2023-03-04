@@ -27,6 +27,7 @@
   --green-1-whatsapp: #30BF2E;
   --green-2-whatsapp: #5EFA79;
   --standard-gray: #1f1d1d;
+  --standard-red: rgba(179, 46, 46, 0.863);
   --std-white-transparent: rgba(255, 255, 255, 0.288);
   --std-white-transparent-2: rgba(255, 255, 255, 0.548);
   --font-montserrat: 'Montserrat', sans-serif;
@@ -701,7 +702,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .C-login {
-  height: 80%;
+  margin-bottom: 30px;
 }
 
 .C-login__form {
@@ -721,21 +722,49 @@ body::-webkit-scrollbar-thumb {
 
 .C-login__div {
   width: 100%;
-  max-width: 260px;
+  max-width: 290px;
   flex-wrap: wrap;
   column-gap: 15px;
   row-gap: 15px;
   justify-content: space-between;
 }
 
-.C-login__label {
+.C-login__div > label {
   text-transform: capitalize;
   font-weight: 300;
 }
 
-.C-login__input {
+.C-login__div > input {
+  width: 100%;
+  max-width: 70%;
   height: 35px;
   padding: 5px 5px;
+  outline: none;
+  font-size: 16px;
+  border: 2px solid transparent;
+  transition: all 300ms ease;
+}
+
+.C-login__div > input:focus {
+  border-color: var(--blue-3);
+}
+
+.C-login__button {
+  text-transform: capitalize;
+  font-weight: 400;
+  font-size: 18px;
+  padding: 5px 10px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: var(--blue-2);
+  color: var(--blue-5);
+  transition: all 300ms ease;
+}
+
+.C-login__button:hover {
+  background-color: var(--blue-4);
+  color: var(--standard-white); 
 }
 /* END MAIN */
 
@@ -779,7 +808,6 @@ body::-webkit-scrollbar-thumb {
 /* END FOOTER */
 
 /* START PAGINATION */
-
 .C-pages a {
   text-decoration: none;
   color: var(--standard-white);
@@ -814,6 +842,36 @@ body::-webkit-scrollbar-thumb {
 }
 
 /* END PAGINATION */
+
+/* START FLASH MESSAGES */
+.C-messages {
+  width: 100%;
+  max-width: fit-content;
+}
+
+.C-messages p {
+  padding: 15px 10px;
+  color: var(--standard-white);
+  font-size: 16px;
+} 
+
+.C-messages .message-error {
+  background-color: var(--standard-red);
+}
+
+.C-messages .message-succes {
+  background-color: var(--green-2-whatsapp);
+  color: var(--standard-gray);
+}
+
+.C-messages .message-warning {
+  background-color: var(--orange-1-instagram);
+}
+
+.C-messages .message-info, .C-messages .message-debug {
+  background-color: var(--blue-3);
+}
+/* END FLASH MESSAGES */
 
 /* START ANIMATION */
 [data-anime] {
@@ -897,6 +955,14 @@ body::-webkit-scrollbar-thumb {
 
   .C-intro__card p {
     font-size: 12px;
+  }
+
+  .C-login__form {
+    max-width: 280px;
+  }
+
+  .C-login__div > input {
+    max-width: 100%;
   }
 }
 

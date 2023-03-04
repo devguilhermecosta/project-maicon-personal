@@ -7,18 +7,23 @@
 {% endblock %}
 
 {% block content %}
+    <!-- form login -->
     <section class="C-login center_flex_row">
-        <form action="" class="C-login__form center_flex_column">
+        <form action="{{ form_action }}" method="POST" class="C-login__form center_flex_column">
+            {% csrf_token %}
             <h1 class="C-login__title">login</h1>
-            <div class="C-login__div center_flex_row">
-                <label for="username" class="C-login__label">{% translate 'username' %}</label>
-                <input type="text" name="username" id="username" class="C-login__input">
-            </div>
-            <div class="C-login__div center_flex_row">
-                <label for="password" class="C-login__label">{% translate 'password' %}</label>
-                <input type="password" name="password" id="password" class="C-login__input">
-            </div>
-            <button type="submit" class="C-login__button">{% translate 'login' %}</button>
+            {% for field in form %}
+                <div class="C-login__div center_flex_row">
+                    <label for="{{ field.id_for_label }}" class="C-login__label">
+                        {{ field.label }}
+                    </label>
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <button type="submit" class="C-login__button">entrar</button>
         </form>
     </section>
+
+    <!-- messages -->
+    {% include 'global/partials/messages.html' %}
 {% endblock %}

@@ -1,0 +1,6 @@
+{% if user.is_authenticated %}
+    <h1>ESTA É A DASHBOARD</h1>
+    {{ user }}
+{% else %}
+    <p>Não está logado</p>
+{% endif %}
