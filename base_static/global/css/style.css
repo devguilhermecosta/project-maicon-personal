@@ -766,6 +766,36 @@ body::-webkit-scrollbar-thumb {
   background-color: var(--blue-4);
   color: var(--standard-white); 
 }
+
+.C-dashboard {
+  display: grid;
+  grid-template-areas: "nav_dashboard settings_dashboard";
+  background-color: var(--standard-white);
+}
+
+.C-dashboard__nav {
+  grid-area: nav_dashboard;
+  padding: 5px 10px;
+  border-right: 1px solid var(--standard-black);
+  min-height: 50vh;
+  width: 100%;
+  max-width: 200px;
+}
+
+.C-dashboard__li {
+  margin-bottom: 20px;
+}
+
+.C-dashboard__link {
+  text-decoration: none;
+  color: var(--standard-black);
+  font-weight: 400;
+}
+
+.C-dashboard__settings {
+  grid-area: settings_dashboard;
+  padding: 5px 10px;
+}
 /* END MAIN */
 
 /* START FOOTER */

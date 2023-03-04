@@ -1,6 +1,32 @@
-{% if user.is_authenticated %}
-    <h1>ESTA É A DASHBOARD</h1>
-    {{ user }}
-{% else %}
-    <p>Não está logado</p>
-{% endif %}
+{% extends 'global/pages/base.html' %}
+
+{% block head_title %}
+    Dashboard |
+{% endblock %}
+
+{% block content %}
+    <!-- dashboard -->
+    <section class="C-dashboard">
+        <!-- menu -->
+        <nav class="C-dashboard__nav">
+            <ul class="C-dashboard__ul">
+                <li class="C-dashboard__li">
+                    <a href="{% url 'author:settings' %}" class="C-dashboard__link">
+                        Configurações do site
+                    </a>
+                </li>
+                <li class="C-dashboard__li">
+                    <a href="{% url 'author:gallery' %}" class="C-dashboard__link">
+                        Galeria de imagens
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- settings and CRUD -->
+        <section class="C-dashboard__settings">
+            {% block settings %}
+            {% endblock %}
+        </section>
+    </section>
+{% endblock %}

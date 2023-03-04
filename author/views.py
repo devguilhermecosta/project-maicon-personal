@@ -43,3 +43,13 @@ def dashboard(request: HttpRequest) -> render:
     return render(request, 'author/pages/dashboard.html', context={
         'teste': 'teste',
     })
+
+
+@login_required(redirect_field_name='next', login_url='author:login')
+def settings(request) -> render:
+    return render(request, 'author/partials/_settings.py')
+
+
+@login_required(redirect_field_name='next', login_url='author:login')
+def gallery(request) -> render:
+    return render(request, 'author/partials/_gallery.py')
