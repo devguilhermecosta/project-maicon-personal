@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django.core.exceptions import ValidationError
-from app_home.models import SocialNetwork, SectionIntro, Profile
+from app_home.models import SocialNetwork, SectionIntro, Profile, PreGallery
 from collections import defaultdict
 
 
@@ -48,4 +48,10 @@ class SectionIntroForm(ModelForm):
 class ProfileForm(ModelForm):
     class Meta:
         model = Profile
+        fields = '__all__'
+
+
+class PreGalleryForm(ModelForm):
+    class Meta:
+        model = PreGallery
         fields = '__all__'

@@ -873,6 +873,14 @@ body::-webkit-scrollbar-thumb {
   display: inline;
 }
 
+.C-form__div > div {
+  max-width: 320px;
+}
+
+.C-form__div > div > img {
+  width: 100%;
+}
+
 .C-form__button {
   font-size: 16px;
   padding: 10px 30px;

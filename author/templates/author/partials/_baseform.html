@@ -22,6 +22,27 @@
                     <img src="{{ field.value.url }}" alt="">
                 </div>
             {% endif %}
+
+            <!-- images for pre-gallery -->
+            {% if field.name == 'image_one' and field.value.url %}
+                <div class="">
+                    <img src="{{ field.value.url }}" alt="">
+                </div>
+            {% endif %}
+
+            {% if field.name == 'image_two' and field.value.url %}
+            <div class="">
+                <img src="{{ field.value.url }}" alt="">
+            </div>
+            {% endif %}
+
+            {% if field.name == 'image_three' and field.value.url %}
+            <div class="">
+                <img src="{{ field.value.url }}" alt="">
+            </div>
+            {% endif %}
+            <!-- end images for pre-gallery -->
+            
             {{ field.errors }}
         </div>
     {% endfor %}

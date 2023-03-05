@@ -5,10 +5,10 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.forms import ModelForm
-from app_home.models import SocialNetwork, SectionIntro, Profile
+from app_home.models import SocialNetwork, SectionIntro, Profile, PreGallery
 from . forms import (
     FormLogin, GalleryForm, SocialNetworkForm, SectionIntroForm,
-    ProfileForm,
+    ProfileForm, PreGalleryForm
     )
 
 def login_view(request: HttpRequest) -> render:
@@ -108,6 +108,25 @@ def settings_profile(request: HttpRequest):
         'form': form,
     })
 
+
+@login_required(redirect_field_name='next', login_url='author:login')
+def settings_initial_gallery(request: HttpRequest):
+    gallery: PreGallery = PreGallery.objects.first()
+
+    form: ModelForm = PreGalleryForm(data=request.POST or None,
+                                     files=request.FILES or None,
+                                     instance=gallery,
+                                     )
+
+    if form.is_valid():
+        form.save()
+        messages.success(request, 'Dados salvos com sucesso.')
+        
+        return redirect('author:initialgallery')
+  
+    return render(request, 'author/partials/_initialgallery.html', context={
+        'form': form,
+    })
 
 @login_required(redirect_field_name='next', login_url='author:login')
 def gallery(request) -> render:

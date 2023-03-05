@@ -19,5 +19,9 @@ urlpatterns = [
          views.settings_profile,
          name='profile',
          ),
+    path('dashboard/settings/initial-gallery/edit/',
+         views.settings_initial_gallery,
+         name='initialgallery',
+         ),
     path('dashboard/gallery/', views.gallery, name='gallery'),    
 ]
