@@ -5,8 +5,11 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.forms import ModelForm
-from app_home.models import SocialNetwork
-from . forms import FormLogin, GalleryForm, SocialNetworkForm
+from app_home.models import SocialNetwork, SectionIntro, Profile
+from . forms import (
+    FormLogin, GalleryForm, SocialNetworkForm, SectionIntroForm,
+    ProfileForm,
+    )
 
 def login_view(request: HttpRequest) -> render:
     form: FormLogin = FormLogin()
@@ -31,7 +34,6 @@ def login_create(request: HttpRequest) -> render:
 
         if authenticated_user is not None:
             login(request, authenticated_user)
-            messages.success(request, 'Login realizado com sucesso')
             return redirect('author:dashboard')
         else:
             messages.error(request, 'Usuário ou senha inválidos')
@@ -48,7 +50,7 @@ def dashboard(request: HttpRequest) -> render:
     })
 
 @login_required(redirect_field_name='next', login_url='author:login')
-def settings_socialnetwork(request: HttpRequest) -> None:
+def settings_socialnetwork(request: HttpRequest):
     social: SocialNetwork = SocialNetwork.objects.first()
 
     form: ModelForm = SocialNetworkForm(data=request.POST or None,
@@ -63,6 +65,46 @@ def settings_socialnetwork(request: HttpRequest) -> None:
         return redirect('author:socialnetwork')
   
     return render(request, 'author/partials/_socialnetwork.html', context={
+        'form': form,
+    })
+
+
+@login_required(redirect_field_name='next', login_url='author:login')
+def settings_sectionintro(request: HttpRequest):
+    intro: SectionIntro = SectionIntro.objects.first()
+
+    form: ModelForm = SectionIntroForm(data=request.POST or None,
+                                       files=request.FILES or None,
+                                       instance=intro,
+                                       )
+
+    if form.is_valid():
+        form.save()
+        messages.success(request, 'Dados salvos com sucesso.')
+        
+        return redirect('author:sectionintro')
+  
+    return render(request, 'author/partials/_sectionintro.html', context={
+        'form': form,
+    })
+
+
+@login_required(redirect_field_name='next', login_url='author:login')
+def settings_profile(request: HttpRequest):
+    profile: Profile = Profile.objects.first()
+
+    form: ModelForm = ProfileForm(data=request.POST or None,
+                                  files=request.FILES or None,
+                                  instance=profile,
+                                  )
+
+    if form.is_valid():
+        form.save()
+        messages.success(request, 'Dados salvos com sucesso.')
+        
+        return redirect('author:profile')
+  
+    return render(request, 'author/partials/_profile.html', context={
         'form': form,
     })
 

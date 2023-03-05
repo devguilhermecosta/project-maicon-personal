@@ -17,12 +17,11 @@
                 <p class="help-text">{{ field.help_text }}</p>
             {% endif %}
 
-            {% if field.name == 'cover' and field.value.url %}
+            {% if field.name == 'cover' or field.name == 'image' and field.value.url %}
                 <div class="">
                     <img src="{{ field.value.url }}" alt="">
                 </div>
             {% endif %}
-
             {{ field.errors }}
         </div>
     {% endfor %}

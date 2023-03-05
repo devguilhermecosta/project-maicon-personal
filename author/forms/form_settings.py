@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django.core.exceptions import ValidationError
-from app_home.models import SocialNetwork
+from app_home.models import SocialNetwork, SectionIntro, Profile
 from collections import defaultdict
 
 
@@ -37,3 +37,15 @@ class SocialNetworkForm(ModelForm):
             raise ValidationError(self._form_errors)
 
         return super_clean
+
+
+class SectionIntroForm(ModelForm):
+    class Meta:
+        model = SectionIntro
+        fields = '__all__'
+
+
+class ProfileForm(ModelForm):
+    class Meta:
+        model = Profile
+        fields = '__all__'

@@ -9,21 +9,26 @@
 {% block content %}
     <!-- form login -->
     <section class="C-login center_flex_row">
-        <form action="{{ form_action }}" method="POST" class="C-login__form center_flex_column">
-            {% csrf_token %}
-            <h1 class="C-login__title">login</h1>
-            {% for field in form %}
-                <div class="C-login__div center_flex_row">
-                    <label for="{{ field.id_for_label }}" class="C-login__label">
-                        {{ field.label }}
-                    </label>
-                    {{ field }}
-                </div>
-            {% endfor %}
-            <button type="submit" class="C-login__button">entrar</button>
-        </form>
+        {% if user.is_authenticated %}
+            <p class="C-login__message">Você está logado como {{ user }}, 
+                <a href={% url 'author:dashboard' %}>clique aqui para entrar</a>
+            </p>
+        {% else %}
+            <form action="{{ form_action }}" method="POST" class="C-login__form center_flex_column">
+                {% csrf_token %}
+                <h1 class="C-login__title">login</h1>
+                {% for field in form %}
+                    <div class="C-login__div center_flex_row">
+                        <label for="{{ field.id_for_label }}" class="C-login__label">
+                            {{ field.label }}
+                        </label>
+                        {{ field }}
+                    </div>
+                {% endfor %}
+                <button type="submit" class="C-login__button">entrar</button>
+            </form>
+        {% endif %}
     </section>
-
     <!-- messages -->
     {% include 'global/partials/messages.html' %}
 {% endblock %}
