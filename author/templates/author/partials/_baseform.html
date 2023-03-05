@@ -47,7 +47,8 @@
         </div>
     {% endfor %}
     <button type="submit" class="C-form__button">salvar</button>
-
-    <!-- messages -->
-    {% include 'global/partials/messages.html' %}
+    {% block extra_button %}{% endblock %}
 </form>
+
+<!-- messages -->
+{% include 'global/partials/messages.html' %}

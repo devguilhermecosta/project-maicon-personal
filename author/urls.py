@@ -23,5 +23,13 @@ urlpatterns = [
          views.settings_initial_gallery,
          name='initialgallery',
          ),
+    path('dashboard/settings/services/',
+         views.all_services,
+         name='services',
+         ),
+    path('dashboard/settings/services/<int:id>/edit/',
+         views.service_edit,
+         name='service',
+         ),
     path('dashboard/gallery/', views.gallery, name='gallery'),    
 ]

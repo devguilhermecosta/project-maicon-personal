@@ -5,10 +5,10 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.forms import ModelForm
-from app_home.models import SocialNetwork, SectionIntro, Profile, PreGallery
+from app_home.models import SocialNetwork, SectionIntro, Profile, PreGallery, Service
 from . forms import (
     FormLogin, GalleryForm, SocialNetworkForm, SectionIntroForm,
-    ProfileForm, PreGalleryForm
+    ProfileForm, PreGalleryForm, ServiceForm
     )
 
 def login_view(request: HttpRequest) -> render:
@@ -127,6 +127,39 @@ def settings_initial_gallery(request: HttpRequest):
     return render(request, 'author/partials/_initialgallery.html', context={
         'form': form,
     })
+
+
+@login_required(redirect_field_name='next', login_url='author:login')
+def all_services(request: HttpRequest):
+    services: Service = Service.objects.all()
+
+    return render(request, 'author/partials/_all_services.html', context={
+        'services': services,
+    })
+
+
+@login_required(redirect_field_name='next', login_url='author:login')
+def service_edit(request: HttpRequest, id: int):
+    service: Service = Service.objects.get(pk=id)
+
+    form: ModelForm = ServiceForm(data=request.POST or None,
+                                  files=request.FILES or None,
+                                  instance=service,
+                                  )
+
+    if form.is_valid():
+        form.save()
+        messages.success(request, 'Dados salvos com sucesso.')
+        
+        return redirect(
+            reverse('author:service', args=(id,))
+        )
+        
+    return render(request, 'author/partials/_service.html', context={
+        'form': form,
+        'service': service,
+    })
+    
 
 @login_required(redirect_field_name='next', login_url='author:login')
 def gallery(request) -> render:

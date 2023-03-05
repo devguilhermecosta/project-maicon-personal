@@ -881,7 +881,7 @@ body::-webkit-scrollbar-thumb {
   width: 100%;
 }
 
-.C-form__button {
+.C-form__button, .C-button_to_back {
   font-size: 16px;
   padding: 10px 30px;
   background-color: var(--blue-1);
@@ -891,11 +891,65 @@ body::-webkit-scrollbar-thumb {
   outline: none;
   border: none;
   cursor: pointer;
+  margin-bottom: 25px;
 }
 
 .errorlist {
   list-style: none;
   color: var(--orange-1);
+}
+
+.C-services_view {
+  column-gap: 10px;
+  row-gap: 10px;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.C-services_view_container {
+  width: 100%;
+  max-width: 220px;
+  padding: 15px 10px 5px 10px;
+  border: 1px solid var(--standard-gray);
+  border-radius: 8px;
+  flex-shrink: 2;
+  flex-grow: 2;
+  flex-basis: 25%;
+  text-align: center;
+}
+
+.C-services_view_container p {
+  text-align: center;
+  margin-bottom: 10px;
+  color: var(--standard-black);
+}
+
+.C-services_view_title {
+  text-transform: capitalize;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.C-services_view_description {
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.C-services__actions {
+  margin-top: 15px;
+}
+
+.C-services_view__span {
+  margin: 0 8px;
+}
+
+.C-button_to_back {
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 30px;
+  margin-top: 30px;
+  background-color: transparent;
+  border: 1px solid var(--standard-black);
 }
 /* END MAIN */
 
@@ -971,7 +1025,6 @@ body::-webkit-scrollbar-thumb {
   padding: 10px;
   background-color: var(--std-white-transparent-2);
 }
-
 /* END PAGINATION */
 
 /* START FLASH MESSAGES */

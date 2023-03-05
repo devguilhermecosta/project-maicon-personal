@@ -1,0 +1,11 @@
+{% extends 'author/pages/dashboard.html' %}
+
+
+
+
+{% block settings %}
+    {% include 'author/partials/_baseform.html' %}
+    {% block extra_button %}
+    <a class="C-button_to_back" href="{% url 'author:services' %}">voltar</a>
+    {% endblock extra_button %}
+{% endblock settings %}
