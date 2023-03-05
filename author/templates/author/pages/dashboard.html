@@ -11,9 +11,43 @@
         <nav class="C-dashboard__nav">
             <ul class="C-dashboard__ul">
                 <li class="C-dashboard__li">
-                    <a href="{% url 'author:settings' %}" class="C-dashboard__link">
-                        Configurações do site
-                    </a>
+
+                    <!-- configurações do site -->
+                    <p class="C-dashboard__link">Configurações do site</p>
+                    <nav class="C-settings">
+                        <ul class="C-settings__ul">
+                            <li class="C-settings__li">
+                                <a href="{% url 'author:socialnetwork' %}" class="C-settings__link">
+                                    redes sociais
+                                </a>
+                            </li>
+                            <li class="C-settings__li">
+                                <a href="" class="C-settings__link">
+                                    intro
+                                </a>
+                            </li>
+                            <li class="C-settings__li">
+                                <a href="" class="C-settings__link">
+                                    perfil profissional
+                                </a>
+                            </li>
+                            <li class="C-settings__li">
+                                <a href="" class="C-settings__link">
+                                    galeria inicial
+                                </a>
+                            </li>
+                            <li class="C-settings__li">
+                                <a href="" class="C-settings__link">
+                                    serviços
+                                </a>
+                            </li>
+                            <li class="C-settings__li">
+                                <a href="" class="C-settings__link">
+                                    endereço
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
                 </li>
                 <li class="C-dashboard__li">
                     <a href="{% url 'author:gallery' %}" class="C-dashboard__link">

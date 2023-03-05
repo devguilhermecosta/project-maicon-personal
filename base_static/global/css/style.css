@@ -769,6 +769,7 @@ body::-webkit-scrollbar-thumb {
 
 .C-dashboard {
   display: grid;
+  grid-template-columns: 200px 1fr;
   grid-template-areas: "nav_dashboard settings_dashboard";
   background-color: var(--standard-white);
 }
@@ -778,8 +779,6 @@ body::-webkit-scrollbar-thumb {
   padding: 5px 10px;
   border-right: 1px solid var(--standard-black);
   min-height: 50vh;
-  width: 100%;
-  max-width: 200px;
 }
 
 .C-dashboard__li {
@@ -789,12 +788,76 @@ body::-webkit-scrollbar-thumb {
 .C-dashboard__link {
   text-decoration: none;
   color: var(--standard-black);
-  font-weight: 400;
+  font-weight: 600;
 }
 
 .C-dashboard__settings {
   grid-area: settings_dashboard;
-  padding: 5px 10px;
+  padding: 20px 10px;
+}
+
+.C-settings {
+  margin-left: 10px;
+  padding: 30px 0;
+}
+
+.C-settings__ul {
+  list-style: none;
+
+}
+
+.C-settings__li {
+  margin: 10px 0;
+}
+
+.C-settings__li:last-of-type {
+  margin-bottom: 0;
+}
+
+.C-settings__link {
+  text-decoration: none;
+  color: var(--standard-gray);
+}
+
+.C-form {
+  width: 100%;
+  max-width: 1024px;
+  margin-left: 30px;
+}
+
+.C-form__div {
+  margin-bottom: 20px;
+}
+
+.C-form__label {
+  display: block;
+  font-weight: 700;
+}
+
+.C-form__div > input {
+  width: 100%;
+  max-width: 680px;
+  height: 35px;
+  outline: none;
+  font-size: 16px;
+  padding: 5px;
+}
+
+.C-form__button {
+  font-size: 16px;
+  padding: 10px 30px;
+  background-color: var(--blue-1);
+  color: var(--standard-gray);
+  font-weight: 300;
+  text-transform: capitalize;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.errorlist {
+  list-style: none;
+  color: var(--orange-1);
 }
 /* END MAIN */
 
