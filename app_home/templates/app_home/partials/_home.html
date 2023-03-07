@@ -77,7 +77,7 @@
     <section data-anime="down" id="services" class="C-services center_flex_column">
         <h2>Atendimento exclusivo e personalizado</h2>
         <div class="C-services__flex center_flex_row">
-            {% for service in home_content.services.all %}
+            {% for service in services %}
                 <div class="C-services__service">
                     <h2>{{ service.title }}</h2>
                     <p>{{ service.description }}</p>

@@ -1,7 +1,7 @@
 from django.views.generic import ListView
 from django.db.models.query import QuerySet
-from typing import Any
-from app_home.models import HomeContent
+from typing import Any, Dict
+from app_home.models import HomeContent, Service
 
 
 class HomeView(ListView):
@@ -12,5 +12,15 @@ class HomeView(ListView):
     def get_queryset(self, *args, **kwargs) -> QuerySet[Any]:
         query_set: QuerySet = super().get_queryset(*args, **kwargs)
         query_set = query_set.first()
-
+        
         return query_set
+
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        super_cd = super().get_context_data(**kwargs)
+        services: Service = Service.objects.all()
+        
+        super_cd.update({
+            'services': services
+        })
+
+        return super_cd

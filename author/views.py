@@ -3,8 +3,10 @@ from django.urls import reverse
 from django.http import HttpRequest, Http404
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.contrib import messages
 from django.forms import ModelForm
+from django.views.generic import View
 from app_home.models import SocialNetwork, SectionIntro, Profile, PreGallery, Service
 from . forms import (
     FormLogin, GalleryForm, SocialNetworkForm, SectionIntroForm,
@@ -45,9 +47,7 @@ def login_create(request: HttpRequest) -> render:
 @login_required(redirect_field_name='next', login_url='author:login')
 def dashboard(request: HttpRequest) -> render:
   
-    return render(request, 'author/pages/dashboard.html', context={
-        'teste': 'teste',
-    })
+    return render(request, 'author/pages/dashboard.html',)
 
 @login_required(redirect_field_name='next', login_url='author:login')
 def settings_socialnetwork(request: HttpRequest):
@@ -66,6 +66,7 @@ def settings_socialnetwork(request: HttpRequest):
   
     return render(request, 'author/partials/_socialnetwork.html', context={
         'form': form,
+        'button_to_back_action': reverse('author:dashboard'),
     })
 
 
@@ -86,6 +87,7 @@ def settings_sectionintro(request: HttpRequest):
   
     return render(request, 'author/partials/_sectionintro.html', context={
         'form': form,
+        'button_to_back_action': reverse('author:dashboard'),
     })
 
 
@@ -106,6 +108,7 @@ def settings_profile(request: HttpRequest):
   
     return render(request, 'author/partials/_profile.html', context={
         'form': form,
+        'button_to_back_action': reverse('author:dashboard'),
     })
 
 
@@ -126,6 +129,7 @@ def settings_initial_gallery(request: HttpRequest):
   
     return render(request, 'author/partials/_initialgallery.html', context={
         'form': form,
+        'button_to_back_action': reverse('author:dashboard'),
     })
 
 
@@ -138,28 +142,86 @@ def all_services(request: HttpRequest):
     })
 
 
-@login_required(redirect_field_name='next', login_url='author:login')
-def service_edit(request: HttpRequest, id: int):
-    service: Service = Service.objects.get(pk=id)
+@method_decorator(
+    login_required(
+        redirect_field_name='next',
+        login_url='author:login'
+        ),
+    name='dispatch',
+)
+class ServiceView(View):
+    def get_service(self, id=None) -> Service | None:
+        service: Service | None = None
 
-    form: ModelForm = ServiceForm(data=request.POST or None,
-                                  files=request.FILES or None,
-                                  instance=service,
-                                  )
+        if id is not None:
+            service = Service.objects.get(id=id)
 
-    if form.is_valid():
-        form.save()
-        messages.success(request, 'Dados salvos com sucesso.')
-        
-        return redirect(
-            reverse('author:service', args=(id,))
+            if not service:
+                raise Http404()
+
+        return service
+
+    def render_service(self, form: ServiceForm) -> render:
+        return render(
+            self.request,
+            'author/partials/_service.html',
+            context={
+                'form': form,
+                'button_to_back_action': reverse('author:services'),
+                }
+            )
+
+    def get(self, request: HttpRequest, id=None) -> render:
+        service: Service | None = self.get_service(id)
+        form: ModelForm = ServiceForm(instance=service)
+
+        return self.render_service(form)
+
+    def post(self, request: HttpRequest, id=None):
+        service: Service | None = self.get_service(id)
+
+        form: ModelForm = ServiceForm(
+            data=request.POST or None,
+            files=request.FILES or None,
+            instance=service,
         )
+
+        if form.is_valid():
+            form.save()
+
+            messages.success(request, 'Salvo com sucesso')
+
+            if not id:
+                return redirect(
+                    reverse('author:services')
+                )
+
+            return redirect(
+                reverse('author:service', args=(service.id,))
+            )
+
+        return self.render_service(form)
+
+
+@method_decorator(
+    login_required(
+        redirect_field_name='next',
+        login_url='author:login'
+        ),
+    name='dispatch',
+)
+class ServiceDeleteView(ServiceView):
+    def post(self, request, *args, **kwargs):
+        service: Service | None = self.get_service(kwargs.get('id'))
         
-    return render(request, 'author/partials/_service.html', context={
-        'form': form,
-        'service': service,
-    })
-    
+        if service is not None:
+            service.delete()
+            messages.success(request, 'Serviço deletado com sucesso.')
+
+        return redirect(
+            reverse('author:services')
+        )
+
 
 @login_required(redirect_field_name='next', login_url='author:login')
 def gallery(request) -> render:
@@ -167,4 +229,5 @@ def gallery(request) -> render:
 
     return render(request, 'author/partials/_gallery.html', context={
         'form': form,
+        'button_to_back_action': reverse('author:dashboard'),
     })

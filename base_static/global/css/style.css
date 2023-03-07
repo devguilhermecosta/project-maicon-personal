@@ -943,13 +943,35 @@ body::-webkit-scrollbar-thumb {
   margin: 0 8px;
 }
 
+.C-services_view__edit:hover {
+  color: var(--green-1-whatsapp);
+}
+
+.C-services__delete_form {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.C-services_view_delete button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.C-services_view_delete button:hover {
+  color: var(--orange-1);
+}
+
 .C-button_to_back {
-  text-decoration: none;
-  font-weight: 500;
-  margin-left: 30px;
-  margin-top: 30px;
   background-color: transparent;
   border: 1px solid var(--standard-black);
+  margin-left: 15px;
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--standard-black);
+  padding: 9px 30px;
 }
 /* END MAIN */
 
