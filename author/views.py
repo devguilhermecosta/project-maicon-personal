@@ -7,10 +7,10 @@ from django.utils.decorators import method_decorator
 from django.contrib import messages
 from django.forms import ModelForm
 from django.views.generic import View
-from app_home.models import SocialNetwork, SectionIntro, Profile, PreGallery, Service
+from app_home.models import SocialNetwork, SectionIntro, Profile, PreGallery, Service, Adress
 from . forms import (
     FormLogin, GalleryForm, SocialNetworkForm, SectionIntroForm,
-    ProfileForm, PreGalleryForm, ServiceForm
+    ProfileForm, PreGalleryForm, ServiceForm, AdressForm
     )
 
 def login_view(request: HttpRequest) -> render:
@@ -222,6 +222,27 @@ class ServiceDeleteView(ServiceView):
             reverse('author:services')
         )
 
+
+def settings_adress(request: HttpRequest):
+    adress: Adress = Adress.objects.first()
+
+    form: ModelForm = AdressForm(data=request.POST or None,
+                                 files=request.FILES or None,
+                                 instance=adress,
+                                 )
+
+    if form.is_valid():
+        form.save()
+        messages.success(request, 'Dados salvos com sucesso.')
+        
+        return redirect(
+            reverse('author:adress')
+        )
+  
+    return render(request, 'author/partials/_adress.html', context={
+        'form': form,
+        'button_to_back_action': reverse('author:dashboard'),
+    })
 
 @login_required(redirect_field_name='next', login_url='author:login')
 def gallery(request) -> render:

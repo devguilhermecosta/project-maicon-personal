@@ -39,5 +39,9 @@ urlpatterns = [
          views.ServiceDeleteView.as_view(),
          name='service_delete',
          ),
+    path('dashboard/settings/adress/',
+         views.settings_adress,
+         name='adress',
+         ),
     path('dashboard/gallery/', views.gallery, name='gallery'),    
 ]

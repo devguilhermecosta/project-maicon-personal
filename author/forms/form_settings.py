@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django.core.exceptions import ValidationError
-from app_home.models import SocialNetwork, SectionIntro, Profile, PreGallery, Service
+from app_home.models import SocialNetwork, SectionIntro, Profile, PreGallery, Service, Adress
 from collections import defaultdict
 
 
@@ -60,4 +60,10 @@ class PreGalleryForm(ModelForm):
 class ServiceForm(ModelForm):
     class Meta:
         model = Service
+        fields = '__all__'
+
+
+class AdressForm(ModelForm):
+    class Meta:
+        model = Adress
         fields = '__all__'
