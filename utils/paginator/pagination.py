@@ -3,6 +3,8 @@ import math
 from django.http import HttpRequest
 from django.core.paginator import Paginator
 
+from typing import Optional
+
 
 def make_pagination_range(range: list,
                           current_page: int,
@@ -22,6 +24,10 @@ def make_pagination_range(range: list,
     if stop_range >= total_pages:
         start_range = start_range - abs(stop_range - total_pages)
 
+    if len(range) <= range_per_page:
+        start_range = 0
+        stop_range = len(range)
+
     return {
         'pagination': range[start_range:stop_range],
         'total_pages': total_pages,
@@ -36,9 +42,12 @@ def make_pagination_range(range: list,
 
 def make_pagination(request: HttpRequest,
                     query_set: list[object],
-                    objects_per_page: int | str,
+                    objects_per_page: str | Optional[str],
                     range_per_page: int = 4,
                     ) -> Paginator:
+
+    if not isinstance(objects_per_page, int):
+        objects_per_page = int(objects_per_page)
 
     paginator: Paginator = Paginator(query_set,
                                      objects_per_page,

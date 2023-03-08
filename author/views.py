@@ -11,9 +11,10 @@ from app_home.models import SocialNetwork, SectionIntro, Profile, PreGallery, Se
 from gallery.models import Image
 from utils.paginator import make_pagination
 from . forms import *
+from typing import Optional
 import os
 
-PER_PAGE_DASHBOARD = os.environ.get('PER_PAGE_DASHBOARD')
+PER_PAGE_DASHBOARD: Optional[str] | str = os.environ.get('PER_PAGE_DASHBOARD')
 
 def login_view(request: HttpRequest) -> render:
     form: FormLogin = FormLogin()
