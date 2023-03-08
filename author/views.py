@@ -9,7 +9,11 @@ from django.forms import ModelForm
 from django.views.generic import View
 from app_home.models import SocialNetwork, SectionIntro, Profile, PreGallery, Service, Adress
 from gallery.models import Image
+from utils.paginator import make_pagination
 from . forms import *
+import os
+
+PER_PAGE_DASHBOARD = os.environ.get('PER_PAGE_DASHBOARD')
 
 def login_view(request: HttpRequest) -> render:
     form: FormLogin = FormLogin()
@@ -135,6 +139,11 @@ def settings_initial_gallery(request: HttpRequest):
 def all_services(request: HttpRequest):
     services: Service = Service.objects.all()
 
+    page_object, pagination = make_pagination(self.request,
+                                                cd.get('gallery'),
+                                                PER_PAGE,  # criar uma variável de ambiente  # noqa: E501
+                                                )
+
     return render(request, 'author/partials/_all_services.html', context={
         'services': services,
         'button_to_back_action': reverse('author:dashboard'),
@@ -256,33 +265,73 @@ def gallery(request) -> render:
 
 
 class GalleryAllImagesView(View):
-    def get(self, request):
-        images: Image = Image.objects.all()
+    def get(self, request) -> render:
+        images: Image = Image.objects.all().order_by('-id')
+
+        page_object, pagination = make_pagination(request,
+                                                  images,
+                                                  PER_PAGE_DASHBOARD,
+                                                  )
 
         return render(request, 'author/partials/_gallery.html', context={
-            'images': images,
+            'gallery': page_object,
+            'pagination_range': pagination,
             'button_name': 'Nova Imagem',
-            # 'button_action': reverse('author:new_image'),
+            'button_action': reverse('author:new_image'),
             'button_to_back_action': reverse('author:dashboard'),
         })
 
 
 class GalleryImageView(View):
-    def get(self, request, id=None, *args, **kwargs):
+
+    def get_image(self, id=None) -> Image | None:
         if id is not None:
             image: Image = Image.objects.get(id=id)
 
             if not image:
                 raise Http404()
 
+            return image
+
+        return None
+
+    def render_image(self, form) -> render:
+
+        return render(
+            self.request,
+            'author/partials/_image.html',
+            context={
+                'form': form,
+                'button_to_back_action': reverse('author:gallery'),
+                },
+            )
+
+    def get(self, request, id=None, *args, **kwargs) -> render:
+        image: Image | None = self.get_image(id)
         form: ModelForm = ImageForm(data=request.POST or None,
                                     files=request.FILES or None,
                                     instance=image)
 
-        return render(request,
-                      'author/partials/_image.html',
-                      context={
-                          'form': form,
-                          'button_to_back_action': reverse('author:gallery'),
-                      },
-                      )
+        return self.render_image(form)
+
+    def post(self, request: HttpRequest, **kwargs):
+        image: Image | None = self.get_image(id=kwargs.get('id'))
+
+        form: ModelForm = ImageForm(data=request.POST or None,
+                                    files=request.FILES or None,
+                                    instance=image)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Salvo com sucesso")
+
+            if not kwargs.get('id'):
+                return redirect(
+                    reverse('author:gallery')
+                )
+
+            return redirect(
+                reverse('author:gallery_edit', args=(kwargs.get('id'),))
+            )
+
+        return self.render_image(form)

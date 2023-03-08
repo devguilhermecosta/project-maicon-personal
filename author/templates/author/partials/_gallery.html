@@ -1,8 +1,14 @@
 {% extends 'author/pages/dashboard.html' %}
 
 {% block settings %}
+    <!-- messsages -->
+    {% include 'global/partials/messages.html' %}
+
+    <!-- buttons -->
+    {% include 'author/partials/_buttons.html' %}
+
     <section class="C-gallery-settings center_flex_row">
-        {% for image in images %}
+        {% for image in gallery %}
             <div class="C-gallery__div center_flex_column">
                 <h2 class="C-gallery__title">{{ image.title }}</h2>
                 <p class="C-gallery__description">{{ image.description }}</p>
@@ -11,10 +17,9 @@
                 </a>
             </div>
         {% endfor %}
+
     </section>
-    <!-- buttons -->
-    {% include 'author/partials/_buttons.html' %}
-    
-    <!-- messsages -->
-    {% include 'global/partials/messages.html' %}
+
+    <!-- pagination -->
+    {% include 'global/partials/pagination.html' %} 
 {% endblock %}
