@@ -23,9 +23,9 @@
             </div>
         {% endfor %}
     </section>
+    <!-- buttons -->
+    {% include 'author/partials/_buttons.html' %}
+    
     <!-- messsages -->
-    <div style="margin-top: 30px;"></div>
-    <a href="{% url 'author:new_service' %}"><input class="C-form__button" type="button" value="Novo Serviço"></a>
-    <a class="C-form__button C-button_to_back" href="{{ button_to_back_action }}">voltar</a>
     {% include 'global/partials/messages.html' %}
 {% endblock %}

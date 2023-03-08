@@ -43,5 +43,6 @@ urlpatterns = [
          views.settings_adress,
          name='adress',
          ),
-    path('dashboard/gallery/', views.gallery, name='gallery'),    
+    path('dashboard/gallery/', views.GalleryAllImagesView.as_view(), name='gallery'),
+    path('dashboard/gallery/<int:id>/edit/', views.GalleryImageView.as_view(), name='gallery_edit'),
 ]

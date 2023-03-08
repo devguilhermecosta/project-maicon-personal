@@ -8,10 +8,8 @@ from django.contrib import messages
 from django.forms import ModelForm
 from django.views.generic import View
 from app_home.models import SocialNetwork, SectionIntro, Profile, PreGallery, Service, Adress
-from . forms import (
-    FormLogin, GalleryForm, SocialNetworkForm, SectionIntroForm,
-    ProfileForm, PreGalleryForm, ServiceForm, AdressForm
-    )
+from gallery.models import Image
+from . forms import *
 
 def login_view(request: HttpRequest) -> render:
     form: FormLogin = FormLogin()
@@ -139,6 +137,9 @@ def all_services(request: HttpRequest):
 
     return render(request, 'author/partials/_all_services.html', context={
         'services': services,
+        'button_to_back_action': reverse('author:dashboard'),
+        'button_name': 'Novo Serviço',
+        'button_action': reverse('author:new_service'),
     })
 
 
@@ -176,7 +177,7 @@ class ServiceView(View):
         form: ModelForm = ServiceForm(instance=service)
 
         return self.render_service(form)
-
+ 
     def post(self, request: HttpRequest, id=None):
         service: Service | None = self.get_service(id)
 
@@ -252,3 +253,36 @@ def gallery(request) -> render:
         'form': form,
         'button_to_back_action': reverse('author:dashboard'),
     })
+
+
+class GalleryAllImagesView(View):
+    def get(self, request):
+        images: Image = Image.objects.all()
+
+        return render(request, 'author/partials/_gallery.html', context={
+            'images': images,
+            'button_name': 'Nova Imagem',
+            # 'button_action': reverse('author:new_image'),
+            'button_to_back_action': reverse('author:dashboard'),
+        })
+
+
+class GalleryImageView(View):
+    def get(self, request, id=None, *args, **kwargs):
+        if id is not None:
+            image: Image = Image.objects.get(id=id)
+
+            if not image:
+                raise Http404()
+
+        form: ModelForm = ImageForm(data=request.POST or None,
+                                    files=request.FILES or None,
+                                    instance=image)
+
+        return render(request,
+                      'author/partials/_image.html',
+                      context={
+                          'form': form,
+                          'button_to_back_action': reverse('author:gallery'),
+                      },
+                      )

@@ -973,6 +973,20 @@ body::-webkit-scrollbar-thumb {
   color: var(--standard-black);
   padding: 9px 30px;
 }
+
+.C-gallery-settings {
+  flex-wrap: wrap;
+  column-gap: 15px;
+  row-gap: 15px;
+}
+
+.C-gallery__div {
+  width: 100%;
+  max-width: 240px;
+  flex-shrink: 1;
+  flex-grow: 1;
+  flex-basis: 30%;
+}
 /* END MAIN */
 
 /* START FOOTER */
