@@ -140,11 +140,6 @@ def settings_initial_gallery(request: HttpRequest):
 def all_services(request: HttpRequest):
     services: Service = Service.objects.all()
 
-    page_object, pagination = make_pagination(self.request,
-                                                cd.get('gallery'),
-                                                PER_PAGE,  # criar uma variável de ambiente  # noqa: E501
-                                                )
-
     return render(request, 'author/partials/_all_services.html', context={
         'services': services,
         'button_to_back_action': reverse('author:dashboard'),
@@ -255,6 +250,7 @@ def settings_adress(request: HttpRequest):
         'button_to_back_action': reverse('author:dashboard'),
     })
 
+
 @login_required(redirect_field_name='next', login_url='author:login')
 def gallery(request) -> render:
     form: ModelForm = GalleryForm()
@@ -336,3 +332,18 @@ class GalleryImageView(View):
             )
 
         return self.render_image(form)
+
+
+class GalleryDeleteView(GalleryImageView):
+
+    def post(self, request, id=None):
+        image = self.get_image(id)
+
+        if image is not None:
+            image.delete()
+
+            messages.success(request, 'Imagem deletada com sucesso')
+
+        return redirect(
+            reverse('author:gallery')
+        )

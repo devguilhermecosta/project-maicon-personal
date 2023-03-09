@@ -952,7 +952,7 @@ body::-webkit-scrollbar-thumb {
   cursor: pointer;
 }
 
-.C-services_view_delete button {
+.C-services_view_delete button, .C-image_view_delete button {
   background-color: transparent;
   border: none;
   outline: none;
@@ -960,7 +960,7 @@ body::-webkit-scrollbar-thumb {
   z-index: 1000;
 }
 
-.C-services_view_delete button:hover {
+.C-services_view_delete button:hover, .C-image_view_delete button:hover {
   color: var(--orange-1);
 }
 
@@ -986,6 +986,15 @@ body::-webkit-scrollbar-thumb {
   flex-shrink: 1;
   flex-grow: 1;
   flex-basis: 30%;
+}
+
+.not_animated {
+  transition: none;
+  transform: none;
+}
+
+.not_animated:hover {
+  transform: none;
 }
 /* END MAIN */
 

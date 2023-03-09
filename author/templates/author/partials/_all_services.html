@@ -1,6 +1,12 @@
 {% extends 'author/pages/dashboard.html' %}
 
 {% block settings %}
+    <!-- messsages -->
+    {% include 'global/partials/messages.html' %}
+
+    <!-- buttons -->
+    {% include 'author/partials/_buttons.html' %}
+
     <section class="C-services_view center_flex_row">
         {% for service in services %}
             <div class="C-services_view_container">
@@ -23,9 +29,4 @@
             </div>
         {% endfor %}
     </section>
-    <!-- buttons -->
-    {% include 'author/partials/_buttons.html' %}
-    
-    <!-- messsages -->
-    {% include 'global/partials/messages.html' %}
 {% endblock %}

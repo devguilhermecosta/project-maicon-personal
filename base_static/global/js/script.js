@@ -53,22 +53,50 @@ try {
 } catch(error) {
 }
 
+// function for delete object
+function deleteObject(className, message) {
+    const buttonDelete = document.querySelectorAll(className);
+
+    buttonDelete.forEach((element)=>{
+        element.addEventListener('submit', (event)=>{
+            event.preventDefault();
+
+            const toConfirm = confirm(message);
+
+            if (toConfirm) {
+                element.submit();
+            }
+        })
+    })
+}
+
+// function delete object
+function deleteObject(className, message) {
+    const buttonDelete = document.querySelectorAll(className);
+    
+    buttonDelete.forEach((element)=>{
+        element.addEventListener('submit', (event)=>{
+            event.preventDefault();
+
+            const toConfirm = confirm(message);
+
+            if (toConfirm) {
+                element.submit();
+            }
+        })
+    })
+}
+
 // button service delete
 try {
-    (()=>{
-        const buttonDelete = document.querySelectorAll('.C-services_view_delete');
-
-        buttonDelete.forEach((element)=>{
-            element.addEventListener('submit', (event)=>{
-                event.preventDefault();
-
-                const toConfirm = confirm('Deseja realmente deletar o serviço?');
-
-                if (toConfirm) {
-                    element.submit();
-                }
-            })
-        })
-    })();
+    const deleteService = deleteObject('.C-services_view_delete', 'Deseja realmente deletar o serviço?');
+    deleteService();
 } catch(error) {
-};
+}
+
+// button image delete
+try {
+    const deleteImage = deleteObject('.C-image_view_delete', 'Deseja realmente deletar a imagem?');
+    deleteImage();
+} catch(error) {
+}

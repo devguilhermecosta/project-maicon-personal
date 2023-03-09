@@ -52,4 +52,8 @@ urlpatterns = [
     path('dashboard/gallery/new/',
          views.GalleryImageView.as_view(),
          name='new_image'),
+    path('dashboard/gallery/delete/<int:id>/',
+         views.GalleryDeleteView.as_view(),
+         name='image_delete',
+         ),
 ]
