@@ -4,6 +4,7 @@ from django.views.generic.list import ListView
 from . models import Image
 from utils.paginator import make_pagination
 from dotenv import load_dotenv
+from app_home.models import HomeContent
 
 load_dotenv()
 
@@ -26,8 +27,10 @@ class Gallery(ListView):
         qs = super().get_queryset(*args, **kwargs)
         return qs
 
-    def get_context_data(self, *args, **kwargs):
-        cd = super().get_context_data(*args, **kwargs)
+    def get_context_data(self, *args, **kwargs) -> dict:
+        cd: dict = super().get_context_data(*args, **kwargs)
+
+        home_content: HomeContent = HomeContent.objects.first()
 
         page_object, pagination = make_pagination(self.request,
                                                   cd.get('gallery'),
@@ -37,6 +40,7 @@ class Gallery(ListView):
         cd.update({
             'gallery': page_object,
             'pagination_range': pagination,
+            'home_content': home_content,
         })
 
         return cd
