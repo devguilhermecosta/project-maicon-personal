@@ -46,8 +46,10 @@
             {{ field.errors }}
         </div>
     {% endfor %}
-    <button type="submit" class="C-form__button">salvar</button>
-    <a class="C-form__button C-button_to_back" href="{{ button_to_back_action }}">voltar</a>
+    <div class="C-buttons center_flex_row">
+        <button type="submit" class="C-form__button">salvar</button>
+        <a class="C-form__button C-button_to_back" href="{{ button_to_back_action }}">voltar</a>
+    </div>
 </form>
 
 <!-- messages -->

@@ -780,16 +780,17 @@ body::-webkit-scrollbar-thumb {
 
 .C-dashboard {
   display: grid;
-  grid-template-columns: 200px 1fr;
-  grid-template-areas: "nav_dashboard settings_dashboard";
+  grid-template-columns: 1fr;
+  grid-template-areas: 
+  "nav_dashboard" 
+  "settings_dashboard";
   background-color: var(--standard-white);
 }
 
 .C-dashboard__nav {
   grid-area: nav_dashboard;
   padding: 5px 10px;
-  border-right: 1px solid var(--standard-black);
-  min-height: 50vh;
+  border-bottom: 1px solid var(--standard-gray);
 }
 
 .C-dashboard__li {
@@ -805,6 +806,8 @@ body::-webkit-scrollbar-thumb {
 .C-dashboard__settings {
   grid-area: settings_dashboard;
   padding: 20px 10px;
+  overflow-y: scroll;
+  overflow-x: none;
 }
 
 .C-settings {
@@ -832,7 +835,6 @@ body::-webkit-scrollbar-thumb {
 .C-form {
   width: 100%;
   max-width: 1024px;
-  margin-left: 30px;
 }
 
 .C-form__div {
@@ -844,9 +846,13 @@ body::-webkit-scrollbar-thumb {
   font-weight: 700;
 }
 
-.C-form__div > input {
+.C-form__div {
   width: 100%;
   max-width: 680px;
+}
+
+.C-form__div > input {
+  width: 100%;
   height: 35px;
   outline: none;
   font-size: 16px;
@@ -855,7 +861,6 @@ body::-webkit-scrollbar-thumb {
 
 .C-form__div > textarea {
   width: 100%;
-  max-width: 680px;
   resize: none;
   font-size: 16px;
   padding: 5px;
@@ -874,15 +879,37 @@ body::-webkit-scrollbar-thumb {
 }
 
 .C-form__div > div {
+  width: 100%;
   max-width: 320px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.C-form__div > a {
+  max-width: 75vw;
+  overflow-wrap: break-word;
 }
 
 .C-form__div > div > img {
   width: 100%;
 }
 
+.C-buttons {
+  justify-content: flex-start;
+  align-items: flex-start;
+  column-gap: 15px;
+  row-gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+.C-form__button_a {
+  text-decoration: none;
+}
+
 .C-form__button, .C-button_to_back {
   font-size: 16px;
+  width: auto;
   padding: 10px 30px;
   background-color: var(--blue-1);
   color: var(--standard-gray);
@@ -891,7 +918,7 @@ body::-webkit-scrollbar-thumb {
   outline: none;
   border: none;
   cursor: pointer;
-  margin-bottom: 25px;
+  display: block;
 }
 
 .errorlist {
@@ -938,10 +965,12 @@ body::-webkit-scrollbar-thumb {
 
 .C-buttons__actions {
   margin-top: 15px;
-}
-
-.C-buttons_view__span {
-  margin: 0 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: 10px;
+  row-gap: 10px;
 }
 
 .C-buttons_view__edit:hover {
@@ -968,7 +997,6 @@ body::-webkit-scrollbar-thumb {
 .C-button_to_back {
   background-color: transparent;
   border: 1px solid var(--standard-black);
-  margin-left: 15px;
   text-decoration: none;
   font-weight: 500;
   color: var(--standard-black);
@@ -1300,6 +1328,17 @@ body::-webkit-scrollbar-thumb {
 
   .C-footer {
     justify-content: space-between;
+  }
+
+  .C-dashboard {
+    grid-template-columns: 200px 1fr;
+    grid-template-areas: "nav_dashboard settings_dashboard";
+  }
+
+  .C-dashboard__nav {
+    min-height: 50vh;
+    border-right: 1px solid var(--standard-black);
+    border-bottom: none;
   }
 }
 
