@@ -89,14 +89,14 @@ function deleteObject(className, message) {
 
 // button service delete
 try {
-    const deleteService = deleteObject('.C-services_view_delete', 'Deseja realmente deletar o serviço?');
+    const deleteService = deleteObject('.C-service__delete', 'Deseja realmente deletar o serviço?');
     deleteService();
 } catch(error) {
 }
 
 // button image delete
 try {
-    const deleteImage = deleteObject('.C-image_view_delete', 'Deseja realmente deletar a imagem?');
+    const deleteImage = deleteObject('.C-image__delete', 'Deseja realmente deletar a imagem?');
     deleteImage();
 } catch(error) {
 }

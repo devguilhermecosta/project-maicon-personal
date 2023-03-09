@@ -912,6 +912,7 @@ body::-webkit-scrollbar-thumb {
   padding: 15px 10px 5px 10px;
   border: 1px solid var(--standard-gray);
   border-radius: 8px;
+  justify-content: space-between;
   flex-shrink: 2;
   flex-grow: 2;
   flex-basis: 25%;
@@ -935,24 +936,24 @@ body::-webkit-scrollbar-thumb {
   font-size: 14px;
 }
 
-.C-services__actions {
+.C-buttons__actions {
   margin-top: 15px;
 }
 
-.C-services_view__span {
+.C-buttons_view__span {
   margin: 0 8px;
 }
 
-.C-services_view__edit:hover {
+.C-buttons_view__edit:hover {
   color: var(--green-1-whatsapp);
 }
 
-.C-services__delete_form {
+.C-buttons__delete_form {
   display: inline-block;
   cursor: pointer;
 }
 
-.C-services_view_delete button, .C-image_view_delete button {
+.C-buttons_view_delete button {
   background-color: transparent;
   border: none;
   outline: none;
@@ -960,7 +961,7 @@ body::-webkit-scrollbar-thumb {
   z-index: 1000;
 }
 
-.C-services_view_delete button:hover, .C-image_view_delete button:hover {
+.C-buttons_view_delete button:hover {
   color: var(--orange-1);
 }
 

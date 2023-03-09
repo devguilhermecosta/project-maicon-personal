@@ -1,0 +1,15 @@
+<!-- buttons for edit and delete object -->
+<div class="C-buttons__actions">
+    <a href="{% url 'author:gallery_edit' image.id %}"><span class="material-symbols-outlined C-buttons_view__span C-buttons_view__edit">edit</span></a>
+    <span class="C-buttons_view__span C-buttons__delete_form">
+        <form
+            action="{% url 'author:image_delete' image.id %}"
+            method="POST"
+            class="C-buttons_view_delete C-buttons_view__span {{ aditional_class }}">
+            <button type="submit">
+                {% csrf_token %}
+                <span class="material-symbols-outlined C-buttons_view__span">delete</span>
+            </button>
+        </form>
+    </span>
+</div>

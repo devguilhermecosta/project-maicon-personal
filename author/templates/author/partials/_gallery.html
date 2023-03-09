@@ -15,20 +15,9 @@
                 <a href="{% url 'author:gallery_edit' image.id %}">
                     <img class="C-gallery__image C-image__dashboard not_animated" src="{{ image.cover.url }}" alt="">
                 </a>
-                <div class="C-services__actions">
-                    <a href="{% url 'author:gallery_edit' image.id %}"><span class="material-symbols-outlined C-services_view__span C-services_view__edit">edit</span></a>
-                    <span class="C-services_view__span C-services__delete_form">
-                        <form
-                            action="{% url 'author:image_delete' image.id %}"
-                            method="POST"
-                            class="C-image_view_delete C-services_view__span">
-                            <button type="submit">
-                                {% csrf_token %}
-                                <span class="material-symbols-outlined C-services_view__span">delete</span>
-                            </button>
-                        </form>
-                    </span>
-                </div>
+                
+                <!-- buttons for edit and delete images -->
+                {% include 'author/partials/_buttons_actions_gallery.html' %}
             </div>
         {% endfor %}
     </section>

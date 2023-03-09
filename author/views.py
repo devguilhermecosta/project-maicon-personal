@@ -145,6 +145,7 @@ def all_services(request: HttpRequest):
         'button_to_back_action': reverse('author:dashboard'),
         'button_name': 'Novo Serviço',
         'button_action': reverse('author:new_service'),
+        'aditional_class': 'C-service__delete',
     })
 
 
@@ -182,7 +183,7 @@ class ServiceView(View):
         form: ModelForm = ServiceForm(instance=service)
 
         return self.render_service(form)
- 
+
     def post(self, request: HttpRequest, id=None):
         service: Service | None = self.get_service(id)
 
@@ -217,9 +218,10 @@ class ServiceView(View):
     name='dispatch',
 )
 class ServiceDeleteView(ServiceView):
+
     def post(self, request, *args, **kwargs):
         service: Service | None = self.get_service(kwargs.get('id'))
-        
+
         if service is not None:
             service.delete()
             messages.success(request, 'Serviço deletado com sucesso.')
@@ -276,6 +278,7 @@ class GalleryAllImagesView(View):
             'button_name': 'Nova Imagem',
             'button_action': reverse('author:new_image'),
             'button_to_back_action': reverse('author:dashboard'),
+            'aditional_class': 'C-image__delete'
         })
 
 
