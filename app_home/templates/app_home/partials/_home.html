@@ -93,10 +93,25 @@
 <section id="contact" class="C-contact center_flex_row">
     <div class="C-contact__contact center_flex_column" data-anime="left">
         <h2>entre em contato</h2>
-        <a target="_blank" href="{{ home_content.social_network.facebook_link }}" class="C-contact__link center_flex_row"><img src="{% static 'global/images/facebook.png' %}" alt="logo facebook"><p>{{ home_content.social_network.facebook_text }}</p></a>
-        <a target="_blank" href="{{ home_content.social_network.instagram_link }}" class="C-contact__link center_flex_row"><img src="{% static 'global/images/instagram.png' %}" alt="logo instagram"><p>{{ home_content.social_network.instagram_text }}</p></a>
-        <a target="_blank" href="{{ home_content.social_network.whatsapp_link }}" class="C-contact__link center_flex_row"><img src="{% static 'global/images/whatsapp.png' %}" alt="logo whatsapp"><p>{{ home_content.social_network.whatsapp_phone }}</p></a>
-        <p>Fone: {{ home_content.social_network.whatsapp_phone }}</p>
+        <div class="C-contact__link center_flex_row">
+            <a target="_blank" href="{{ home_content.social_network.facebook_link }}" class="center_flex_row">
+                <img src="{% static 'global/images/facebook.png' %}" alt="logo facebook">
+                {{ home_content.social_network.facebook_text }}
+            </a>
+        </div>
+        <div class="C-contact__link center_flex_row">
+            <a target="_blank" href="{{ home_content.social_network.instagram_link }}" class="center_flex_row">
+                <img src="{% static 'global/images/instagram.png' %}" alt="logo instagram">
+                <p>{{ home_content.social_network.instagram_text }}</p>
+            </a>
+        </div>
+        <div class="C-contact__link center_flex_row">
+            <a target="_blank" href="{{ home_content.social_network.whatsapp_link }}" class="center_flex_row">
+                <img src="{% static 'global/images/whatsapp.png' %}" alt="logo whatsapp">
+                <p>{{ home_content.social_network.whatsapp_phone }}</p>
+            </a>
+        </div>
+        <p class="C-contact__number">Fone: {{ home_content.social_network.whatsapp_phone }}</p>
     </div>
     <div class="C-contact__localization" data-anime="right">
         <iframe data-anime="right" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3583.522754172879!2d-53.05904328504772!3d-26.081849083492397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94f072d9fc39f61b%3A0x8fec623d0f0908ca!2sR.%20Rio%20G.%20do%20Sul%2C%201086%20-%20Alvorada%2C%20Francisco%20Beltr%C3%A3o%20-%20PR%2C%2085601-050!5e0!3m2!1spt-BR!2sbr!4v1677199562174!5m2!1spt-BR!2sbr" width="400" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
