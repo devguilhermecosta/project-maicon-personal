@@ -1,7 +1,9 @@
 {% load static %}
 
 <div class="C-footer__details">
-    <p class="C-footer__title">{{ home_content.adress.name }}</p>
+    <a class="C-footer__link" href="{% url 'author:login' %}">
+        <p class="C-footer__title">{{ home_content.adress.name }}</p>
+    </a>
     <p class="C-footer__adress">{{ home_content.adress.adress }}</p>
     <p class="C-footer__adress">{{ home_content.adress.city }}</p>
     <p class="C-footer__adress">{{ home_content.adress.postal }}</p>

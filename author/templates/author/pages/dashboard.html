@@ -54,6 +54,18 @@
                         Galeria de imagens
                     </a>
                 </li>
+                <li class="C-dashboard__li">
+                    <form 
+                        class="C-dashboard__link"
+                        action="{% url 'author:logout' %}"
+                        method="POST"
+                        >
+                        {% csrf_token %}
+                        <button class="C-dashboard__button_logout standard_transition" type="submit">
+                            Logout
+                        </button>
+                    </form>
+                </li>
             </ul>
         </nav>
 

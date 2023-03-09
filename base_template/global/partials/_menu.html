@@ -4,9 +4,10 @@
 <!-- logo and menu -->
 <section class="C-menu center_flex_row">
     <!-- logo -->
-    <div class="C-logo center_flex_row">
+    <a class="C-logo center_flex_row" href="{% url 'home:home' %}">
         <img src="{% static 'global/images/partial-logo.png' %}" alt="">
-    </div>
+    </a>
+        
     <!-- menu -->
     <div class="C-menu__menu">
         <button class="C-menu__button center_flex_row">
@@ -19,6 +20,9 @@
                 <li class="C-menu__li"><a href="{% url 'home:home' %}#services" class="C-menu__link standard_transition">{% translate 'services' %}</a></li>
                 <li class="C-menu__li"><a href="{% url 'gallery:gallery' %}" class="C-menu__link standard_transition">{% translate 'gallery' %}</a></li>
                 <li class="C-menu__li"><a href="{% url 'home:home' %}#contact" class="C-menu__link standard_transition">{% translate 'contact' %}</a></li>
+                {% if user.is_authenticated %}
+                    <li class="C-menu__li panel"><a href="{% url 'author:dashboard' %}" class="C-menu__link standard_transition">{% translate 'panel' %}</a></li>
+                {% endif %}
             </ul>
         </nav>
     </div>
