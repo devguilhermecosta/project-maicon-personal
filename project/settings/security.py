@@ -1,7 +1,8 @@
+import os
 # SECURITY WARNING: keep the secret key used in production secret!
 
 # SHOUD BE CHANGED
-SECRET_KEY = 'this is a temp secret key'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 AUTH_PASSWORD_VALIDATORS = [
     {
