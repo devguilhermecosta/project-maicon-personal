@@ -4,13 +4,11 @@ from django.http import HttpRequest, Http404
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from django.forms import ModelForm
-from app_home.models import HomeContent
 from author import forms as f
+from . base_settings import home_content
 
 
 def login_view(request: HttpRequest) -> render:
-    home_content: HomeContent = HomeContent.objects.first()
-
     form: ModelForm = f.FormLogin()
 
     return render(request, 'author/pages/login.html', context={

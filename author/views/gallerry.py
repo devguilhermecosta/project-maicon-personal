@@ -1,3 +1,4 @@
+import os
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import HttpRequest, Http404
@@ -6,12 +7,11 @@ from django.utils.decorators import method_decorator
 from django.contrib import messages
 from django.forms import ModelForm
 from django.views.generic import View
-from app_home.models import HomeContent
 from gallery.models import Image
 from utils.paginator import make_pagination
 from author import forms as f
 from typing import Optional
-import os
+from . base_settings import home_content
 
 PER_PAGE_DASHBOARD: Optional[str] | str = os.environ.get('PER_PAGE_DASHBOARD')
 
@@ -27,7 +27,6 @@ class GalleryImageView(View):
     @classmethod
     def all_images(cls, request) -> render:
         images: Image = Image.objects.all().order_by('-id')
-        home_content: HomeContent = HomeContent.objects.first()
 
         page_object, pagination = make_pagination(request,
                                                   images,
@@ -56,7 +55,6 @@ class GalleryImageView(View):
         return None
 
     def render_image(self, form) -> render:
-        home_content: HomeContent = HomeContent.objects.first()
 
         return render(
             self.request,

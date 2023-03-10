@@ -4,14 +4,14 @@ from django.http import HttpRequest
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.forms import ModelForm
-from app_home.models import HomeContent, PreGallery
+from app_home.models import PreGallery
 from author import forms as f
+from . base_settings import home_content
 
 
 @login_required(redirect_field_name='next', login_url='author:login')
 def settings_initial_gallery(request: HttpRequest):
     gallery: PreGallery = PreGallery.objects.first()
-    home_content: HomeContent = HomeContent.objects.first()
 
     form: ModelForm = f.PreGalleryForm(
         data=request.POST or None,

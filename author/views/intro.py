@@ -4,14 +4,14 @@ from django.http import HttpRequest
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.forms import ModelForm
-from app_home.models import HomeContent, SectionIntro
+from app_home.models import SectionIntro
 from author import forms as f
+from . base_settings import home_content
 
 
 @login_required(redirect_field_name='next', login_url='author:login')
 def settings_sectionintro(request: HttpRequest):
     intro: SectionIntro = SectionIntro.objects.first()
-    home_content: HomeContent = HomeContent.objects.first()
 
     form: ModelForm = f.SectionIntroForm(
         data=request.POST or None,

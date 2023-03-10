@@ -4,14 +4,14 @@ from django.http import HttpRequest
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.forms import ModelForm
-from app_home.models import HomeContent, SocialNetwork
+from app_home.models import SocialNetwork
 from author import forms as f
+from . base_settings import home_content
 
 
 @login_required(redirect_field_name='next', login_url='author:login')
 def settings_socialnetwork(request: HttpRequest):
     social: SocialNetwork = SocialNetwork.objects.first()
-    home_content: HomeContent = HomeContent.objects.first()
 
     form: ModelForm = f.SocialNetworkForm(
         data=request.POST or None,

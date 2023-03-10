@@ -6,8 +6,9 @@ from django.utils.decorators import method_decorator
 from django.contrib import messages
 from django.forms import ModelForm
 from django.views.generic import View
-from app_home.models import HomeContent, Service
+from app_home.models import Service
 from author import forms as f
+from . base_settings import home_content
 
 
 @method_decorator(
@@ -20,7 +21,6 @@ class ServiceView(View):
     @classmethod
     def all_services(cls, request) -> render:
         services: Service = Service.objects.all()
-        home_content: HomeContent = HomeContent.objects.first()
 
         return render(request, 'author/partials/_all_services.html', context={
             'services': services,
@@ -43,8 +43,6 @@ class ServiceView(View):
         return service
 
     def render_service(self, form: f.ServiceForm) -> render:
-        home_content: HomeContent = HomeContent.objects.first()
-
         return render(
             self.request,
             'author/partials/_service.html',
