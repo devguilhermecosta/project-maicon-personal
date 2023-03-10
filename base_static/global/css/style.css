@@ -453,6 +453,7 @@ body::-webkit-scrollbar-thumb {
 
 .C-pre_gallery_li img {
   width: 100%;
+  max-height: 350px;
   transition: all 300ms ease;
   box-shadow: 0 8px 25px var(--std-white-transparent);
   display: none;
