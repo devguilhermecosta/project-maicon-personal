@@ -807,6 +807,10 @@ body::-webkit-scrollbar-thumb {
   border-bottom: 1px solid var(--standard-gray);
 }
 
+.C-dashboard__ul {
+  list-style-type: none;
+}
+
 .C-dashboard__li {
   margin-bottom: 20px;
 }
