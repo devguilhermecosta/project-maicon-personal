@@ -929,7 +929,7 @@ body::-webkit-scrollbar-thumb {
 
 .C-form__div > a {
   max-width: 75vw;
-  overflow-wrap: break-word;
+  line-break: anywhere;
 }
 
 .C-form__div > div > img {
