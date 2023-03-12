@@ -1,31 +1,42 @@
 from django.contrib import admin
-from . models import *
+from . import models as m
 
 
-@admin.register(HomeContent)
+@admin.register(m.HomeContent)
 class HomeContentAdmin(admin.ModelAdmin):
     ...
 
-@admin.register(SocialNetwork)
+
+@admin.register(m.SocialNetwork)
 class SocialAdmin(admin.ModelAdmin):
     ...
 
-@admin.register(SectionIntro)
+
+@admin.register(m.SectionIntro)
 class IntroAdmin(admin.ModelAdmin):
     ...
 
-@admin.register(Profile)
+
+@admin.register(m.Profile)
 class ProfileAdmin(admin.ModelAdmin):
     ...
 
-@admin.register(PreGallery)
+
+@admin.register(m.PreGallery)
 class PreGalleryAdmin(admin.ModelAdmin):
     ...
 
-@admin.register(Service)
+
+@admin.register(m.Service)
 class ServiceAdmin(admin.ModelAdmin):
     ...
 
-@admin.register(Adress)
+
+@admin.register(m.Adress)
 class AdressAdmin(admin.ModelAdmin):
+    ...
+
+
+@admin.register(m.MenuControl)
+class MenuControlAdmin(admin.ModelAdmin):
     ...

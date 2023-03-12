@@ -216,3 +216,12 @@ class HomeContent(models.Model):
     class Meta:
         verbose_name = 'Todas as configurações do site'
         verbose_name_plural = 'Todas as configurações do site'
+
+
+class MenuControl(models.Model):
+    is_home = models.BooleanField(blank=False,
+                                  default=True,
+                                  )
+
+    def __str__(self):
+        return 'Controle de menu'
