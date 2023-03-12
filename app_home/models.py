@@ -210,10 +210,6 @@ class HomeContent(models.Model):
                                verbose_name='endereço',
                                )
 
-    is_home = models.BooleanField(verbose_name='is_home',
-                                  default=True,
-                                  )
-
     def __str__(self):
         return 'Configuração da Home'
 
