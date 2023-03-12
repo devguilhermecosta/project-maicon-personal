@@ -7,6 +7,9 @@ DEBUG = 0
 # allowed hosts
 ALLOWED_HOSTS = ''
 
+# alllowed subdomain
+CSRF_TRUSTED_ORIGINS = ''
+
 # number of images per page into gallery
 PER_PAGE = ''
 

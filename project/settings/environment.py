@@ -15,3 +15,6 @@ ALLOWED_HOSTS: list[str] = convert_str_to_list('ALLOWED_HOSTS')
 ROOT_URLCONF = 'project.urls'
 
 WSGI_APPLICATION = 'project.wsgi.application'
+
+
+CSRF_TRUSTED_ORIGINS: list[str] = convert_str_to_list('CSRF_TRUSTED_ORIGINS')
