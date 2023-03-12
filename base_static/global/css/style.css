@@ -1388,6 +1388,10 @@ body::-webkit-scrollbar-thumb {
 }
 
 @media screen and (min-width: 1024px) {
+  html, body {
+    scroll-behavior: smooth;
+  }
+
   .C-menu {
     align-items: center;
     justify-content: space-between;
