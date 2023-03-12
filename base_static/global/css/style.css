@@ -147,8 +147,8 @@ body::-webkit-scrollbar-thumb {
 
 .C-menu__button {
   cursor: pointer;
-  position: absolute;
-  top: 40px;
+  position: fixed;
+  top: 90px;
   right: 10px;
   transform: translateY(-50%);
   z-index: 1000000;
@@ -157,13 +157,9 @@ body::-webkit-scrollbar-thumb {
   background-color: transparent;
 }
 
-.C-menu__button__is_fixed {
-  position: fixed;
-  top: 90px;
-}
-
 .C-menu__span {
-  color: var(--blue-1);
+  color: var(--blue-4);
+  background-color: var(--standard-white);
 }
 
 .material-icons {

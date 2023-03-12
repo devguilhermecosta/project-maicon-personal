@@ -6,13 +6,11 @@ try {
         const menuButton = document.querySelector('.C-menu__button');
 
         if (menuMobile.textContent == 'close') {
-            menuMobile.textContent = 'menu_open';
+            menuMobile.textContent = 'menu';
             menuNav.classList.add('is_hidden');
-            menuButton.classList.remove('C-menu__button__is_fixed');
         } else {
             menuMobile.textContent = 'close';
             menuNav.classList.remove('is_hidden');
-            menuButton.classList.add('C-menu__button__is_fixed');
         };
     })
 } catch(error){}
