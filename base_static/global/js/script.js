@@ -2,13 +2,16 @@
 const menuMobile = document.querySelector('.C-menu__span');
 menuMobile.addEventListener('click', () => {
     const menuNav = document.querySelector('.C-menu__nav');
+    const menuButton = document.querySelector('.C-menu__button');
 
-    if (menuMobile.textContent == 'menu') {
+    if (menuMobile.textContent == 'close') {
+        menuMobile.textContent = 'menu_open';
+        menuNav.classList.add('is_hidden');
+        menuButton.classList.remove('C-menu__button__is_fixed');
+    } else {
         menuMobile.textContent = 'close';
         menuNav.classList.remove('is_hidden');
-    } else {
-        menuMobile.textContent = 'menu';
-        menuNav.classList.add('is_hidden');
+        menuButton.classList.add('C-menu__button__is_fixed');
     };
 })
 

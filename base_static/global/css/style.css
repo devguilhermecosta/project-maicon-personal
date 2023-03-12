@@ -98,8 +98,6 @@ body::-webkit-scrollbar-thumb {
 .is_hidden {
   display: none;
 }
-/* ###### END GENERICS ######*/
-
 /* START BODY */
 .C-body {
   display: grid;
@@ -149,12 +147,24 @@ body::-webkit-scrollbar-thumb {
 }
 
 .C-menu__button {
- cursor: pointer;
- position: fixed;
- top: 100px;
- right: 10px;
- transform: translateY(-50%);
- z-index: 1000000;
+  cursor: pointer;
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  transform: translateY(-50%);
+  z-index: 1000000;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.C-menu__button__is_fixed {
+  position: fixed;
+  top: 90px;
+}
+
+.C-menu__span {
+  color: var(--blue-1);
 }
 
 .C-menu__nav {
