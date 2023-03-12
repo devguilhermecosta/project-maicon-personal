@@ -9,7 +9,7 @@ class SocialNetworkForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self._form_errors: dict[list] = defaultdict(list)
+        self._form_errors: defaultdict[list] = defaultdict(list)
 
     class Meta:
         model = SocialNetwork
@@ -68,6 +68,7 @@ class AdressForm(ModelForm):
     class Meta:
         model = Adress
         fields = '__all__'
+
 
 class ImageForm(ModelForm):
     class Meta:
