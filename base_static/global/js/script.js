@@ -1,19 +1,39 @@
 // menu and menu mobile
-const menuMobile = document.querySelector('.C-menu__span');
-menuMobile.addEventListener('click', () => {
-    const menuNav = document.querySelector('.C-menu__nav');
-    const menuButton = document.querySelector('.C-menu__button');
+try {
+    const menuMobile = document.querySelector('.C-menu__span');
+    menuMobile.addEventListener('click', () => {
+        const menuNav = document.querySelector('.C-menu__nav');
+        const menuButton = document.querySelector('.C-menu__button');
 
-    if (menuMobile.textContent == 'close') {
-        menuMobile.textContent = 'menu_open';
-        menuNav.classList.add('is_hidden');
-        menuButton.classList.remove('C-menu__button__is_fixed');
-    } else {
-        menuMobile.textContent = 'close';
-        menuNav.classList.remove('is_hidden');
-        menuButton.classList.add('C-menu__button__is_fixed');
-    };
-})
+        if (menuMobile.textContent == 'close') {
+            menuMobile.textContent = 'menu_open';
+            menuNav.classList.add('is_hidden');
+            menuButton.classList.remove('C-menu__button__is_fixed');
+        } else {
+            menuMobile.textContent = 'close';
+            menuNav.classList.remove('is_hidden');
+            menuButton.classList.add('C-menu__button__is_fixed');
+        };
+    })
+} catch(error){}
+
+// menu control after clicking the link
+(()=>{
+    try {
+        const menuLink = document.querySelectorAll('.C-menu__link');
+        const menuNav = document.querySelector('.C-menu__nav');
+        const menuButton = document.querySelector('.C-menu__button');
+        const menuMobile = document.querySelector('.C-menu__span');
+
+        menuLink.forEach((element)=>{
+            element.addEventListener("click", ()=>{
+                menuNav.classList.toggle('is_hidden');
+                menuButton.classList.toggle('C-menu__button__is_fixed');
+                menuMobile.textContent = 'menu_open';
+            })
+        })
+    } catch(error){}
+})()
 
 // animate scroll
 try {
