@@ -3,7 +3,7 @@ from . import views
 
 app_name: str = 'author'
 
-# urlpatterns = [
+urlpatterns = [
 #     path('login/', views.login_view, name='login'),
 #     path('login/login_create/', views.login_create, name='login_create'),
 #     path('logout/', views.LogoutView.as_view(), name='logout'),
@@ -57,4 +57,4 @@ app_name: str = 'author'
 #          views.GalleryDeleteView.as_view(),
 #          name='image_delete',
 #          ),
-# ]
+]
