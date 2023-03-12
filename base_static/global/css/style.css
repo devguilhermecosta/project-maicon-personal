@@ -167,6 +167,10 @@ body::-webkit-scrollbar-thumb {
   color: var(--blue-1);
 }
 
+.material-icons {
+  font-size: 48px !important;
+}
+
 .C-menu__nav {
   position: fixed;
   padding-top: 30px;
