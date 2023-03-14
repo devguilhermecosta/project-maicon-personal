@@ -97,7 +97,7 @@ def make_pre_gallery(title: str = 'pre_gallery_title',
         'description': description,
         'image_one': image_one,
         'image_two': image_two,
-        'image_three': image_three,        
+        'image_three': image_three,
     }
 
     return md.PreGallery.objects.create(
@@ -115,7 +115,7 @@ def make_adress(name: str = 'adress_name',
         'name': name,
         'adress': adress,
         'city': city,
-        'postal': postal,        
+        'postal': postal,
     }
 
     return md.Adress.objects.create(
