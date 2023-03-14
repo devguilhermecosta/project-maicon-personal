@@ -5,7 +5,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from django.forms import ModelForm
 from author import forms as f
-from . base_settings import home_content
+from author.views.base_settings import home_content
 
 
 def login_view(request: HttpRequest) -> render:
@@ -14,7 +14,7 @@ def login_view(request: HttpRequest) -> render:
     return render(request, 'author/pages/login.html', context={
         'form': form,
         'form_action': reverse('author:login_create'),
-        'home_content': home_content,
+        'home_content': home_content(),
     })
 
 

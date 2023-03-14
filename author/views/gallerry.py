@@ -11,7 +11,7 @@ from gallery.models import Image
 from utils.paginator import make_pagination
 from author import forms as f
 from typing import Optional
-from . base_settings import home_content
+from author.views.base_settings import home_content
 
 PER_PAGE_DASHBOARD: Optional[str] | str = os.environ.get('PER_PAGE_DASHBOARD')
 
@@ -40,7 +40,7 @@ class GalleryImageView(View):
             'button_action': reverse('author:new_image'),
             'button_to_back_action': reverse('author:dashboard'),
             'aditional_class': 'C-image__delete',
-            'home_content': home_content,
+            'home_content': home_content(),
         })
 
     def get_image(self, id=None) -> Image | None:
@@ -62,7 +62,7 @@ class GalleryImageView(View):
             context={
                 'form': form,
                 'button_to_back_action': reverse('author:gallery'),
-                'home_content': home_content,
+                'home_content': home_content(),
                 },
             )
 

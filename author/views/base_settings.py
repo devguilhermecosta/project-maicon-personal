@@ -1,3 +1,5 @@
 from app_home.models import HomeContent
 
-home_content: HomeContent = HomeContent.objects.first()
+
+def home_content() -> HomeContent:
+    return HomeContent.objects.first()

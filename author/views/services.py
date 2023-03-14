@@ -8,7 +8,7 @@ from django.forms import ModelForm
 from django.views.generic import View
 from app_home.models import Service
 from author import forms as f
-from . base_settings import home_content
+from author.views.base_settings import home_content
 
 
 @method_decorator(
@@ -28,7 +28,7 @@ class ServiceView(View):
             'button_name': 'Novo Serviço',
             'button_action': reverse('author:new_service'),
             'aditional_class': 'C-service__delete',
-            'home_content': home_content,
+            'home_content': home_content(),
         })
 
     def get_service(self, id=None) -> Service | None:
@@ -49,7 +49,7 @@ class ServiceView(View):
             context={
                 'form': form,
                 'button_to_back_action': reverse('author:services'),
-                'home_content': home_content,
+                'home_content': home_content(),
                 }
             )
 

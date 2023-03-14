@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.forms import ModelForm
 from app_home.models import Profile
 from author import forms as f
-from . base_settings import home_content
+from author.views.base_settings import home_content
 
 
 @login_required(redirect_field_name='next', login_url='author:login')
@@ -28,5 +28,5 @@ def settings_profile(request: HttpRequest):
     return render(request, 'author/partials/_profile.html', context={
         'form': form,
         'button_to_back_action': reverse('author:dashboard'),
-        'home_content': home_content,
+        'home_content': home_content(),
     })
