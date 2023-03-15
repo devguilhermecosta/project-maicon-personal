@@ -58,7 +58,8 @@ class PaginationTest(SimpleTestCase):
 
     def test_pagination_is_correct_if_range_is_less_than_range_per_page(self) -> None:  # noqa: E501
         pagination_1: dict = make_pagination_range(list(range(1, 3)),
-                                                   2)
+                                                   2,
+                                                   )
 
         self.assertEqual([1, 2], pagination_1.get('pagination'))
 

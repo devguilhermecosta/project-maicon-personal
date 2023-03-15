@@ -86,3 +86,22 @@ class HomeTests(TestCase):
         self.assertIn('adress_city', response_content)
         self.assertIn('service_title', response_content)
         self.assertIn('service_description', response_content)
+
+    def test_home_has_services_not_found_if_no_services(self) -> None:
+        home_data: dict = {
+            'social_network': make_social_network(),
+            'section_intro': make_section_intro(),
+            'profile': make_profle(),
+            'pre_gallery': make_pre_gallery(),
+            'adress': make_adress(),
+        }
+
+        md.HomeContent.objects.create(**home_data)
+
+        response: HttpResponse = self.client.get(
+            reverse('home:home')
+        )
+
+        response_content: str = response.content.decode('utf-8')
+
+        self.assertIn('services not found', response_content)
