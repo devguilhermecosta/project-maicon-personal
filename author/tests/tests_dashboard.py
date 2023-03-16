@@ -1,6 +1,58 @@
 from . author_base_test import AuthorTestBase
+from django.urls import reverse, resolve, ResolverMatch
+from django.http import HttpResponse
+from author import views
+from app_home.tests.home_base_test import make_home_content
+from app_home.models import HomeContent
 
 
 class DashboardTests(AuthorTestBase):
-    def test_the_test(self) -> None:
-        self.fail('continuer from here...')
+    def test_dashboard_url_is_correct(self) -> None:
+        url: str = reverse('author:dashboard')
+
+        self.assertEqual(url, '/author/dashboard/')
+
+    def test_dashboard_view_is_correct(self) -> None:
+        response: ResolverMatch = resolve(
+            reverse('author:dashboard')
+        )
+
+        self.assertEqual(response.func, views.dashboard)
+
+    def test_dashboard_url_is_redirected_if_user_is_not_authenticated(self) -> None:  # noqa: E501
+        response: HttpResponse = self.client.get(
+            reverse('author:dashboard')
+        )
+
+        self.assertEqual(
+            response.url,
+            '/author/login/?next=/author/dashboard/'
+            )
+        self.assertEqual(
+            response.status_code,
+            302,
+        )
+
+    def test_dashboard_status_code_200_if_user_is_authenticated(self) -> None:
+        self.make_login()
+
+        response: HttpResponse = self.client.get(
+            reverse('author:dashboard')
+        )
+        ...
+        self.assertEqual(response.status_code, 200)
+
+    def test_dashboard_context_load_correct_data(self) -> None:
+        self.make_login()
+
+        home_content: HomeContent = make_home_content()
+
+        home_content.adress.title = 'this is the footer'
+
+        response: HttpResponse = self.client.get(
+            reverse('author:dashboard')
+        )
+
+        response_content: str = response.content.decode('utf-8')
+
+        self.assertIn('adress_name', response_content)
