@@ -1,12 +1,24 @@
 from . author_base_test import AuthorTestBase
+from django.test import override_settings
 from django.urls import reverse, resolve, ResolverMatch
 from django.http import HttpResponse
 from author import views
 from app_home.tests.home_base_test import make_home_content
 from app_home.models import HomeContent
+import contextlib
+import shutil
 
 
+TEST_DIR = 'test_data'
+
+
+@override_settings(MEDIA_ROOT=(TEST_DIR + '/media'))
 class DashboardTests(AuthorTestBase):
+    def tearDown(self) -> None:
+        with contextlib.suppress(OSError):
+            shutil.rmtree(TEST_DIR)
+        return super().tearDown()
+
     def test_dashboard_url_is_correct(self) -> None:
         url: str = reverse('author:dashboard')
 
