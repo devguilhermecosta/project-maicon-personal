@@ -57,14 +57,17 @@ class DashboardTests(AuthorTestBase):
     def test_dashboard_context_load_correct_data(self) -> None:
         self.make_login()
 
-        home_content: HomeContent = make_home_content()
+        name: str = 'this is the title footer'
 
-        home_content.adress.title = 'this is the footer'
+        make_home_content(name=name)
 
         response: HttpResponse = self.client.get(
             reverse('author:dashboard')
         )
 
         response_content: str = response.content.decode('utf-8')
-
-        self.assertIn('adress_name', response_content)
+        ...
+        self.assertIn(
+            name,
+            response_content
+            )

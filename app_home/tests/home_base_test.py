@@ -1,7 +1,9 @@
 from pathlib import Path
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db.models.query import QuerySet
-from .home_base_exception import ImageNotFoundError
+from .home_base_exception import (
+    ImageNotFoundError,
+)
 from app_home import models as md
 
 
@@ -109,6 +111,7 @@ def make_adress(name: str = 'adress_name',
                 adress: str = 'adress_adress',
                 city: str = 'adress_city',
                 postal: str = 'adress_postal',
+                **kwargs,
                 ) -> md.Adress:
 
     data: dict = {
@@ -144,14 +147,14 @@ def make_queryset_services(num_of_services: int) -> QuerySet[md.Service]:
     return md.Service.objects.all()
 
 
-def make_home_content() -> md.HomeContent:
+def make_home_content(name='adress_name') -> md.HomeContent:
     """return a complet instance of HomeContent"""
     home_content: md.HomeContent = md.HomeContent.objects.create(
         social_network=make_social_network(),
         section_intro=make_section_intro(),
         profile=make_profle(),
         pre_gallery=make_pre_gallery(),
-        adress=make_adress(),
+        adress=make_adress(name),
     )
 
     home_content.services.set(
