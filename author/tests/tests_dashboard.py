@@ -50,7 +50,7 @@ class DashboardTests(AuthorTestBase):
         response: HttpResponse = self.client.get(
             reverse('author:dashboard')
         )
-        ...
+
         self.assertEqual(response.status_code, 200)
 
     def test_dashboard_context_load_correct_data(self) -> None:

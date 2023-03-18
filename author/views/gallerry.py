@@ -25,6 +25,13 @@ PER_PAGE_DASHBOARD: Optional[str] | str = os.environ.get('PER_PAGE_DASHBOARD')
 )
 class GalleryImageView(View):
     @classmethod
+    @method_decorator(
+        login_required(
+            redirect_field_name='next',
+            login_url='author:login'
+            ),
+        name='dispatch',
+    )
     def all_images(cls, request) -> render:
         images: Image = Image.objects.all().order_by('-id')
 
