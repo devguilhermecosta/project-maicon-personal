@@ -115,7 +115,7 @@ def make_adress(name: str = 'adress_name',
                 ) -> md.Adress:
 
     data: dict = {
-        'name': name,
+        'name': kwargs.pop('option_name', name),
         'adress': adress,
         'city': city,
         'postal': postal,
@@ -147,14 +147,17 @@ def make_queryset_services(num_of_services: int) -> QuerySet[md.Service]:
     return md.Service.objects.all()
 
 
-def make_home_content(name='adress_name') -> md.HomeContent:
-    """return a complet instance of HomeContent"""
+def make_home_content(**kwargs) -> md.HomeContent:
+    """
+    param: option_name: for test adress content.
+    Return a complet instance of HomeContent.
+    """
     home_content: md.HomeContent = md.HomeContent.objects.create(
         social_network=make_social_network(),
         section_intro=make_section_intro(),
         profile=make_profle(),
         pre_gallery=make_pre_gallery(),
-        adress=make_adress(name),
+        adress=make_adress(**kwargs),
     )
 
     home_content.services.set(

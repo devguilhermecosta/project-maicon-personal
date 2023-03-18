@@ -58,16 +58,15 @@ class DashboardTests(AuthorTestBase):
 
         name: str = 'this is the title footer'
 
-        make_home_content(name=name)
+        make_home_content(option_name=name)
 
         response: HttpResponse = self.client.get(
             reverse('author:dashboard')
         )
 
         response_content: str = response.content.decode('utf-8')
-        ...
+
         self.assertIn(
             name,
             response_content
             )
-        self.fail('continuer from here')
