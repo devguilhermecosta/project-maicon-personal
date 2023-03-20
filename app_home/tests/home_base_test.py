@@ -23,6 +23,10 @@ def __create_simple_image() -> SimpleUploadedFile:
     return simple_image
 
 
+def make_simple_image() -> SimpleUploadedFile:
+    return __create_simple_image()
+
+
 def make_social_network(instagram_link: str = 'instagram_link',
                         facebook_link: str = 'facebook_link',
                         whatsapp_link: str = 'whatsapp_link',
