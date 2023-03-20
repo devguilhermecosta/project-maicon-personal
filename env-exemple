@@ -16,6 +16,9 @@ PER_PAGE = ''
 # number of images per page into dashboard
 PER_PAGE_DASHBOARD = ''
 
+# True if 0, else False
+SELENIUM_HEADLESS = 0
+
 
 # ---------- DATABASE SETTINGS ---------- #
 
