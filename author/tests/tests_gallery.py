@@ -136,4 +136,7 @@ class GallerySettingsFunctionalTests(StaticLiveServerTestCase):
 
         sleep(10)
 
-        self.fail('continuer from here')
+        self.fail('continuer from here \n'
+                  'criar a função para deletar as imagens '
+                  'automaticamente.'
+                  )
