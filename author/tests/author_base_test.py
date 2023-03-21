@@ -2,6 +2,9 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from gallery.models import Image
 from app_home.tests.home_base_test import make_simple_image
+from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webelement import WebElement
+from selenium.webdriver.chrome.webdriver import WebDriver
 
 
 class AuthorTestBase(TestCase):
@@ -31,6 +34,26 @@ def create_user(**kwargs) -> User:
     )
 
     return user
+
+
+def sign_in_with_selenium(browser: WebDriver) -> None:
+    input_user: WebElement = browser.find_element(
+        By.XPATH,
+        '//*[@id="id_username"]',
+    )
+    input_user.send_keys('username')
+
+    input_password: WebElement = browser.find_element(
+        By.XPATH,
+        '//*[@id="id_password"]',
+    )
+    input_password.send_keys('password')
+
+    button_submit: WebElement = browser.find_element(
+        By.XPATH,
+        '/html/body/main/section/form/button'
+    )
+    button_submit.click()
 
 
 def make_image_object(**kwargs) -> Image:

@@ -3,7 +3,10 @@ from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.urls import reverse, resolve, ResolverMatch
 from django.http import HttpResponse
 from app_home.tests.home_base_test import make_simple_image
-from . author_base_test import AuthorTestBase, make_image_object, create_user
+from . author_base_test import (
+    AuthorTestBase, make_image_object, create_user,
+    sign_in_with_selenium,
+    )
 from author.views import GalleryImageView
 from gallery.models import Image
 from utils.browser import make_chrome_browser
@@ -53,6 +56,17 @@ class GallerySettingsTests(AuthorTestBase):
                          302,
                          )
 
+    def test_gallery_load_correct_template(self) -> None:
+        self.make_login()
+
+        response: HttpResponse = self.client.get(
+            reverse('author:gallery')
+        )
+
+        self.assertTemplateUsed(response,
+                                'author/partials/_gallery.html',
+                                )
+
     def test_gallery_panel_is_allowed_if_user_is_authenticated(self) -> None:
         self.make_login()
 
@@ -85,6 +99,7 @@ class GallerySettingsTests(AuthorTestBase):
         self.assertIn('description-0', response_content)
         self.assertIn('description-1', response_content)
         self.assertIn('image_profile', response_content)
+        self.assertEqual(2, len(Image.objects.all()))
 
 
 @pytest.mark.functional_test
@@ -109,23 +124,7 @@ class GallerySettingsFunctionalTests(StaticLiveServerTestCase):
             reverse('author:login')
             )
 
-        input_user: WebElement = self.browser.find_element(
-            By.XPATH,
-            '//*[@id="id_username"]',
-        )
-        input_user.send_keys('username')
-
-        input_password: WebElement = self.browser.find_element(
-            By.XPATH,
-            '//*[@id="id_password"]',
-        )
-        input_password.send_keys('password')
-
-        button_submit: WebElement = self.browser.find_element(
-            By.XPATH,
-            '/html/body/main/section/form/button'
-        )
-        button_submit.click()
+        sign_in_with_selenium(self.browser)
 
         button_gallery_settings: WebElement = self.browser.find_element(
             By.XPATH,
@@ -177,4 +176,3 @@ class GallerySettingsFunctionalTests(StaticLiveServerTestCase):
         self.assertIn('Imagem deletada com sucesso',
                       dashboard.text,
                       )
-        self.fail('create an image object for test')
