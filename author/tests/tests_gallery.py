@@ -2,14 +2,15 @@ from django.test import override_settings
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.urls import reverse, resolve, ResolverMatch
 from django.http import HttpResponse
-from . author_base_test import AuthorTestBase
+from app_home.tests.home_base_test import make_simple_image
+from . author_base_test import AuthorTestBase, make_image_object, create_user
 from author.views import GalleryImageView
 from gallery.models import Image
-from app_home.tests.home_base_test import make_simple_image
 from utils.browser import make_chrome_browser
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
-from django.contrib.auth.models import User
+from selenium.webdriver.common.alert import Alert
+from selenium.webdriver.remote.webelement import WebElement
 import shutil
 import contextlib
 import pytest
@@ -84,59 +85,95 @@ class GallerySettingsTests(AuthorTestBase):
         self.assertIn('description-0', response_content)
         self.assertIn('description-1', response_content)
         self.assertIn('image_profile', response_content)
-        self.fail(
-            'Ver o que fica mais fácil: \n'
-            '1 - criar um teste normal para editar e deletar images.\n'
-            '2 - criar um test funcional.'
-        )
 
 
 @pytest.mark.functional_test
+@override_settings(MEDIA_ROOT=(TEST_DIR + '/media'))
 class GallerySettingsFunctionalTests(StaticLiveServerTestCase):
     def setUp(self) -> None:
         self.browser: WebDriver = make_chrome_browser()
         return super().setUp()
 
     def tearDown(self) -> None:
+        with contextlib.suppress(OSError):
+            shutil.rmtree(TEST_DIR)
         self.browser.quit()
         return super().tearDown()
 
-    def test_gallery_edit_image(self) -> None:
-        from time import sleep
-
-        user_data: dict = {
-            'username': 'username',
-            'password': 'password',
-        }
-
-        User.objects.create_user(**user_data)
+    def __enter_gallery_settings(self) -> None:
+        create_user()
+        make_image_object()
 
         self.browser.get(
             self.live_server_url +
             reverse('author:login')
             )
 
-        input_user = self.browser.find_element(
+        input_user: WebElement = self.browser.find_element(
             By.XPATH,
             '//*[@id="id_username"]',
         )
-        input_user.send_keys(user_data['username'])
+        input_user.send_keys('username')
 
-        input_password = self.browser.find_element(
+        input_password: WebElement = self.browser.find_element(
             By.XPATH,
             '//*[@id="id_password"]',
         )
-        input_password.send_keys(user_data['password'])
+        input_password.send_keys('password')
 
-        button_submit = self.browser.find_element(
+        button_submit: WebElement = self.browser.find_element(
             By.XPATH,
             '/html/body/main/section/form/button'
         )
         button_submit.click()
 
-        sleep(10)
+        button_gallery_settings: WebElement = self.browser.find_element(
+            By.XPATH,
+            '/html/body/main/section/nav/ul/li[2]/a',
+        )
 
-        self.fail('continuer from here \n'
-                  'criar a função para deletar as imagens '
-                  'automaticamente.'
-                  )
+        button_gallery_settings.click()
+
+    def __get_dashboard(self) -> WebElement:
+        dasbhoard: WebElement = self.browser.find_element(
+            By.XPATH,
+            '/html/body/main/section/section',
+        )
+
+        return dasbhoard
+
+    def test_gallery_edit_image(self) -> None:
+        self.__enter_gallery_settings()
+
+        button_image_edit: WebElement = self.browser.find_element(
+            By.XPATH,
+            '/html/body/main/section/section/section[1]/div[1]/div/a',
+        )
+        button_image_edit.click()
+
+        form_image_edit: WebElement = self.browser.find_element(  # noqa: F841
+            By.XPATH,
+            '/html/body/main/section/section/form',
+        ).submit()
+
+        dashboard: WebElement = self.__get_dashboard()
+
+        self.assertIn('Salvo com sucesso',
+                      dashboard.text,
+                      )
+
+    def test_gallery_delete_image(self) -> None:
+        self.__enter_gallery_settings()
+
+        button_delete_image: WebElement = self.browser.find_element(  # noqa: F841 E501
+            By.XPATH,
+            '/html/body/main/section/section/section[1]/div/div/span/form',
+        ).submit()
+
+        alert: Alert = Alert(self.browser).accept()  # noqa: F841
+
+        dashboard: WebElement = self.__get_dashboard()
+
+        self.assertIn('Imagem deletada com sucesso',
+                      dashboard.text,
+                      )
