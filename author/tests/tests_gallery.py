@@ -177,3 +177,4 @@ class GallerySettingsFunctionalTests(StaticLiveServerTestCase):
         self.assertIn('Imagem deletada com sucesso',
                       dashboard.text,
                       )
+        self.fail('create an image object for test')
