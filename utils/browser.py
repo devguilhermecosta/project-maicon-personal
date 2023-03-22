@@ -12,7 +12,7 @@ ROOT_PATH = Path(__file__).parent.parent
 
 WEBDRIVER_NAME: dict = {
     'windows': 'chromedriver_windows.exe',
-    'ubuntu': 'chromedriver_ubuntu.exe',
+    'ubuntu': 'chromedriver_ubuntu',
 }
 SYSTEM = sys.platform
 
