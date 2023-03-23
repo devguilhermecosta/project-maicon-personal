@@ -7,7 +7,6 @@ from .author_base_test import (
     )
 from author.views.initial_gallery import settings_initial_gallery
 from app_home.tests.home_base_test import make_pre_gallery
-from app_home.models import PreGallery
 from utils.browser import make_chrome_browser
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
@@ -84,12 +83,24 @@ class InitialGalleryFunctionalTests(StaticLiveServerTestCase):
             shutil.rmtree(TEST_DIR)
         return super().tearDown()
 
-    def _enter_gallery_with_content(self) -> None:
+    def get_element_by_xpath(self, xpath) -> WebElement:
+        return self.browser.find_element(
+            By.XPATH,
+            xpath,
+        )
+
+    def get_element_by_id(self, id) -> WebElement:
+        return self.browser.find_element(
+            By.ID,
+            id,
+        )
+
+    def _enter_gallery_with_content(self, title=None) -> None:
         """
         Enter the image pre gallery with an instance
         of PreGallery and logged in.
         """
-        make_pre_gallery()
+        make_pre_gallery(title)
 
         self.browser.get(
             self.live_server_url+reverse('author:initialgallery')
@@ -97,25 +108,22 @@ class InitialGalleryFunctionalTests(StaticLiveServerTestCase):
 
         sign_in_with_selenium(self.browser)
 
-    def test_initial_gallery_load_correct_data_into_form(self) -> None:
-        self._enter_gallery_with_content()
-
-        pre_gallery_settings: WebElement = self.browser.find_element(
-            By.XPATH,
-            '/html/body/main/section/nav/ul/li[1]/nav/ul/li[4]/a',
+        pre_gallery_settings: WebElement = self.get_element_by_xpath(
+            '/html/body/main/section/nav/ul/li[1]/nav/ul/li[4]/a'
         )
         pre_gallery_settings.click()
 
-        input_title: WebElement = self.browser.find_element(
-            By.ID,
+    def test_initial_gallery_load_correct_data(self) -> None:
+        self._enter_gallery_with_content()
+
+        input_title: WebElement = self.get_element_by_id(
             'id_title',
         )
-        textarea: WebElement = self.browser.find_element(
-            By.ID,
-            'id_description'
+        textarea: WebElement = self.get_element_by_id(
+            'id_description',
         )
-        image: WebElement = self.browser.find_element(
-            By.XPATH,
+
+        image_url: WebElement = self.get_element_by_xpath(
             '/html/body/main/section/section/form/div[3]/a',
         )
 
@@ -126,5 +134,33 @@ class InitialGalleryFunctionalTests(StaticLiveServerTestCase):
                       textarea.get_attribute('value'),
                       )
         self.assertIn('app_home/images/pre-gallery/image_profile',
-                      image.get_attribute('href'),
+                      image_url.get_attribute('href'),
                       )
+
+    def test_initial_gallery_save_data_after_modification(self) -> None:
+        self._enter_gallery_with_content()
+
+        input_title: WebElement = self.get_element_by_xpath(
+            '/html/body/main/section/section/form/div[1]/input',
+        )
+        input_title.clear()
+        input_title.send_keys('this is the new title')
+
+        button_submit: WebElement = self.get_element_by_xpath(
+            '/html/body/main/section/section/form',
+        )
+        button_submit.submit()
+
+        new_input_title: WebElement = self.get_element_by_xpath(
+            '/html/body/main/section/section/form/div[1]/input',
+        )
+
+        dashboard: WebElement = self.get_element_by_xpath(
+            '/html/body/main/section/section'
+        )
+
+        self.assertIn('this is the new title',
+                      new_input_title.get_attribute('value'),
+                      )
+        self.assertIn('Dados salvos com sucesso',
+                      dashboard.text)

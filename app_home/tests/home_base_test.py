@@ -91,15 +91,17 @@ def make_profle(title: str = 'profile_title',
     )
 
 
-def make_pre_gallery(title: str = 'pre_gallery_title',
+def make_pre_gallery(title: None | str = None,
                      description: str = 'pre_gallery_description',
                      image_one: str = __create_simple_image(),
                      image_two: str = __create_simple_image(),
                      image_three: str = __create_simple_image(),
                      ) -> md.PreGallery:
 
+    d_title: str = 'pre_gallery_title'
+
     data: dict = {
-        'title': title,
+        'title': title if title is not None else d_title,
         'description': description,
         'image_one': image_one,
         'image_two': image_two,
