@@ -30,7 +30,7 @@ urlpatterns = [
          ),
     path('dashboard/settings/services/<int:id>/edit/',
          views.ServiceView.as_view(),
-         name='service',
+         name='service_edit',
          ),
     path('dashboard/settings/services/new/',
          views.ServiceView.as_view(),
