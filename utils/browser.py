@@ -8,6 +8,14 @@ import sys
 import os
 
 
+class ImproperlyConfigured(BaseException):
+    def __init__(self, message: str) -> None:
+        self.message: str = message
+
+    def __str__(self) -> str:
+        return self.message
+
+
 ROOT_PATH = Path(__file__).parent.parent
 
 WEBDRIVER_NAME: dict = {
@@ -35,7 +43,12 @@ def make_chrome_browser(*options) -> WebDriver:
     if os.environ.get('SELENIUM_HEADLESS') == '0':
         chrome_options.add_argument('--headless')
 
-    chrome_service: Service = Service(executable_path=CHROMEDRIVER_PATH)
+    try:
+        chrome_service: Service = Service(executable_path=CHROMEDRIVER_PATH)
+    except Exception as error:
+        raise ImproperlyConfigured(
+            f'Check chromedriver version - {error}'
+        )
 
     browser: Chrome = webdriver.Chrome(
         service=chrome_service,
