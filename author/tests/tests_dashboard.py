@@ -70,3 +70,15 @@ class DashboardTests(AuthorTestBase):
             name,
             response_content
             )
+
+    def test_dashboard_load_correct_template(self) -> None:
+        self.make_login()
+
+        response: HttpResponse = self.client.get(
+            reverse('author:dashboard')
+        )
+
+        self.assertTemplateUsed(
+            response,
+            'author/pages/dashboard.html'
+        )

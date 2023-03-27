@@ -11,6 +11,7 @@ from utils.browser import make_chrome_browser
 
 from .author_base_test import (AuthorTestBase, create_user,
                                sign_in_with_selenium)
+import pytest
 
 
 class SectionIntroTests(AuthorTestBase):
@@ -66,7 +67,17 @@ class SectionIntroTests(AuthorTestBase):
             200,
         )
 
+    def test_intro_load_correct_template(self) -> None:
+        self.make_login()
+        response: HttpResponse = self.client_make_get()
 
+        self.assertTemplateUsed(
+            response,
+            'author/partials/_sectionintro.html'
+        )
+
+
+@pytest.mark.functional_test
 class SectionIntroFunctionalTests(StaticLiveServerTestCase):
     def setUp(self, *args, **kwargs) -> None:
         create_user()

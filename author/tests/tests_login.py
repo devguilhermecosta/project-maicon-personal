@@ -8,6 +8,7 @@ from utils.browser import make_chrome_browser
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
+import pytest
 
 
 class LoginTests(AuthorTestBase):
@@ -57,12 +58,9 @@ class LoginTests(AuthorTestBase):
             response.status_code,
             404,
         )
-        self.fail('testar todos os templates '
-                  'e marcar os testes funcionais '
-                  'com @mark'
-                  )
 
 
+@pytest.mark.functional_test
 class LoginFunctionalTests(StaticLiveServerTestCase):
     def setUp(self) -> None:
         self.browser: WebDriver = make_chrome_browser()
