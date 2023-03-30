@@ -131,6 +131,16 @@ class ProfileSettingsFunctionalTests(StaticLiveServerTestCase):
             '/html/body/main/section/section/form/div[3]/a',
         )
 
+    def get_dashboard(self) -> WebElement:
+        return self.browser.find_element_by_xpath(
+            '/html/body/main/section/section',
+        )
+
+    def get_form_data(self) -> WebElement:
+        return self.browser.find_element_by_xpath(
+            '/html/body/main/section/section/form',
+        )
+
     def test_profile_load_correct_data(self) -> None:
         self.enter_profile_settings_with_content()
 
@@ -152,4 +162,42 @@ class ProfileSettingsFunctionalTests(StaticLiveServerTestCase):
             'media/app_home/images/profile/image_profile',
             link_image.get_attribute('href'),
         )
-        self.fail('make tests from profile edit')
+
+    def test_profile_save_data_after_modification(self) -> None:
+        self.enter_profile_settings_with_content()
+
+        new_title: str = 'This is the new title'
+        input_title: WebElement = self.get_title()
+        input_title.clear()
+        input_title.send_keys(new_title)
+
+        form: WebElement = self.get_form_data()
+        form.submit()
+
+        title_changed: WebElement = self.get_title()
+        dashboard: WebElement = self.get_dashboard()
+
+        self.assertIn(
+            new_title,
+            title_changed.get_attribute('value'),
+        )
+        self.assertIn(
+            'Dados salvos com sucesso.',
+            dashboard.text,
+        )
+
+    def test_profile_saving_with_empty_data_is_not_allowed(self) -> None:
+        self.enter_profile_settings_with_content()
+
+        input_title: WebElement = self.get_title()
+        input_title.clear()
+
+        form: WebElement = self.get_form_data()
+        form.submit()
+
+        dashboard: WebElement = self.get_dashboard()
+
+        self.assertIn(
+            'Este campo é obrigatório',
+            dashboard.text,
+        )
