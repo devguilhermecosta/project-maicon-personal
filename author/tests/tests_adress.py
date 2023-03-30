@@ -8,6 +8,21 @@ from parameterized import parameterized
 
 
 class AdressTests(AuthorTestBase):
+    def make_reverse(self) -> reverse:
+        return reverse('author:adress')
+
+    def make_get_request(self) -> HttpResponse:
+        return self.client.get(
+            self.make_reverse(),
+        )
+
+    def make_post_request(self, data, follow: bool = False) -> HttpResponse:
+        return self.client.post(
+            self.make_reverse(),
+            data=data,
+            follow=follow,
+        )
+
     def setUp(self) -> None:
         self.adress_data: dict = {
             'name': 'this is the adress',
@@ -19,7 +34,7 @@ class AdressTests(AuthorTestBase):
         return super().setUp()
 
     def test_settings_adress_url_is_correct(self) -> None:
-        url: str = reverse('author:adress')
+        url: str = self.make_reverse()
 
         self.assertEqual(url,
                          '/author/dashboard/settings/adress/',
@@ -27,7 +42,7 @@ class AdressTests(AuthorTestBase):
 
     def test_settings_adress_view_is_correct(self) -> None:
         response: ResolverMatch = resolve(
-            reverse('author:adress')
+            self.make_reverse(),
         )
 
         self.assertEqual(response.func,
@@ -37,9 +52,7 @@ class AdressTests(AuthorTestBase):
     def test_settings_adress_load_correct_template(self) -> None:
         self.make_login()
 
-        response: HttpResponse = self.client.get(
-            reverse('author:adress')
-        )
+        response: HttpResponse = self.make_get_request()
 
         self.assertTemplateUsed(response,
                                 'author/partials/_adress.html',
@@ -48,18 +61,14 @@ class AdressTests(AuthorTestBase):
     def test_settings_adress_access_allowed_with_code_200_if_user_is_loged(self) -> None:
         self.make_login()
 
-        response: HttpResponse = self.client.get(
-            reverse('author:adress')
-        )
+        response: HttpResponse = self.make_get_request()
 
         self.assertEqual(response.status_code,
                          200,
                          )
 
     def test_settings_adress_user_is_redirected_with_code_302_if_user_is_not_loged(self) -> None:
-        response: HttpResponse = self.client.get(
-            reverse('author:adress')
-        )
+        response: HttpResponse = self.make_get_request()
 
         self.assertEqual(response.status_code,
                          302,
@@ -67,9 +76,7 @@ class AdressTests(AuthorTestBase):
 
     def test_settings_adress_url_is_different_when_user_is_redirected(self) -> None:
         adress = make_adress()
-        response: HttpResponse = self.client.get(
-            reverse('author:adress')
-        )
+        response: HttpResponse = self.make_get_request()
 
         self.assertEqual(response.url,
                          '/author/login/?next=/author/dashboard/settings/adress/',
@@ -88,9 +95,7 @@ class AdressTests(AuthorTestBase):
         
         make_adress(**adress_data)
 
-        response: HttpResponse = self.client.get(
-            reverse('author:adress')
-        )
+        response: HttpResponse = self.make_get_request()
 
         response_content: str = response.content.decode('utf-8')
 
@@ -112,10 +117,9 @@ class AdressTests(AuthorTestBase):
 
         self.adress_data[field] = ''
 
-        response: HttpResponse = self.client.post(
-            reverse('author:adress'),
+        response: HttpResponse = self.make_post_request(
             data=self.adress_data,
-            follow=True,
+            follow=True
         )
 
         response_content: str = response.content.decode('utf-8')
@@ -125,8 +129,7 @@ class AdressTests(AuthorTestBase):
     def test_settings_adress_form_used_return_message_success_if_data_ok(self) -> None:
         self.make_login()
 
-        response: HttpResponse = self.client.post(
-            reverse('author:adress'),
+        response: HttpResponse = self.make_post_request(
             data=self.adress_data,
             follow=True,
         )

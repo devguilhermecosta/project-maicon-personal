@@ -7,9 +7,7 @@ from .author_base_test import (
     )
 from author.views.initial_gallery import settings_initial_gallery
 from app_home.tests.home_base_test import make_pre_gallery
-from utils.browser import make_chrome_browser
-from selenium.webdriver.chrome.webdriver import WebDriver
-from selenium.webdriver.common.by import By
+from utils.browser import ChromeBrowser
 from selenium.webdriver.remote.webelement import WebElement
 import pytest
 import contextlib
@@ -20,41 +18,44 @@ TEST_DIR = 'test_data'
 
 
 class InitialGalleryTests(AuthorTestBase):
-    def _make_get_request(self) -> HttpResponse:
+    def make_reverse(self) -> reverse:
+        return reverse('author:initialgallery')
+
+    def make_get_request(self) -> HttpResponse:
         response: HttpResponse = self.client.get(
-            reverse('author:initialgallery')
+            self.make_reverse(),
         )
         return response
 
     def test_initial_gallery_view_is_correct(self) -> None:
         response: ResolverMatch = resolve(
-            reverse('author:initialgallery')
+            self.make_reverse(),
         )
         self.assertEqual(response.func, settings_initial_gallery)
 
     def test_initial_gallery_url_is_correct(self) -> None:
-        url: str = reverse('author:initialgallery')
+        url: str = self.make_reverse()
 
         self.assertEqual(url,
                          '/author/dashboard/settings/initial-gallery/edit/',
                          )
 
     def test_initial_gallery_url_is_diferent_if_user_not_authenticated(self) -> None:  # noqa: E501
-        response: HttpResponse = self._make_get_request()
+        response: HttpResponse = self.make_get_request()
 
         self.assertEqual(response.url,
                          '/author/login/?next=/author/dashboard/settings/initial-gallery/edit/',  # noqa: E501
                          )
 
     def test_initial_gallery_status_code_302_if_user_not_authenticated(self) -> None:  # noqa: E501
-        response: HttpResponse = self._make_get_request()
+        response: HttpResponse = self.make_get_request()
 
         self.assertEqual(response.status_code, 302)
 
     def test_initial_gallery_status_code_200_if_user_is_authenticated(self) -> None:  # noqa: E501
         self.make_login()
 
-        response: HttpResponse = self._make_get_request()
+        response: HttpResponse = self.make_get_request()
 
         self.assertEqual(response.status_code,
                          200,
@@ -62,7 +63,7 @@ class InitialGalleryTests(AuthorTestBase):
 
     def test_initial_gallery_load_correct_template(self) -> None:
         self.make_login()
-        response: HttpResponse = self._make_get_request()
+        response: HttpResponse = self.make_get_request()
 
         self.assertTemplateUsed(response,
                                 'author/partials/_initialgallery.html',
@@ -74,7 +75,10 @@ class InitialGalleryTests(AuthorTestBase):
 class InitialGalleryFunctionalTests(StaticLiveServerTestCase):
     def setUp(self) -> None:
         create_user()
-        self.browser: WebDriver = make_chrome_browser()
+        self.url: str = self.live_server_url + reverse('author:initialgallery')
+        self.browser: ChromeBrowser = ChromeBrowser(
+            self.url,
+        )
         return super().setUp()
 
     def tearDown(self) -> None:
@@ -83,18 +87,6 @@ class InitialGalleryFunctionalTests(StaticLiveServerTestCase):
             shutil.rmtree(TEST_DIR)
         return super().tearDown()
 
-    def get_element_by_xpath(self, xpath) -> WebElement:
-        return self.browser.find_element(
-            By.XPATH,
-            xpath,
-        )
-
-    def get_element_by_id(self, id) -> WebElement:
-        return self.browser.find_element(
-            By.ID,
-            id,
-        )
-
     def _enter_gallery_with_content(self, title=None) -> None:
         """
         Enter the image pre gallery with an instance
@@ -102,13 +94,9 @@ class InitialGalleryFunctionalTests(StaticLiveServerTestCase):
         """
         make_pre_gallery(title)
 
-        self.browser.get(
-            self.live_server_url+reverse('author:initialgallery')
-        )
-
         sign_in_with_selenium(self.browser)
 
-        pre_gallery_settings: WebElement = self.get_element_by_xpath(
+        pre_gallery_settings: WebElement = self.browser.find_element_by_xpath(
             '/html/body/main/section/nav/ul/li[1]/nav/ul/li[4]/a'
         )
         pre_gallery_settings.click()
@@ -116,14 +104,14 @@ class InitialGalleryFunctionalTests(StaticLiveServerTestCase):
     def test_initial_gallery_load_correct_data(self) -> None:
         self._enter_gallery_with_content()
 
-        input_title: WebElement = self.get_element_by_id(
+        input_title: WebElement = self.browser.find_element_by_id(
             'id_title',
         )
-        textarea: WebElement = self.get_element_by_id(
+        textarea: WebElement = self.browser.find_element_by_id(
             'id_description',
         )
 
-        image_url: WebElement = self.get_element_by_xpath(
+        image_url: WebElement = self.browser.find_element_by_xpath(
             '/html/body/main/section/section/form/div[3]/a',
         )
 
@@ -140,22 +128,22 @@ class InitialGalleryFunctionalTests(StaticLiveServerTestCase):
     def test_initial_gallery_save_data_after_modification(self) -> None:
         self._enter_gallery_with_content()
 
-        input_title: WebElement = self.get_element_by_xpath(
+        input_title: WebElement = self.browser.find_element_by_xpath(
             '/html/body/main/section/section/form/div[1]/input',
         )
         input_title.clear()
         input_title.send_keys('this is the new title')
 
-        button_submit: WebElement = self.get_element_by_xpath(
+        button_submit: WebElement = self.browser.find_element_by_xpath(
             '/html/body/main/section/section/form',
         )
         button_submit.submit()
 
-        new_input_title: WebElement = self.get_element_by_xpath(
+        new_input_title: WebElement = self.browser.find_element_by_xpath(
             '/html/body/main/section/section/form/div[1]/input',
         )
 
-        dashboard: WebElement = self.get_element_by_xpath(
+        dashboard: WebElement = self.browser.find_element_by_xpath(
             '/html/body/main/section/section'
         )
 

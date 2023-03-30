@@ -13,27 +13,33 @@ TEST_DIR = 'test_data'
 
 @override_settings(MEDIA_ROOT=(TEST_DIR + '/media'))
 class DashboardTests(AuthorTestBase):
+    def make_reverse(self) -> reverse:
+        return reverse('author:dashboard')
+
+    def make_get_request(self) -> HttpResponse:
+        return self.client.get(
+            self.make_reverse(),
+        )
+
     def tearDown(self) -> None:
         with contextlib.suppress(OSError):
             shutil.rmtree(TEST_DIR)
         return super().tearDown()
 
     def test_dashboard_url_is_correct(self) -> None:
-        url: str = reverse('author:dashboard')
+        url: str = self.make_reverse()
 
         self.assertEqual(url, '/author/dashboard/')
 
     def test_dashboard_view_is_correct(self) -> None:
         response: ResolverMatch = resolve(
-            reverse('author:dashboard')
+            self.make_reverse(),
         )
 
         self.assertEqual(response.func, views.dashboard)
 
     def test_dashboard_url_is_redirected_if_user_is_not_authenticated(self) -> None:  # noqa: E501
-        response: HttpResponse = self.client.get(
-            reverse('author:dashboard')
-        )
+        response: HttpResponse = self.make_get_request()
 
         self.assertEqual(
             response.url,
@@ -47,9 +53,7 @@ class DashboardTests(AuthorTestBase):
     def test_dashboard_status_code_200_if_user_is_authenticated(self) -> None:
         self.make_login()
 
-        response: HttpResponse = self.client.get(
-            reverse('author:dashboard')
-        )
+        response: HttpResponse = self.make_get_request()
 
         self.assertEqual(response.status_code, 200)
 
@@ -60,9 +64,7 @@ class DashboardTests(AuthorTestBase):
 
         make_home_content(option_name=name)
 
-        response: HttpResponse = self.client.get(
-            reverse('author:dashboard')
-        )
+        response: HttpResponse = self.make_get_request()
 
         response_content: str = response.content.decode('utf-8')
 
@@ -74,9 +76,7 @@ class DashboardTests(AuthorTestBase):
     def test_dashboard_load_correct_template(self) -> None:
         self.make_login()
 
-        response: HttpResponse = self.client.get(
-            reverse('author:dashboard')
-        )
+        response: HttpResponse = self.make_get_request()
 
         self.assertTemplateUsed(
             response,

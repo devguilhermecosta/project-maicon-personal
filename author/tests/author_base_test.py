@@ -2,9 +2,8 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from gallery.models import Image
 from app_home.tests.home_base_test import make_simple_image
-from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
-from selenium.webdriver.chrome.webdriver import WebDriver
+from utils.browser import ChromeBrowser
 
 
 class AuthorTestBase(TestCase):
@@ -36,21 +35,18 @@ def create_user(**kwargs) -> User:
     return user
 
 
-def sign_in_with_selenium(browser: WebDriver) -> None:
-    input_user: WebElement = browser.find_element(
-        By.XPATH,
+def sign_in_with_selenium(browser: ChromeBrowser) -> None:
+    input_user: WebElement = browser.find_element_by_xpath(
         '//*[@id="id_username"]',
     )
     input_user.send_keys('username')
 
-    input_password: WebElement = browser.find_element(
-        By.XPATH,
+    input_password: WebElement = browser.find_element_by_xpath(
         '//*[@id="id_password"]',
     )
     input_password.send_keys('password')
 
-    button_submit: WebElement = browser.find_element(
-        By.XPATH,
+    button_submit: WebElement = browser.find_element_by_xpath(
         '/html/body/main/section/form/button'
     )
     button_submit.click()

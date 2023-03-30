@@ -5,8 +5,22 @@ from .author_base_test import AuthorTestBase
 
 
 class LogoutTests(AuthorTestBase):
+    def make_reverse(self) -> reverse:
+        return reverse('author:logout')
+
+    def make_get_request(self) -> HttpResponse:
+        return self.client.get(
+            self.make_reverse(),
+        )
+
+    def make_post_request(self, follow=False) -> HttpResponse:
+        return self.client.post(
+            self.make_reverse(),
+            follow=follow,
+        )
+
     def test_logout_url_is_correct(self) -> None:
-        url: str = reverse('author:logout')
+        url: str = self.make_reverse()
 
         self.assertEqual(
             url,
@@ -15,7 +29,7 @@ class LogoutTests(AuthorTestBase):
 
     def test_logout_view_is_correct(self) -> None:
         response: ResolverMatch = resolve(
-            reverse('author:logout')
+            self.make_reverse()
         )
 
         self.assertEqual(
@@ -24,9 +38,7 @@ class LogoutTests(AuthorTestBase):
         )
 
     def test_logout_url_is_redirected_if_user_not_authenticated_and_method_post(self) -> None:  # noqa: E501
-        response: HttpResponse = self.client.post(
-            reverse('author:logout'),
-        )
+        response: HttpResponse = self.make_post_request()
 
         self.assertEqual(
             response.status_code,
@@ -38,9 +50,7 @@ class LogoutTests(AuthorTestBase):
         )
 
     def test_logout_url_is_redirected_if_user_not_authenticated_and_method_get(self) -> None:  # noqa: E501
-        response: HttpResponse = self.client.get(
-            reverse('author:logout'),
-        )
+        response: HttpResponse = self.make_get_request()
 
         self.assertEqual(
             response.status_code,
@@ -54,9 +64,7 @@ class LogoutTests(AuthorTestBase):
     def test_logout_status_code_405_if_method_get_and_user_is_authenticated(self) -> None:  # noqa: E501
         self.make_login()
 
-        response: HttpResponse = self.client.get(
-            reverse('author:logout')
-        )
+        response: HttpResponse = self.make_get_request()
 
         self.assertEqual(
             response.status_code,
@@ -66,9 +74,7 @@ class LogoutTests(AuthorTestBase):
     def test_logout_url_is_correct_if_user_is_authenticated(self) -> None:
         self.make_login()
 
-        response: HttpResponse = self.client.post(
-            reverse('author:logout'),
-        )
+        response: HttpResponse = self.make_post_request()
 
         self.assertEqual(
             response.url,
@@ -78,10 +84,7 @@ class LogoutTests(AuthorTestBase):
     def test_logout_content_has_logout_succesfully_if_logout(self) -> None:
         self.make_login()
 
-        response: HttpResponse = self.client.post(
-            reverse('author:logout'),
-            follow=True,
-        )
+        response: HttpResponse = self.make_post_request(follow=True)
 
         response_content: str = response.content.decode('utf-8')
 

@@ -1,29 +1,28 @@
+import pytest
+import shutil
+import contextlib
 from django.http import HttpResponse
 from django.urls import ResolverMatch, resolve, reverse
 from django.test import override_settings
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
-
 from author.views import settings_profile
-
 from .author_base_test import AuthorTestBase, create_user
 from app_home.tests.home_base_test import make_profle
-
-from utils.browser import make_chrome_browser
-
-import pytest
-import shutil
-import contextlib
-
-from selenium.webdriver.chrome.webdriver import WebDriver
+from utils.browser import ChromeBrowser
 from selenium.webdriver.remote.webelement import WebElement
-from selenium.webdriver.common.by import By
-
-from time import sleep
 
 
 class ProfileSettingsTests(AuthorTestBase):
+    def make_reverse(self) -> reverse:
+        return reverse('author:profile')
+
+    def make_get_request(self) -> HttpResponse:
+        return self.client.get(
+            self.make_reverse(),
+        )
+
     def test_profile_url_is_correct(self) -> None:
-        url: str = reverse('author:profile')
+        url: str = self.make_reverse()
 
         self.assertEqual(
             url,
@@ -32,7 +31,7 @@ class ProfileSettingsTests(AuthorTestBase):
 
     def test_profile_view_is_correct(self) -> None:
         response: ResolverMatch = resolve(
-            reverse('author:profile')
+            self.make_reverse()
         )
 
         self.assertEqual(
@@ -43,9 +42,7 @@ class ProfileSettingsTests(AuthorTestBase):
     def test_profile_view_load_correct_template(self) -> None:
         self.make_login()
 
-        response: HttpResponse = self.client.get(
-            reverse('author:profile')
-        )
+        response: HttpResponse = self.make_get_request()
 
         self.assertTemplateUsed(
             response,
@@ -53,9 +50,7 @@ class ProfileSettingsTests(AuthorTestBase):
         )
 
     def test_profile_url_is_redirected_if_user_not_authenticated(self) -> None:
-        response: HttpResponse = self.client.get(
-            reverse('author:profile')
-        )
+        response: HttpResponse = self.make_get_request()
 
         self.assertEqual(
             response.url,
@@ -69,15 +64,12 @@ class ProfileSettingsTests(AuthorTestBase):
     def test_profile_status_code_200_if_user_is_authenticated(self) -> None:
         self.make_login()
 
-        response: HttpResponse = self.client.get(
-            reverse('author:profile'),
-        )
+        response: HttpResponse = self.make_get_request()
 
         self.assertEqual(
             response.status_code,
             200,
         )
-        ...
 
 
 TEST_DIR: str = 'test_data'
@@ -87,7 +79,10 @@ TEST_DIR: str = 'test_data'
 @override_settings(MEDIA_ROOT=TEST_DIR + '/media')
 class ProfileSettingsFunctionalTests(StaticLiveServerTestCase):
     def setUp(self) -> None:
-        self.browser: WebDriver = make_chrome_browser()
+        self.url: str = self.live_server_url+reverse('author:login')
+        self.browser: ChromeBrowser = ChromeBrowser(
+            self.url,
+        )
         return super().tearDown()
 
     def tearDown(self) -> None:
@@ -101,49 +96,38 @@ class ProfileSettingsFunctionalTests(StaticLiveServerTestCase):
         create_user()
         make_profle()
 
-        self.browser.get(
-            self.live_server_url+reverse('author:login')
-        )
-
-        input_username: WebElement = self.browser.find_element(
-            By.XPATH,
+        input_username: WebElement = self.browser.find_element_by_xpath(
             '//*[@id="id_username"]',
         )
         input_username.send_keys('username')
 
-        input_password: WebElement = self.browser.find_element(
-            By.XPATH,
+        input_password: WebElement = self.browser.find_element_by_xpath(
             '//*[@id="id_password"]',
         )
         input_password.send_keys('password')
 
-        form: WebElement = self.browser.find_element(
-            By.XPATH,
+        form: WebElement = self.browser.find_element_by_xpath(
             '/html/body/main/section[1]/form',
         )
         form.submit()
 
-        button_profile: WebElement = self.browser.find_element(
-            By.XPATH,
+        button_profile: WebElement = self.browser.find_element_by_xpath(
             '/html/body/main/section/nav/ul/li[1]/nav/ul/li[3]/a',
         )
         button_profile.click()
 
     def get_title(self) -> WebElement:
-        return self.browser.find_element(
-            By.XPATH,
+        return self.browser.find_element_by_xpath(
             '//*[@id="id_title"]',
         )
 
     def get_description(self) -> WebElement:
-        return self.browser.find_element(
-            By.XPATH,
+        return self.browser.find_element_by_xpath(
             '//*[@id="id_description"]',
         )
 
     def get_image(self) -> WebElement:
-        return self.browser.find_element(
-            By.XPATH,
+        return self.browser.find_element_by_xpath(
             '/html/body/main/section/section/form/div[3]/a',
         )
 

@@ -4,16 +4,26 @@ from author.views import login_view
 from django.urls import reverse, resolve, ResolverMatch
 from django.http import HttpResponse
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
-from utils.browser import make_chrome_browser
+from utils.browser import ChromeBrowser
 from selenium.webdriver.remote.webelement import WebElement
-from selenium.webdriver.chrome.webdriver import WebDriver
-from selenium.webdriver.common.by import By
 import pytest
 
 
 class LoginTests(AuthorTestBase):
+    def make_reverse(self, url: str = 'author:login') -> reverse:
+        return reverse(
+            url,
+        )
+
+    def make_get_request(self, **kwargs) -> HttpResponse:
+        return self.client.get(
+            self.make_reverse(
+                kwargs.pop('url', 'author:login')
+                ),
+        )
+
     def test_login_url_is_correct(self) -> None:
-        url: str = reverse('author:login')
+        url: str = self.make_reverse()
 
         self.assertEqual(
             url,
@@ -22,7 +32,7 @@ class LoginTests(AuthorTestBase):
 
     def test_login_view_function_is_correct(self) -> None:
         response: ResolverMatch = resolve(
-            reverse('author:login')
+            self.make_reverse()
         )
 
         self.assertEqual(
@@ -31,18 +41,14 @@ class LoginTests(AuthorTestBase):
         )
 
     def test_login_load_correct_template(self) -> None:
-        self.client.get(
-            reverse('author:login')
-        )
+        self.make_get_request()
 
         self.assertTemplateUsed(
             'author/pages/login.html',
         )
 
     def test_login_status_code_200(self) -> None:
-        response: HttpResponse = self.client.get(
-            reverse('author:login')
-        )
+        response: HttpResponse = self.make_get_request()
 
         self.assertEqual(
             response.status_code,
@@ -50,9 +56,9 @@ class LoginTests(AuthorTestBase):
         )
 
     def test_login_create_return_404_if_request_is_get(self) -> None:
-        response: HttpResponse = self.client.get(
-            reverse('author:login_create')
-        )
+        response: HttpResponse = self.make_get_request(
+            url='author:login_create'
+            )
 
         self.assertEqual(
             response.status_code,
@@ -63,7 +69,10 @@ class LoginTests(AuthorTestBase):
 @pytest.mark.functional_test
 class LoginFunctionalTests(StaticLiveServerTestCase):
     def setUp(self) -> None:
-        self.browser: WebDriver = make_chrome_browser()
+        self.url: str = self.live_server_url + reverse('author:login')
+        self.browser: ChromeBrowser = ChromeBrowser(
+            self.url,
+        )
         return super().setUp()
 
     def tearDown(self) -> None:
@@ -71,28 +80,21 @@ class LoginFunctionalTests(StaticLiveServerTestCase):
         return super().tearDown()
 
     def login_dashboard_without_user(self) -> None:
-        self.browser.get(
-            self.live_server_url+reverse('author:login')
-        )
-
-        input_user: WebElement = self.browser.find_element(
-            By.XPATH,
+        input_user: WebElement = self.browser.find_element_by_xpath(
             '//*[@id="id_username"]',
         )
         input_user.send_keys(
             'username',
         )
 
-        input_password: WebElement = self.browser.find_element(
-            By.XPATH,
+        input_password: WebElement = self.browser.find_element_by_xpath(
             '//*[@id="id_password"]',
         )
         input_password.send_keys(
             'password',
         )
 
-        form_login: WebElement = self.browser.find_element(
-            By.XPATH,
+        form_login: WebElement = self.browser.find_element_by_xpath(
             '/html/body/main/section/form',
         )
 
@@ -101,8 +103,7 @@ class LoginFunctionalTests(StaticLiveServerTestCase):
     def test_login_not_allowed_if_invalid_credentials(self) -> None:
         self.login_dashboard_without_user()
 
-        main: WebElement = self.browser.find_element(
-            By.XPATH,
+        main: WebElement = self.browser.find_element_by_xpath(
             '/html/body/main',
         )
 
@@ -116,8 +117,7 @@ class LoginFunctionalTests(StaticLiveServerTestCase):
 
         self.login_dashboard_without_user()
 
-        dashboard: WebElement = self.browser.find_element(
-            By.XPATH,
+        dashboard: WebElement = self.browser.find_element_by_xpath(
             '/html/body/main/section',
         )
 

@@ -1,17 +1,13 @@
+import pytest
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.http import HttpResponse
 from django.urls import ResolverMatch, resolve, reverse
-from selenium.webdriver.chrome.webdriver import WebDriver
-from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
-
 from app_home.tests.home_base_test import make_section_intro
 from author.views import settings_sectionintro
-from utils.browser import make_chrome_browser
-
+from utils.browser import ChromeBrowser
 from .author_base_test import (AuthorTestBase, create_user,
                                sign_in_with_selenium)
-import pytest
 
 
 class SectionIntroTests(AuthorTestBase):
@@ -81,9 +77,9 @@ class SectionIntroTests(AuthorTestBase):
 class SectionIntroFunctionalTests(StaticLiveServerTestCase):
     def setUp(self, *args, **kwargs) -> None:
         create_user()
-        self.browser: WebDriver = make_chrome_browser()
-        self.browser.get(
-            self.live_server_url+reverse('author:sectionintro')
+        self.url: str = self.live_server_url+reverse('author:sectionintro')
+        self.browser: ChromeBrowser = ChromeBrowser(
+            self.url,
         )
         return super().setUp(*args, **kwargs)
 
@@ -92,33 +88,26 @@ class SectionIntroFunctionalTests(StaticLiveServerTestCase):
         return super().tearDown(*args, **kwargs)
 
     def get_input_title_webelement(self) -> WebElement:
-        input_title: WebElement = self.browser.find_element(
-            By.XPATH,
+        return self.browser.find_element_by_xpath(
             '//*[@id="id_title"]',
         )
-        return input_title
 
     def get_dashboard_element(self) -> WebElement:
-        dashboard: WebElement = self.browser.find_element(
-            By.XPATH,
+        return self.browser.find_element_by_xpath(
             '/html/body/main/section/section',
         )
-        return dashboard
 
     def get_form_data(self) -> WebElement:
-        form: WebElement = self.browser.find_element(
-            By.XPATH,
+        return self.browser.find_element_by_xpath(
             '/html/body/main/section/section/form',
         )
-        return form
 
     def enter_the_intro_with_content(self) -> None:
         make_section_intro()
 
         sign_in_with_selenium(self.browser)
 
-        button_intro: WebElement = self.browser.find_element(
-            By.XPATH,
+        button_intro: WebElement = self.browser.find_element_by_xpath(
             '/html/body/main/section/nav/ul/li[1]/nav/ul/li[2]/a',
         )
         button_intro.click()
@@ -128,8 +117,7 @@ class SectionIntroFunctionalTests(StaticLiveServerTestCase):
 
         input_title: WebElement = self.get_input_title_webelement()
 
-        input_description: WebElement = self.browser.find_element(
-            By.XPATH,
+        input_description: WebElement = self.browser.find_element_by_xpath(
             '//*[@id="id_description"]',
         )
 
