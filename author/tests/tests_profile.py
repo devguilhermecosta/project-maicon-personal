@@ -6,7 +6,11 @@ from django.urls import ResolverMatch, resolve, reverse
 from django.test import override_settings
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from author.views import settings_profile
-from .author_base_test import AuthorTestBase, create_user
+from .author_base_test import (
+    AuthorTestBase,
+    sign_in_with_selenium,
+    create_user,
+    )
 from app_home.tests.home_base_test import make_profle
 from utils.browser import ChromeBrowser
 from selenium.webdriver.remote.webelement import WebElement
@@ -79,6 +83,7 @@ TEST_DIR: str = 'test_data'
 @override_settings(MEDIA_ROOT=TEST_DIR + '/media')
 class ProfileSettingsFunctionalTests(StaticLiveServerTestCase):
     def setUp(self) -> None:
+        create_user()
         self.url: str = self.live_server_url+reverse('author:login')
         self.browser: ChromeBrowser = ChromeBrowser(
             self.url,
@@ -93,23 +98,8 @@ class ProfileSettingsFunctionalTests(StaticLiveServerTestCase):
         return super().tearDown()
 
     def enter_profile_settings_with_content(self) -> None:
-        create_user()
         make_profle()
-
-        input_username: WebElement = self.browser.find_element_by_xpath(
-            '//*[@id="id_username"]',
-        )
-        input_username.send_keys('username')
-
-        input_password: WebElement = self.browser.find_element_by_xpath(
-            '//*[@id="id_password"]',
-        )
-        input_password.send_keys('password')
-
-        form: WebElement = self.browser.find_element_by_xpath(
-            '/html/body/main/section[1]/form',
-        )
-        form.submit()
+        sign_in_with_selenium(self.browser)
 
         button_profile: WebElement = self.browser.find_element_by_xpath(
             '/html/body/main/section/nav/ul/li[1]/nav/ul/li[3]/a',

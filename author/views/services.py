@@ -19,6 +19,12 @@ from author.views.base_settings import home_content
 )
 class ServiceView(View):
     @classmethod
+    @method_decorator(
+        login_required(redirect_field_name='next',
+                       login_url='author:login'
+                       ),
+        name='dispatch',
+    )
     def all_services(cls, request) -> render:
         services: Service = Service.objects.all()
 
@@ -31,8 +37,8 @@ class ServiceView(View):
             'home_content': home_content(),
         })
 
-    def get_service(self, id=None) -> Service | None:
-        service: Service | None = None
+    def get_service(self, id=None):
+        service = None
 
         if id is not None:
             service = Service.objects.get(id=id)
@@ -60,7 +66,7 @@ class ServiceView(View):
         return self.render_service(form)
 
     def post(self, request: HttpRequest, id=None):
-        service: Service | None = self.get_service(id)
+        service: Service = self.get_service(id)
 
         form: ModelForm = f.ServiceForm(
             data=request.POST or None,
@@ -79,7 +85,7 @@ class ServiceView(View):
                 )
 
             return redirect(
-                reverse('author:service', args=(service.id,))
+                reverse('author:service_edit', args=(service.id,))
             )
 
         return self.render_service(form)
