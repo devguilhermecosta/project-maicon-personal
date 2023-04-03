@@ -15,14 +15,17 @@ class SocialNetwork(models.Model):
                                      verbose_name='link do whatsapp',
                                      )
     instagram_text = models.CharField(max_length=255,
+                                      default='',
                                       verbose_name=('texto para o botão'
                                                     ' do instagram'),
                                       )
     facebook_text = models.CharField(max_length=255,
+                                     default='',
                                      verbose_name=('texto para o botão'
                                                    ' do facebook'),
                                      )
     whatsapp_phone = models.CharField(max_length=255,
+                                      default='',
                                       verbose_name='número do whatsapp',
                                       )
 

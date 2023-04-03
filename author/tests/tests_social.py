@@ -14,8 +14,6 @@ from django.urls import reverse, resolve, ResolverMatch
 from django.http import HttpResponse
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 
-from time import sleep
-
 
 class SocialTests(AuthorTestBase):
     def make_reverse(self) -> str:
@@ -136,18 +134,15 @@ class SocialFunctionalTests(StaticLiveServerTestCase):
             self.get_dashboard().text,
         )
 
-    def test_social_is_not_allowed_save_data_without_or_empty_data(self) -> None:  # noqa: E501
+    def test_social_is_not_allowed_save_data_with_data_less_than_5_chars(self) -> None:  # noqa: E501
         self.enter_social_settings()
 
-        self.get_input_instagram().clear()
+        input_instagram: WebElement = self.get_input_instagram()
+        input_instagram.clear()
+        input_instagram.send_keys('a')
         self.get_form_data().submit()
 
-        sleep(3)
-
         self.assertIn(
-            'Este campo é obrigatório.',
+            'O texto precisa ter pelo menos 5 caracteres.',
             self.get_dashboard().text,
         )
-
-    def test_social_is_not_allowed_save_data_with_data_less_than_5_chars(self) -> None:  # noqa: E501
-        ...
