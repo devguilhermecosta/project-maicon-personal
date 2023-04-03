@@ -1,6 +1,13 @@
 from django.forms import ModelForm
 from django.core.exceptions import ValidationError
-from app_home.models import SocialNetwork, SectionIntro, Profile, PreGallery, Service, Adress
+from app_home.models import (
+    SocialNetwork,
+    SectionIntro,
+    Profile,
+    PreGallery,
+    Service,
+    Adress,
+    )
 from gallery.models import Image
 from collections import defaultdict
 
