@@ -13,7 +13,7 @@ TEST_DIR = 'test_data'
 
 @override_settings(MEDIA_ROOT=(TEST_DIR + '/media'))
 class DashboardTests(AuthorTestBase):
-    def make_reverse(self) -> reverse:
+    def make_reverse(self) -> str:
         return reverse('author:dashboard')
 
     def make_get_request(self) -> HttpResponse:

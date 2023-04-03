@@ -10,7 +10,7 @@ import pytest
 
 
 class LoginTests(AuthorTestBase):
-    def make_reverse(self, url: str = 'author:login') -> reverse:
+    def make_reverse(self, url: str = 'author:login') -> str:
         return reverse(
             url,
         )

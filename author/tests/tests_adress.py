@@ -8,7 +8,7 @@ from parameterized import parameterized
 
 
 class AdressTests(AuthorTestBase):
-    def make_reverse(self) -> reverse:
+    def make_reverse(self) -> str:
         return reverse('author:adress')
 
     def make_get_request(self) -> HttpResponse:

@@ -23,7 +23,7 @@ TEST_DIR = 'test_data'
 # modify the upload location of media files
 @override_settings(MEDIA_ROOT=(TEST_DIR + '/media'))
 class GallerySettingsTests(AuthorTestBase):
-    def make_reverse(self) -> reverse:
+    def make_reverse(self) -> str:
         return reverse('author:gallery')
 
     def make_get_request(self) -> HttpResponse:

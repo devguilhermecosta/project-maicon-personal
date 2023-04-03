@@ -11,7 +11,7 @@ from .author_base_test import (AuthorTestBase, create_user,
 
 
 class SectionIntroTests(AuthorTestBase):
-    def make_reverse(self) -> HttpResponse:
+    def make_reverse(self) -> str:
         return reverse('author:sectionintro')
 
     def client_make_get(self) -> HttpResponse:

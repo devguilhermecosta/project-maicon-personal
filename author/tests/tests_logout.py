@@ -5,7 +5,7 @@ from .author_base_test import AuthorTestBase
 
 
 class LogoutTests(AuthorTestBase):
-    def make_reverse(self) -> reverse:
+    def make_reverse(self) -> str:
         return reverse('author:logout')
 
     def make_get_request(self) -> HttpResponse:

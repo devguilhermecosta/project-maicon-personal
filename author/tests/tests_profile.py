@@ -17,7 +17,7 @@ from selenium.webdriver.remote.webelement import WebElement
 
 
 class ProfileSettingsTests(AuthorTestBase):
-    def make_reverse(self) -> reverse:
+    def make_reverse(self) -> str:
         return reverse('author:profile')
 
     def make_get_request(self) -> HttpResponse:

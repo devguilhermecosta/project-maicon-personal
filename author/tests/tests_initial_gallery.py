@@ -18,7 +18,7 @@ TEST_DIR = 'test_data'
 
 
 class InitialGalleryTests(AuthorTestBase):
-    def make_reverse(self) -> reverse:
+    def make_reverse(self) -> str:
         return reverse('author:initialgallery')
 
     def make_get_request(self) -> HttpResponse:
