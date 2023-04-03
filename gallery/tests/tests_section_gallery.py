@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.urls import reverse, resolve, ResolverMatch
 from django.http import HttpResponse
 from django.core.paginator import Paginator
@@ -8,8 +8,20 @@ from gallery.models import Image
 
 from .gallery_base_test import make_gallery_image, make_range_of_images
 
+import contextlib
+import shutil
 
+
+TEST_DIR = 'test_data'
+
+
+@override_settings(MEDIA_ROOT=TEST_DIR + '/media')
 class SectionGalleryTests(TestCase):
+    def tearDown(self) -> None:
+        with contextlib.suppress(OSError):
+            shutil.rmtree(TEST_DIR)
+        return super().tearDown()
+
     def make_reverser(self) -> str:
         return reverse('gallery:gallery')
 
