@@ -1,0 +1,61 @@
+{% comment %} <div class="C-pre_gallery_box center_flex_row">
+    <div data-anime="left" class="C-pre_gallery_images">
+        <ul class="C-pre_gallery_ul">
+            <li class="C-pre_gallery_li">
+                <input type="radio" name="pre_gallery_img" id="img1" checked>
+                <label for="img1"></label>
+                <img src="{{ home_content.pre_gallery.image_one.url }}" alt="">
+            </li>
+            <li class="C-pre_gallery_li">
+                <input type="radio" name="pre_gallery_img" id="img2">
+                <label for="img2"></label>
+                <img src="{{ home_content.pre_gallery.image_two.url }}" alt="">
+            </li>
+            <li class="C-pre_gallery_li">
+                <input type="radio" name="pre_gallery_img" id="img3">
+                <label for="img3"></label>
+                <img src="{{ home_content.pre_gallery.image_three.url }}" alt="">
+            </li>
+        </ul>
+    </div>
+    <div data-anime="right" class="C-pre_gallery_description">
+        <h2>{{ home_content.pre_gallery.title }}</h2>
+        <p>{{ home_content.pre_gallery.description }}</p>
+    </div>
+</div> {% endcomment %}
+
+<div class="C-pre_gallery_box center_flex_row">
+
+    <!-- arrow left -->
+    <span id="arrow_left" class="C-pre_gallery_span fa-solid fa-angle-left"></span>
+
+    <!-- carousel -->
+    <div class="C-pre_gallery_carousel">
+        <ul class="C-pre_gallery_ul">
+            <li class="C-pre_gallery_li">
+                <input type="radio" name="pre_gallery_img" id="img1" checked>
+                <label for="img1"></label>
+                <img src="{{ home_content.pre_gallery.image_one.url }}" draggable="false" alt="">
+            </li>
+            <li class="C-pre_gallery_li">
+                <input type="radio" name="pre_gallery_img" id="img2">
+                <label for="img2"></label>
+                <img src="{{ home_content.pre_gallery.image_two.url }}" draggable="false" alt="">
+            </li>
+            <li class="C-pre_gallery_li">
+                <input type="radio" name="pre_gallery_img" id="img3">
+                <label for="img3"></label>
+                <img src="{{ home_content.pre_gallery.image_three.url }}" draggable="false" alt="">
+            </li>
+        </ul>
+    </div>
+
+    <!-- arrow right --> 
+    <span id="arrow_right" class="C-pre_gallery_span fa-solid fa-angle-right"></span>
+
+    <!-- gallery description -->
+    <div data-anime="right" class="C-pre_gallery_description">
+        <h2>{{ home_content.pre_gallery.title }}</h2>
+        <p>{{ home_content.pre_gallery.description }}</p>
+    </div>
+</div>

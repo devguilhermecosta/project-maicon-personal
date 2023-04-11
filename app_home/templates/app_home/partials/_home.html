@@ -46,33 +46,10 @@
     </div>
 </section>
 
-<!-- pre gallery -->
 <section class="C-pre_gallery center_flex_column">
-    <div class="C-pre_gallery_box center_flex_row">
-        <div data-anime="left" class="C-pre_gallery_images">
-            <ul class="C-pre_gallery_ul">
-                <li class="C-pre_gallery_li">
-                    <input type="radio" name="pre_gallery_img" id="img1" checked>
-                    <label for="img1"></label>
-                    <img src="{{ home_content.pre_gallery.image_one.url }}" alt="">
-                </li>
-                <li class="C-pre_gallery_li">
-                    <input type="radio" name="pre_gallery_img" id="img2">
-                    <label for="img2"></label>
-                    <img src="{{ home_content.pre_gallery.image_two.url }}" alt="">
-                </li>
-                <li class="C-pre_gallery_li">
-                    <input type="radio" name="pre_gallery_img" id="img3">
-                    <label for="img3"></label>
-                    <img src="{{ home_content.pre_gallery.image_three.url }}" alt="">
-                </li>
-            </ul>
-        </div>
-        <div data-anime="right" class="C-pre_gallery_description">
-            <h2>{{ home_content.pre_gallery.title }}</h2>
-            <p>{{ home_content.pre_gallery.description }}</p>
-        </div>
-    </div>
+    <!-- pre gallery -->
+    {% include 'app_home/partials/_pre_gallery.html' %}
+
     <!-- services -->
     <section data-anime="down" id="services" class="C-services center_flex_column">
         <h2>Atendimento exclusivo e personalizado</h2>
