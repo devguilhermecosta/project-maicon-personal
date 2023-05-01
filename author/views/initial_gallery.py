@@ -6,7 +6,6 @@ from django.contrib import messages
 from django.forms import ModelForm
 from app_home.models import PreGallery
 from author import forms as f
-from author.views.base_settings import home_content
 
 
 @login_required(redirect_field_name='next', login_url='author:login')
@@ -28,5 +27,4 @@ def settings_initial_gallery(request: HttpRequest):
     return render(request, 'author/partials/_initialgallery.html', context={
         'form': form,
         'button_to_back_action': reverse('author:dashboard'),
-        'home_content': home_content(),
     })
