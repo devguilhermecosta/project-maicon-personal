@@ -1,0 +1,69 @@
+<nav class="C-dashboard__nav">
+    <ul class="C-dashboard__ul">
+        <li class="C-dashboard__li">
+
+            <!-- configurações do site -->
+            <p class="C-dashboard__link">Configurações do site</p>
+            <nav class="C-settings">
+                <ul class="C-settings__ul">
+                    <li class="C-settings__li">
+                        <a href="{% url 'author:socialnetwork' %}" class="C-settings__link">
+                            redes sociais
+                        </a>
+                    </li>
+                    <li class="C-settings__li">
+                        <a href="{% url 'author:sectionintro' %}" class="C-settings__link">
+                            intro
+                        </a>
+                    </li>
+                    <li class="C-settings__li">
+                        <a href="{% url 'author:profile' %}" class="C-settings__link">
+                            perfil profissional
+                        </a>
+                    </li>
+                    <li class="C-settings__li">
+                        <a href="{% url 'author:initialgallery' %}" class="C-settings__link">
+                            galeria inicial
+                        </a>
+                    </li>
+                    <li class="C-settings__li">
+                        <a href="{% url 'author:services' %}" class="C-settings__link">
+                            serviços
+                        </a>
+                    </li>
+                    <li class="C-settings__li">
+                        <a href="{% url 'author:adress' %}" class="C-settings__link">
+                            endereço
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </li>
+        <li class="C-dashboard__li">
+            <a href="{% url 'author:gallery' %}" class="C-dashboard__link">
+                Galeria de imagens
+            </a>
+        </li>
+        <li class="C-dashboard__li">
+            <label for="schedule" class="C-dashboard__link">Agenda</label>
+            <input type="checkbox" name="schedule" id="schedule">
+            <ul id="schedule_ul" class="C-settings__ul">
+                <li class="C-settings__li">
+                    <a href="{% url 'schedule:schedule' %}" class="C-settings__link">aulas experimentais</a>
+                </li>
+            </ul>
+        </li>
+        <li class="C-dashboard__li">
+            <form 
+                class="C-dashboard__link"
+                action="{% url 'author:logout' %}"
+                method="POST"
+                >
+                {% csrf_token %}
+                <button class="C-dashboard__button_logout standard_transition" type="submit">
+                    Logout
+                </button>
+            </form>
+        </li>
+    </ul>
+</nav>
