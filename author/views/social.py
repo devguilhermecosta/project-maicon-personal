@@ -24,7 +24,7 @@ def settings_socialnetwork(request: HttpRequest):
 
         return redirect('author:socialnetwork')
 
-    return render(request, 'author/partials/_socialnetwork.html', context={
+    return render(request, 'author/partials/_settings.html', context={
         'form': form,
         'button_to_back_action': reverse('author:dashboard'),
     })

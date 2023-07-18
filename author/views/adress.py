@@ -26,7 +26,7 @@ def settings_adress(request: HttpRequest):
             reverse('author:adress')
         )
 
-    return render(request, 'author/partials/_adress.html', context={
+    return render(request, 'author/partials/_settings.html', context={
         'form': form,
         'button_to_back_action': reverse('author:dashboard'),
     })

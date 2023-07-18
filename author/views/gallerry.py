@@ -63,7 +63,7 @@ class GalleryImageView(View):
 
         return render(
             self.request,
-            'author/partials/_image.html',
+            'author/partials/_settings.html',
             context={
                 'form': form,
                 'button_to_back_action': reverse('author:gallery'),

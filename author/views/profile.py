@@ -24,7 +24,7 @@ def settings_profile(request: HttpRequest):
 
         return redirect('author:profile')
 
-    return render(request, 'author/partials/_profile.html', context={
+    return render(request, 'author/partials/_settings.html', context={
         'form': form,
         'button_to_back_action': reverse('author:dashboard'),
     })

@@ -24,7 +24,7 @@ def settings_sectionintro(request: HttpRequest):
 
         return redirect('author:sectionintro')
 
-    return render(request, 'author/partials/_sectionintro.html', context={
+    return render(request, 'author/partials/_settings.html', context={
         'form': form,
         'button_to_back_action': reverse('author:dashboard'),
     })
