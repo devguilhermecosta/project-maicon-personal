@@ -1,0 +1,60 @@
+{% extends 'global/pages/base.html' %}
+
+{% block head_title %}
+  Agenda
+{% endblock %}
+
+{% block content %}
+  <section class="C-dashboard">
+    <!-- menu -->
+    {% include 'author/partials/_menu.html' %}
+
+    <section class="C-dashboard__settings">
+      <!-- messsages -->
+      {% include 'global/partials/messages.html' %}
+  
+      <!-- buttons -->
+      {% include 'author/partials/_buttons.html' %}
+  
+      <!-- mensagem caso não tenha nenhum agendamento -->
+      <p>nenhum agendamento até o momento</p>
+  
+      <table class="C-schedule_table">
+        <thead>
+          <tr>
+            <th>data</th>
+            <th>nome</th>
+            <th>categoria</th>
+            <th>feedback</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>02/07/2023</td>
+            <td>guilherme costa</td>
+            <td>eletro</td>
+            <td>não</td>
+          </tr>
+          <tr>
+            <td>02/07/2023</td>
+            <td>guilherme costa</td>
+            <td>eletro</td>
+            <td>não</td>
+          </tr>
+          <tr>
+            <td>02/07/2023</td>
+            <td>guilherme costa</td>
+            <td>eletro</td>
+            <td>não</td>
+          </tr>
+          <tr>
+            <td>02/07/2023</td>
+            <td>guilherme costa</td>
+            <td>eletro</td>
+            <td>não</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </section>
+{% endblock %}
