@@ -10,4 +10,5 @@ INSTALLED_APPS = [
     'app_home',
     'gallery',
     'author',
+    'schedule',
 ]
