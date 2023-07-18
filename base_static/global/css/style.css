@@ -851,6 +851,7 @@ body::-webkit-scrollbar-thumb {
 .C-dashboard__settings {
   grid-area: settings_dashboard;
   padding: 20px 10px;
+  overflow: hidden;
 }
 
 .C-settings {
@@ -873,6 +874,23 @@ body::-webkit-scrollbar-thumb {
 .C-settings__link {
   text-decoration: none;
   color: var(--standard-gray);
+}
+
+label[for='schedule'] {
+  cursor: pointer;
+}
+
+#schedule {
+  display: none;
+}
+
+#schedule_ul {
+  display: none;
+  padding-left: 10px;
+}
+
+input#schedule:checked ~ #schedule_ul {
+  display: block;
 }
 
 .C-form {
@@ -1067,6 +1085,58 @@ body::-webkit-scrollbar-thumb {
 .not_animated:hover {
   transform: none;
 }
+
+/* start schedule*/
+.C-schedule_table {
+  display: block;
+  width: 100%;
+  max-width: fit-content;
+  margin-top: 20px;
+  border-collapse: collapse;
+  font-size: 12px;
+  overflow-x: scroll;
+}
+
+.C-schedule_table::-webkit-scrollbar {
+  background-color: black;
+  height: 10px;
+}
+
+.C-schedule_table::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 10px;
+  border: 2px solid gray;
+}
+
+.C-schedule_table th {
+  text-transform: capitalize;
+  padding: 10px;
+  color: var(--white);
+  background-color: gray;
+  color: white;
+}
+
+.C-schedule_table tr {
+  text-align: center;
+  text-transform: uppercase;
+  padding: 5px;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.C-schedule_table tr:nth-of-type(even){
+  background-color: rgb(216, 211, 211);
+}
+
+.C-schedule_table td {
+  text-align: center;
+  text-transform: uppercase;
+  padding: 5px;
+  white-space: nowrap;
+  width: 100%;
+}
+/* end schedule */
+
 /* END MAIN */
 
 /* START FOOTER */
@@ -1389,6 +1459,7 @@ body::-webkit-scrollbar-thumb {
   .C-dashboard {
     grid-template-columns: 200px 1fr;
     grid-template-areas: "nav_dashboard settings_dashboard";
+    overflow: hidden;
   }
 
   .C-dashboard__nav {
