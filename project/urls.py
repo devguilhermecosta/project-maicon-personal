@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('gallery/', include('gallery.urls')),
     path('author/', include('author.urls')),
+    path('author/dashboard/agenda/', include('schedule.urls')),
     path('', include('app_home.urls')),
 ]
 
