@@ -1,0 +1,11 @@
+<span class="C-buttons_view__span C-buttons__delete_form">
+  <form
+    action="{% url 'schedule:appointment_delete' appointment.id %}"
+    method="POST"
+    class="C-buttons_view_delete C-buttons_view__span {{ aditional_class }}">
+    {% csrf_token %}
+    <button type="submit">
+      <span class="material-symbols-outlined C-buttons_view__span">delete</span>
+    </button>
+  </form>
+</span>

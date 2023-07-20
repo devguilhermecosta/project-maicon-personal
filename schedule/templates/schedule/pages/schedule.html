@@ -18,9 +18,7 @@
       {% include 'author/partials/_buttons.html' %}
   
       <!-- all appointments -->
-      {% if appointments.length == 0 %}
-        <p style="text-align: center">Nenhum agendamento até o momento</p>
-      {% else %}
+      {% if objects|length > 0 %}
         <table class="C-schedule_table">
           <thead>
             <tr>
@@ -59,11 +57,15 @@
                   </div>
                 </form>
               </td>
-              <td>deletar</td>
+              <td>
+                {% include 'schedule/partials/_form_delete.html' %}
+              </td>
             </tr>
             {% endfor %}
           </tbody>
         </table>
+      {% else %}
+        <p style="text-align: center">Nenhum agendamento até o momento</p>
       {% endif %}
 
       {% include 'global/partials/pagination.html' %}
