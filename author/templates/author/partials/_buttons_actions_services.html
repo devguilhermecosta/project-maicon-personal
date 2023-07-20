@@ -3,13 +3,13 @@
     <a href="{% url 'author:service_edit' service.id %}"><span class="material-symbols-outlined C-buttons_view__span C-buttons_view__edit">edit</span></a>
     <span class="C-buttons_view__span C-buttons__delete_form">
         <form
-            action="{% url 'author:service_delete' service.id %}"
-            method="POST"
-            class="C-buttons_view_delete C-buttons_view__span {{ aditional_class }}">
-            <button type="submit">
-                {% csrf_token %}
-                <span class="material-symbols-outlined C-buttons_view__span">delete</span>
-            </button>
+          action="{% url 'author:service_delete' service.id %}"
+          method="POST"
+          class="C-buttons_view_delete C-buttons_view__span {{ aditional_class }}">
+          {% csrf_token %}
+          <button type="submit">
+            <span class="material-symbols-outlined C-buttons_view__span">delete</span>
+          </button>
         </form>
-    </span>
+      </span>
 </div>
