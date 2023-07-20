@@ -93,23 +93,6 @@ function deleteObject(className, message) {
     })
 }
 
-// function delete object
-function deleteObject(className, message) {
-    const buttonDelete = document.querySelectorAll(className);
-    
-    buttonDelete.forEach((element)=>{
-        element.addEventListener('submit', (event)=>{
-            event.preventDefault();
-
-            const toConfirm = confirm(message);
-
-            if (toConfirm) {
-                element.submit();
-            }
-        })
-    })
-}
-
 // button service delete
 try {
     const deleteService = deleteObject('.C-service__delete', 'Deseja realmente deletar o serviço?');
@@ -121,6 +104,13 @@ try {
 try {
     const deleteImage = deleteObject('.C-image__delete', 'Deseja realmente deletar a imagem?');
     deleteImage();
+} catch(error) {
+}
+
+// button appointment delete
+try {
+    const deleteAppointment = deleteObject('.C-appointment__delete', 'Deseja deletar este agendamento?');
+    deleteAppointment();
 } catch(error) {
 }
 
