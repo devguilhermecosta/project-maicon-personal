@@ -1496,6 +1496,10 @@ input#schedule:checked ~ #schedule_ul {
     border-right: 1px solid var(--standard-black);
     border-bottom: none;
   }
+
+  .C-schedule_table {
+    font-size: 16px;
+  }
 }
 
 @media screen and (min-width: 1024px) {
