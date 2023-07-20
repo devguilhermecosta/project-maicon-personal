@@ -86,7 +86,7 @@ class SectionGalleryTests(TestCase):
 
         response: HttpResponse = self.make_get_request()
 
-        image: Image = response.context['gallery']
+        image: Image = response.context['objects']
         paginator: Paginator = image.paginator
 
         self.assertEqual(
