@@ -4,6 +4,17 @@ from schedule.models import Appointment
 
 
 class AppointmentForm(forms.ModelForm):
+    date = forms.DateTimeField(
+        label='data e horário',
+        widget=forms.DateTimeInput(
+            format=('%Y-%m-%dT%H:%M'),
+            attrs={
+                'type': 'datetime-local',
+            },
+        ),
+        input_formats='%Y-%m-%d %H:%M',
+    )
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.items():
@@ -25,17 +36,6 @@ class AppointmentForm(forms.ModelForm):
             'client_name': 'nome do aluno',
             'client_phone': 'telefone',
             'description': 'observações',
-        }
-
-        widgets = {
-            'date': forms.DateTimeInput(
-                attrs={
-                    'type': 'datetime-local',
-                },
-                format=[
-                    '%d-%m-%Y - %H:%M',
-                ],
-            )
         }
 
     def clean_category(self):
