@@ -38,7 +38,7 @@ class Gallery(ListView):
                                                   )
 
         cd.update({
-            'gallery': page_object,
+            'objects': page_object,
             'pagination_range': pagination,
             'home_content': home_content,
         })
