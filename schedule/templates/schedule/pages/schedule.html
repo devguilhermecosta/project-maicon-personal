@@ -12,49 +12,62 @@
     <section class="C-dashboard__settings">
       <!-- messsages -->
       {% include 'global/partials/messages.html' %}
+      </br>
   
       <!-- buttons -->
       {% include 'author/partials/_buttons.html' %}
   
-      <!-- mensagem caso não tenha nenhum agendamento -->
-      <p>nenhum agendamento até o momento</p>
-  
-      <table class="C-schedule_table">
-        <thead>
-          <tr>
-            <th>data</th>
-            <th>nome</th>
-            <th>categoria</th>
-            <th>feedback</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>02/07/2023</td>
-            <td>guilherme costa</td>
-            <td>eletro</td>
-            <td>não</td>
-          </tr>
-          <tr>
-            <td>02/07/2023</td>
-            <td>guilherme costa</td>
-            <td>eletro</td>
-            <td>não</td>
-          </tr>
-          <tr>
-            <td>02/07/2023</td>
-            <td>guilherme costa</td>
-            <td>eletro</td>
-            <td>não</td>
-          </tr>
-          <tr>
-            <td>02/07/2023</td>
-            <td>guilherme costa</td>
-            <td>eletro</td>
-            <td>não</td>
-          </tr>
-        </tbody>
-      </table>
+      <!-- all appointments -->
+      {% if appointments.length == 0 %}
+        <p style="text-align: center">Nenhum agendamento até o momento</p>
+      {% else %}
+        <table class="C-schedule_table">
+          <thead>
+            <tr>
+              <th>data e hora</th>
+              <th>categoria</th>
+              <th>nome</th>
+              <th>feedback</th>
+              <th>deletar</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for appointment in objects %}
+              <tr>
+                <td>{{appointment.date|date:'d/m/Y - H:i'}}</td>
+                <td>{{appointment.category}}</td>
+                <td>
+                  <a class="C-schedule_table_link" href="{% url 'schedule:appointment_edit' appointment.id %}">
+                    {{appointment.client_name}}
+                  </a>
+                </td>
+                <td>
+                  <form
+                  class="form_handle_feedback"
+                  method="POST"
+                  enctype="multipart/form-data"
+                  action="{% url 'schedule:handle_feedback' appointment.id %}"
+                  >
+                  {% csrf_token %}
+                  <div class="C-schedule_form_input">
+                    {% if appointment.feedback %}
+                      <input type="checkbox" name="handle_feedback" class="handle_feedback" checked>
+                    {% else %}
+                      <input type="checkbox" name="handle_feedback" class="handle_feedback">
+                    {% endif %}
+                    <input type="submit" value="" class="button_for_handle_feedback">
+                  </div>
+                </form>
+              </td>
+              <td>deletar</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% endif %}
+
+      {% include 'global/partials/pagination.html' %}
+
     </section>
   </section>
 {% endblock %}
