@@ -69,7 +69,7 @@ class SectionIntroTests(AuthorTestBase):
 
         self.assertTemplateUsed(
             response,
-            'author/partials/_sectionintro.html'
+            'author/partials/_settings.html'
         )
 
 

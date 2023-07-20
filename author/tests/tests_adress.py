@@ -55,7 +55,7 @@ class AdressTests(AuthorTestBase):
         response: HttpResponse = self.make_get_request()
 
         self.assertTemplateUsed(response,
-                                'author/partials/_adress.html',
+                                'author/partials/_settings.html',
                                 )
 
     def test_settings_adress_access_allowed_with_code_200_if_user_is_loged(self) -> None:

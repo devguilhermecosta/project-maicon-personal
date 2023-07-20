@@ -50,7 +50,7 @@ class ProfileSettingsTests(AuthorTestBase):
 
         self.assertTemplateUsed(
             response,
-            'author/partials/_profile.html'
+            'author/partials/_settings.html'
         )
 
     def test_profile_url_is_redirected_if_user_not_authenticated(self) -> None:

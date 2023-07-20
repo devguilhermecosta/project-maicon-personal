@@ -49,7 +49,7 @@ class SocialTests(AuthorTestBase):
 
         self.assertTemplateUsed(
             response,
-            'author/partials/_socialnetwork.html'
+            'author/partials/_settings.html'
         )
 
     def test_social_access_is_not_allowed_if_user_not_authenticated(self) -> None:  # noqa: E501

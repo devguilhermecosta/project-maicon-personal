@@ -66,7 +66,7 @@ class InitialGalleryTests(AuthorTestBase):
         response: HttpResponse = self.make_get_request()
 
         self.assertTemplateUsed(response,
-                                'author/partials/_initialgallery.html',
+                                'author/partials/_settings.html',
                                 )
 
 
