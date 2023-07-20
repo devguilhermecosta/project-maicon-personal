@@ -22,7 +22,15 @@ class AppointmenteFeedbackTests(AuthorTestBase):
         )
 
     def test_appointment_returns_status_code_404_if_get_request(self) -> None:
+        # make login
+        self.make_login()
+
+        # create the appointment
+        make_appointment()
+
+        # make get request
         response = self.client.get(self.url)
+
         self.assertEqual(
             response.status_code, 404
         )

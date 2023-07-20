@@ -1,7 +1,9 @@
 from django.urls import reverse, resolve
 from author.tests.author_base_test import AuthorTestBase
 from schedule import views
+from schedule.tests.test_base import make_appointment, make_appointment_range
 from parameterized import parameterized
+from unittest.mock import patch
 
 
 class ScheduleTests(AuthorTestBase):
@@ -38,18 +40,21 @@ class ScheduleTests(AuthorTestBase):
         self.assertEqual(response.status_code, 200)
 
     @parameterized.expand([
-        ('data'),
+        ('data e hora'),
         ('nome'),
         ('categoria'),
         ('feedback'),
-        ('guilherme costa'),
-        ('02/07/2023'),
-        ('eletro'),
-        ('não')
+        ('deletar'),
+        ('02/07/2023 - 10:00'),
+        ('jhon doe'),
+        ('musculação'),
     ])
     def test_schedule_loads_correct_content(self, text: str) -> None:
         # make login
         self.make_login()
+
+        # create the appointment
+        make_appointment()
 
         # make get request
         response = self.client.get(self.url)
@@ -69,6 +74,27 @@ class ScheduleTests(AuthorTestBase):
         content = response.content.decode('utf-8')
 
         self.assertIn(
-            'nenhum agendamento até o momento',
+            'Nenhum agendamento até o momento',
             content,
         )
+
+    def test_schedule_is_paginated(self) -> None:
+        # create 100 appointments
+        make_appointment_range(100)
+
+        # make login
+        self.make_login()
+
+        # set the PER_PAGE with 10
+        with patch('schedule.views.PER_PAGE', new=10):
+            # make get request
+            response = self.client.get(self.url)
+
+            # get the context
+            context = response.context
+
+            # get the objects and paginatior
+            appointments = context['objects']
+            paginator = appointments.paginator
+
+            self.assertEqual(paginator.num_pages, 10)

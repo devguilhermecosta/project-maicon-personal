@@ -12,3 +12,8 @@ def make_appointment(**kwargs) -> Appointment:
     )
     new_appointment.save()
     return new_appointment
+
+
+def make_appointment_range(quantity) -> None:
+    for i in range(quantity):
+        make_appointment()
