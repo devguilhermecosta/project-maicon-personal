@@ -42,7 +42,8 @@ class SheduleView(View):
                 'pagination_range': pagination_range,
                 'button_action': reverse('schedule:appointment'),
                 'button_name': 'novo agendamento',
-                'button_to_back_action': reverse('author:dashboard')
+                'button_to_back_action': reverse('author:dashboard'),
+                'aditional_class': 'C-appointment__delete',
             }
         )
 
@@ -58,7 +59,7 @@ class AppointmentView(SheduleView):
             context={
                 'form': form,
                 'form_action': reverse('schedule:appointment'),
-                'button_to_back_action': reverse('schedule:schedule')
+                'button_to_back_action': reverse('schedule:schedule'),
             }
         )
 
@@ -142,7 +143,7 @@ class AppointmentEditView(AppointmentFeedbackView):
 
             messages.success(
                 self.request,
-                'Agendamente alterado com sucesso'
+                'Agendamento alterado com sucesso'
             )
             del self.request.session['appointment-edit']
             return redirect(
@@ -158,5 +159,14 @@ class AppointmentEditView(AppointmentFeedbackView):
             )
 
 
-# class AppointmentDeleteView():
-#     ...
+class AppointmentDeleteView(AppointmentFeedbackView):
+    def post(self, *args, **kwargs) -> HttpResponse:
+        appointment = self.get_appointment(kwargs.get('id', None))
+        appointment.delete()
+        messages.success(
+            self.request,
+            'Agendamento deletado com sucesso',
+        )
+        return redirect(
+            reverse('schedule:schedule')
+        )

@@ -19,5 +19,9 @@ urlpatterns = [
     path('agendamento/<int:id>/editar/',
          views.AppointmentEditView.as_view(),
          name='appointment_edit',
-         )
+         ),
+    path('agendamento/<int:id>/deletar/',
+         views.AppointmentDeleteView.as_view(),
+         name='appointment_delete',
+         ),
 ]
