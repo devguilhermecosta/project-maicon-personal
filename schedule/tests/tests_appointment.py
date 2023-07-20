@@ -164,8 +164,4 @@ class AppointmentTests(AuthorTestBase):
             appointments.first().client_name,
             'jhon doe',
         )
-        self.fail(
-            'criar os tests para o feedback. '
-            'criar requisições AJAX. '
-            'criar a paginação. '
-        )
+        self.fail('criar o teste de paginação')
