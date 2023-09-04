@@ -15,6 +15,7 @@ from selenium.webdriver.remote.webelement import WebElement
 import shutil
 import contextlib
 import pytest
+from time import sleep
 
 
 TEST_DIR = 'test_data'
@@ -136,14 +137,17 @@ class GallerySettingsFunctionalTests(StaticLiveServerTestCase):
     def test_gallery_edit_image(self) -> None:
         self.__enter_gallery_settings()
 
-        button_image_edit: WebElement = self.browser.find_element_by_xpath(
-            '/html/body/main/section/section/section[1]/div[1]/div/a',
-        )
-        button_image_edit.click()
+        # click abaout the image
+        self.browser.find_element_by_xpath(
+            '/html/body/main/section/section/section[1]/div[1]/a',
+        ).click()
 
-        form_image_edit: WebElement = self.browser.find_element_by_xpath(  # noqa: F841 E501
+        # make post request
+        self.browser.find_element_by_xpath(  # noqa: F841 E501
             '/html/body/main/section/section/form',
         ).submit()
+
+        sleep(3)
 
         dashboard: WebElement = self.__get_dashboard()
 
