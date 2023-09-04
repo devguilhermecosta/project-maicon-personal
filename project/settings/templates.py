@@ -14,6 +14,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'app_home.context_processor.adress',
+                'app_home.context_processor.social',
             ],
         },
     },
