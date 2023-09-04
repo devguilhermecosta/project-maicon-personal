@@ -8,7 +8,7 @@
     {% include 'author/partials/_buttons.html' %}
 
     <section class="C-gallery-settings center_flex_row">
-        {% for image in gallery %}
+        {% for image in objects %}
             <div class="C-gallery__div center_flex_column">
                 <h2 class="C-gallery__title">{{ image.title }}</h2>
                 <p class="C-gallery__description">{{ image.description }}</p>

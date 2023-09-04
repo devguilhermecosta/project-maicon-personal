@@ -40,7 +40,7 @@ class GalleryImageView(View):
                                                   )
 
         return render(request, 'author/partials/_gallery.html', context={
-            'gallery': page_object,
+            'objects': page_object,
             'pagination_range': pagination,
             'button_name': 'Nova Imagem',
             'button_action': reverse('author:new_image'),
